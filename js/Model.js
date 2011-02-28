@@ -68,6 +68,19 @@ Humble( function () {
             return this._getTotalNumeric('amounti');
         },
 
+        getMaxSpending : function () {
+
+            var values = this.getItems(),
+                max    = 0,
+                field  = 'amounti';
+
+            _.each(values, function (value, key) {
+                max = Math.max(max, value[field]);
+            }, this);
+
+            return max;
+        },
+
         _parse : function (xml) {
             var xmlDoc = $(jQuery.parseXML(xml));
             return xmlDoc;
