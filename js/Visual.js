@@ -31,6 +31,7 @@ Humble( function () {
                 items   = model.getItems(),
                 count   = model.getItemCount(),
                 total   = model.getTotalSpending(),
+                max     = model.getMaxSpending(),
                 padding = 4,
                 totalPadding,
                 offset,
@@ -45,17 +46,14 @@ Humble( function () {
                 var r, rWidth, rHeight, rX, rY;
 
                 rWidth  = Math.floor((item['amounti']/total)*drawWidth);
-                rHeight = Math.floor((item['amounti']/total)*height);
+                rHeight = Math.floor((item['amounti']/max)*height);
                 rX      = offset;
-                rY      = height - rHeight;
-
-                console.log(rX, rY, rWidth, rHeight);
+                rY      = height - rHeight + padding;
 
                 r = paper.rect(rX, rY, rWidth, rHeight, 1);
                 r.attr({fill : '#bbbbff'});
 
                 offset += padding + rWidth;
-
             });
         }
     }
