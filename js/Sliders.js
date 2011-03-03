@@ -24,6 +24,8 @@ Humble( function () {
                 node.append(slider);
                 sliders[key] = slider;
             }, this);
+
+            this.bind();
         },
 
         _renderSlider : function (item) {
@@ -41,18 +43,20 @@ Humble( function () {
 
             config = {
                 max : total,
-                value : value,
-                change : change,
-                change : change
+                value : value
             };
 
-            function change (e, ui) {
-                slider.find('.mycosti').html('$'+ui.value);
-            }
             widget.slider(config);
-            widget.bind('slide', change);
 
             return slider;
+        },
+
+        bind : function () {
+            this.node.delegate('.slider', 'slide', {this : this}, this.changeHandler);
+        },
+
+        changeHandler : function (e, ui) {
+            $(this).find('.mycosti').html('$'+ui.value);
         }
     }
 
