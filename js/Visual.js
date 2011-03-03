@@ -39,13 +39,13 @@ Humble( function () {
 
             offset          = padding;
             totalPadding    = (count+2) * padding;
-            drawWidth       = width - totalPadding;
+            drawWidth       = Math.floor((width - totalPadding) / count);
 
             _.each(items, function (item, key) {
 
                 var r, rWidth, rHeight, rX, rY;
 
-                rWidth  = Math.floor((item['amounti']/total)*drawWidth);
+                rWidth  = drawWidth;
                 rHeight = Math.floor((item['amounti']/max)*height);
                 rX      = offset;
                 rY      = height - rHeight + padding;
