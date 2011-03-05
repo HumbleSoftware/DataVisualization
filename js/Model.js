@@ -6,14 +6,16 @@ Humble( function () {
     // Constructor
     var Model = function (xml) {
 
-        var xmlDoc = this._parse(xml),
-            items  = this._getItems(xmlDoc);
+        var xmlDoc  = this._parse(xml),
+            items   = this._getItems(xmlDoc),
+            ratio   = this._getRatio();
 
-        this.xml = xml;
-        this.xmlDoc = xmlDoc;
-        this.items  = items;
+        this.xml        = xml;
+        this.xmlDoc     = xmlDoc;
+        this.items      = items;
         this.itemValues = false;
-        this.itemCount = 0;
+        this.itemCount  = 0;
+        this.ratio      = ratio;    // Ratio of my vs amount
     }
 
     // Methods
@@ -35,6 +37,10 @@ Humble( function () {
             });
 
             return values;
+        },
+
+        getRatio : function () {
+            return ratio;
         },
 
         getItems : function () {
