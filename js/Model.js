@@ -19,6 +19,10 @@ Humble( function () {
     // Methods
     Model.prototype = {
 
+        set : function (item, attribute, value) {
+            this.itemsValues[item][attribute] = value;
+        },
+
         get : function (key) {
 
             var items  = this.items,
