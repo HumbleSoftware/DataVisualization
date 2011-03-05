@@ -65,8 +65,8 @@ Humble( function () {
 
             var max         = this.model.getMaxSpending(),
                 pHeight     = this.paper.height,
-                approxRatio = 286785;    
-                rHeight     = Math.floor(((value*approxRatio)/max)*pHeight),
+                ratio       = this.model.getRatio(),    
+                rHeight     = Math.floor(((value*ratio)/max)*pHeight),
                 padding     = 4,
                 newY        = pHeight - rHeight + padding;
 
