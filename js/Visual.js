@@ -4,6 +4,8 @@ Humble( function () {
 
         this.node  = node;
         this.model = model;
+        this.bars  = {};
+
         this.render();
     };
 
@@ -54,7 +56,13 @@ Humble( function () {
                 r.attr({fill : '#bbbbff'});
 
                 offset += padding + rWidth;
-            });
+
+                this.bars[key] = r;
+            }, this);
+        },
+
+        update : function (key, value) {
+            console.log(this, key, value, this.bars[key]);
         }
     }
 
