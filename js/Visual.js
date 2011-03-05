@@ -51,7 +51,7 @@ Humble( function () {
                 rHeight = Math.floor((item['amounti']/max)*height);
                 rX      = offset;
                 rY      = height - rHeight + padding;
-		r = paper.rect(rX, rY, rWidth, rHeight, 1);
+        r = paper.rect(rX, rY, rWidth, rHeight, 1);
                 r.attr({fill : '#bbbbff'});
 
                 offset += padding + rWidth;
@@ -61,15 +61,15 @@ Humble( function () {
         },
 
         update : function (key, value) {
-	        //console.log(this, key, value, this.bars[key]);
-		var max = this.model.getMaxSpending(),
-		    pHeight = this.paper.height,
-		    approxRatio = 286785;	
-		    rHeight = Math.floor(((value*approxRatio)/max)*pHeight),
-		    padding = 4,
-		    newY = pHeight - rHeight + padding;
-		//console.log(max, pHeight, rHeight, value);
-		this.bars[key].animate({y: newY, height: rHeight},300);
+            //console.log(this, key, value, this.bars[key]);
+        var max = this.model.getMaxSpending(),
+            pHeight = this.paper.height,
+            approxRatio = 286785;    
+            rHeight = Math.floor(((value*approxRatio)/max)*pHeight),
+            padding = 4,
+            newY = pHeight - rHeight + padding;
+        //console.log(max, pHeight, rHeight, value);
+        this.bars[key].animate({y: newY, height: rHeight},300);
         }
     }
 
