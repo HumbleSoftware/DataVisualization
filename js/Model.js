@@ -13,7 +13,6 @@ Humble( function () {
         this.xml        = xml;
         this.xmlDoc     = xmlDoc;
         this.items      = items;
-        this.itemValues = false;
         this.itemCount  = 0;
         this.ratio      = ratio;    // Ratio of my vs amount
     }
@@ -44,35 +43,11 @@ Humble( function () {
         },
 
         getItems : function () {
-
-            if (this.itemValues) {
-                return this.itemValues;
-            }
-
-            var items  = this.items,
-                values = {};
-
-            _.each(items, function (item, key) {
-
-                var value = {},
-                    id    = item.attr('dimensionID');
-
-                // Fill Value Object
-                _.each(Humble.Config.DVZ.budget.fields, function (field, key) {
-                    value[key] = item.attr(key);
-                });
-
-                // Cache
-                values[id] = value;
-            });
-
-            this.itemValues = values;
-
-            return values;
+            return this.items;
         },
 
         getItemCount : function () {
-            return this.items.length;
+            return _.size(this.items);
         },
 
         getTotalTaxes : function () {
@@ -101,7 +76,7 @@ Humble( function () {
             return xmlDoc;
         },
 
-        _getItems : function (xmlDoc) {
+        _parseItems : function (xmlDoc) {
 
             var items    = xmlDoc.find('item'),
                 newItems = [];
@@ -117,6 +92,27 @@ Humble( function () {
             });
 
             return newItems;
+        },
+        _getItems : function (xmlDoc) {
+
+            var items  = this._parseItems(xmlDoc),
+                values = {};
+
+            _.each(items, function (item, key) {
+
+                var value = {},
+                    id    = item.attr('dimensionID');
+
+                // Fill Value Object
+                _.each(Humble.Config.DVZ.budget.fields, function (field, key) {
+                    value[key] = item.attr(key);
+                });
+
+                // Cache
+                values[id] = value;
+            });
+
+            return values;
         },
         _getTotalNumeric : function (field) {
 
