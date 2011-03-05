@@ -22,6 +22,7 @@ Humble( function () {
             _.each(items, function (item, key) {
                 var slider = this._renderSlider(item);
                 node.append(slider);
+                slider.data('key', key);
                 sliders[key] = slider;
             }, this);
 
