@@ -93,6 +93,7 @@ Humble( function () {
 
             return newItems;
         },
+
         _getItems : function (xmlDoc) {
 
             var items  = this._parseItems(xmlDoc),
@@ -128,6 +129,15 @@ Humble( function () {
             total = (total !== 0) ? total / 100 : total;
 
             return total;
+        },
+
+        _getRatio : function () {
+
+            var totalSpending   = this.getTotalSpending(),
+                totalTaxes      = this.getTotalTaxes();
+
+            return (totalTaxes) ?
+                (totalSpending / totalTaxes) : false;
         }
     };
 
