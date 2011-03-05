@@ -70,7 +70,7 @@ Humble( function () {
                 padding     = 4,
                 newY        = pHeight - rHeight + padding;
 
-            this.bars[key].animate({y: newY, height: rHeight},300);
+            this.bars[key].animate({y: newY, height: rHeight}, 500, '>');
         }
     }
 
