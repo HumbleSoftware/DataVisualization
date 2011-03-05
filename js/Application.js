@@ -20,6 +20,12 @@ function Application () {
             values = model.getItems(),
             slider = new Humble.Sliders(sliderNode, model),
             visual = new Humble.Visual(visualNode, model);
+
+        sliderNode.delegate('.slider', 'slide', function (e, ui) {
+            var key = $(this).data('key');
+            visual.update(key, ui.value);
+        });
+
     }
 
     function dataSource () {
