@@ -63,12 +63,12 @@ Humble( function () {
 
         update : function (key, value) {
 
-            var max = this.model.getMaxSpending(),
-                pHeight = this.paper.height,
+            var max         = this.model.getMaxSpending(),
+                pHeight     = this.paper.height,
                 approxRatio = 286785;    
-                rHeight = Math.floor(((value*approxRatio)/max)*pHeight),
-                padding = 4,
-                newY = pHeight - rHeight + padding;
+                rHeight     = Math.floor(((value*approxRatio)/max)*pHeight),
+                padding     = 4,
+                newY        = pHeight - rHeight + padding;
 
             this.bars[key].animate({y: newY, height: rHeight},300);
         }
