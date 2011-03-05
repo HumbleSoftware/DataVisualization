@@ -42,12 +42,17 @@ Humble( function () {
             var items  = this.items,
                 values = {};
 
-            items.each(function (key, item) {
+            _.each(items, function (item, key) {
+
                 var value = {},
                     id    = item.attr('dimensionID');
-                $.each(Humble.Config.DVZ.budget.fields, function (key) {
+
+                // Fill Value Object
+                _.each(Humble.Config.DVZ.budget.fields, function (field, key) {
                     value[key] = item.attr(key);
                 });
+
+                // Cache
                 values[id] = value;
             });
 
@@ -88,14 +93,20 @@ Humble( function () {
 
         _getItems : function (xmlDoc) {
 
-            var items = xmlDoc.find('item');
+            var items    = xmlDoc.find('item'),
+                newItems = [];
 
-            _.each(items, function (item, key) {
-                var $item = $(item);
-                items[key] = $item;
+            _.each(items, function (item) {
+
+                var $item = $(item),
+                    keep  = ($item.attr('mycosti') > 0 ? true : false);
+
+                if (keep) {
+                    newItems.push($item);
+                }
             });
 
-            return items;
+            return newItems;
         },
         _getTotalNumeric : function (field) {
 
