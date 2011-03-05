@@ -39,7 +39,7 @@ Humble( function () {
         },
 
         getRatio : function () {
-            return ratio;
+            return this.ratio;
         },
 
         getItems : function () {
