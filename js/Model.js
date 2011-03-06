@@ -19,7 +19,7 @@ Humble( function () {
     Model.prototype = {
 
         set : function (item, attribute, value) {
-            this.itemsValues[item][attribute] = value;
+            this.items[item][attribute] = value;
         },
 
         get : function (key) {
