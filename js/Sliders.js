@@ -53,10 +53,10 @@ Humble( function () {
         },
 
         bind : function () {
-            this.node.delegate('.slider', 'slide', {this : this}, this.changeHandler);
+            this.node.delegate('.slider', 'slide', {this : this}, this._onSlide);
         },
 
-        changeHandler : function (e, ui) {
+        _onSlide : function (e, ui) {
             $(this).find('.mycosti').html('$'+ui.value);
         }
     }
