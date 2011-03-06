@@ -19,7 +19,20 @@ Humble( function () {
     Model.prototype = {
 
         set : function (item, attribute, value) {
-            this.items[item][attribute] = value;
+
+            // Handle special cases
+            switch (attribute) {
+
+                case 'mycosti' : {
+                    // Update amounti
+                    var amounti = this._calculateAmountI(value);
+                    this._set(item, 'amounti', amounti);
+                }
+                default : {}
+            }
+
+            // Set attribute
+            this._set(item, attribute, value);
         },
 
         get : function (key) {
@@ -136,7 +149,16 @@ Humble( function () {
 
             return (totalTaxes) ?
                 (totalSpending / totalTaxes) : false;
+        },
+
+        _set : function (item, attribute, value) {
+            this.items[item][attribute] = value;
+        },
+
+        _calculateAmountI : function (mycosti) {
+            return this.getRatio() * mycosti;
         }
+
     };
 
     // Namespace Hook
