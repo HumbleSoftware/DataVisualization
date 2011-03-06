@@ -57,7 +57,12 @@ Humble( function () {
         },
 
         _onSlide : function (e, ui) {
+
+            var key     = $(this).data('key'),
+                sliders = e.data.this;
+
             $(this).find('.mycosti').html('$'+ui.value);
+            sliders.model.set(key, 'mycosti', ui.value);
         }
     }
 
