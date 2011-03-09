@@ -70,7 +70,49 @@ Humble( function () {
                 padding     = 4,
                 newY        = pHeight - rHeight + padding;
 
-            this.bars[key].animate({y: newY, height: rHeight}, 500, '>');
+            this._redraw();
+            /*
+            if (value * ratio > max) {
+                this.draw();
+            } else {
+                this.bars[key].animate({y: newY, height: rHeight}, 500, '>');
+            }
+            */
+        },
+
+        _redraw : function (key, value) {
+
+            var model   = this.model,
+                paper   = this.paper,
+                width   = paper.width,
+                height  = paper.height,
+                items   = model.getItems(),
+                count   = model.getItemCount(),
+                total   = model.getTotalSpending(),
+                max     = model.getMaxSpending(),
+                padding = 4,
+                totalPadding,
+                offset,
+                drawWidth;
+
+            offset          = padding;
+            totalPadding    = (count+2) * padding;
+            drawWidth       = Math.floor((width - totalPadding) / count);
+
+            _.each(items, function (item, key) {
+
+                var r = this.bars[key],
+                    rWidth, rHeight, rX, rY;
+
+                rHeight = Math.floor((item['amounti']/max)*height);
+                rY      = height - rHeight + padding;
+
+                r.animate({y: rY, height: rHeight}, 500, '>');
+
+                offset += padding + rWidth;
+
+            }, this);
+
         }
     }
 
