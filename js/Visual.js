@@ -70,14 +70,18 @@ Humble( function () {
                 padding     = 4,
                 newY        = pHeight - rHeight + padding;
 
-            this._redraw();
-            /*
-            if (value * ratio > max) {
-                this.draw();
-            } else {
-                this.bars[key].animate({y: newY, height: rHeight}, 500, '>');
+            if (typeof (this.max) == 'undefined') {
+                this.max = max;
             }
-            */
+
+
+            if (this.max === max) {
+                this.bars[key].animate({y: newY, height: rHeight}, 500, '>');
+            } else {
+                this._redraw();
+            }
+
+            this.max = max;
         },
 
         _redraw : function (key, value) {
