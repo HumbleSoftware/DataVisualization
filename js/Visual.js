@@ -111,7 +111,10 @@ Humble( function () {
                 rHeight = Math.floor((item['amounti']/max)*height);
                 rY      = height - rHeight + padding;
 
+                r.stop();
                 r.animate({y: rY, height: rHeight}, 500, '>');
+                // Implement attr if animation slow
+                // r.attr({y: rY, height: rHeight});
 
                 offset += padding + rWidth;
 
