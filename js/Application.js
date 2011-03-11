@@ -1,42 +1,57 @@
-function Application () {
+function Application (applicationNode) {
 
-    var TEMPLATE_APPLICATION    = '<div id="application"></div>',
-        TEMPLATE_SLIDERS        = '<div id="sliders"></div>';
-        TEMPLATE_VISUAL         = '<div id="visual"></div>';
+    // DOM Templates
+    var T_APPLICATION   = '<div id="application"></div>',
+        T_CONTROLS      = '<div id="controls"></div>';
+        T_SLIDERS       = '<div id="sliders"></div>';
+        T_VISUAL        = '<div id="visual"></div>';
 
-    var rootNode = $(TEMPLATE_APPLICATION),
-        sliderNode = $(TEMPLATE_SLIDERS);
-        visualNode = $(TEMPLATE_VISUAL);
+    // DOM Nodes
+    var rootNode        = $(T_APPLICATION),
+        controlsNode    = $(T_CONTROLS),
+        sliderNode      = $(T_SLIDERS),
+        visualNode      = $(T_VISUAL);
 
-    $('body').append(rootNode);
+    // Build that DOM
+    rootNode.append(controlsNode);
     rootNode.append(sliderNode);
     rootNode.append(visualNode);
+    $(applicationNode).append(rootNode);
 
-    dataSource();
+    // Build Objects
+    var dataSource  = new Humble.DataSource(),
+        model       = new Humble.Model(),
+        controls    = new Humble.Controls(controlsNode, model),
+        sliders     = new Humble.Sliders(sliderNode, model),
+        visual      = new Humble.Visual(visualNode, model);
 
-    function onDataSuccess (data) {
+    // Controller
+    controls.incomeChange(function (e, ui) {
+        
+    });
 
-        var model  = new Humble.Model(data),
-            values = model.getItems(),
-            slider = new Humble.Sliders(sliderNode, model),
-            visual = new Humble.Visual(visualNode, model);
-
-        sliderNode.delegate('.slider', 'slide', function (e, ui) {
-            var key = $(this).data('key');
-            visual.update(key, ui.value);
-        });
-
+    // Fucking callback
+    var callback = {
+        success : onDataSuccess
     }
+    dataSource.request({callback : callback});
 
-    function dataSource () {
+    // Update Shit
+    sliderNode.delegate('.slider', 'slide', function (e, ui) {
 
-        var callback = {};
+        var key = $(this).data('key');
 
-        callback.success = onDataSuccess;
+        visual.update(key, ui.value);
+    });
 
-        var dataSource = new Humble.DataSource();
-        dataSource.request({callback : callback});
+    /**
+     * Handle Data Source Success
+     */
+    function onDataSuccess (data) {
+        model.setXML(data);
+        controls.update();
+        sliders.update();
     }
 }
 
-Application();
+Application('body');
