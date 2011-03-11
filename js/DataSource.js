@@ -1,7 +1,5 @@
 /**
  * Class Humble Model
- *
- *
  */
 Humble( function () {
 
