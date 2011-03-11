@@ -4,19 +4,27 @@
 Humble( function () {
 
     // Constructor
-    var Model = function (xml) {
-
-        this.xml        = xml;
-        this.xmlDoc     = this._parse(xml);
-        this.items      = this._getItems(this.xmlDoc);
-        this.itemCount  = 0;
-
+    var Model = function () {
+        this.xml        = null;
+        this.xmlDoc     = null;
+        this.items      = null;
+        this.itemCount  = null;
         // Ratio of my vs amount
-        this.ratio      = this._getRatio(); 
+        this.ratio      = null;
     }
 
     // Methods
     Model.prototype = {
+
+        setXML : function (xml) {
+
+            this.xml        = xml;
+            this.xmlDoc     = this._parse(xml);
+            this.items      = this._getItems(this.xmlDoc);
+            this.itemCount  = 0;
+            this.ratio      = this._getRatio(); 
+
+        },
 
         set : function (item, attribute, value) {
 
@@ -92,14 +100,18 @@ Humble( function () {
             var items    = xmlDoc.find('item'),
                 newItems = [];
 
+            var dimensions = {};
+
             _.each(items, function (item) {
 
                 var $item = $(item),
                     keep  = ($item.attr('mycosti') > 0 ? true : false);
 
-                if (keep) {
+                dimensions[$item.attr('dimensionID')] = $item.attr('dimensionName');
+
+//                if (keep) {
                     newItems.push($item);
-                }
+//                }
             });
 
             return newItems;
