@@ -32,14 +32,15 @@ Humble( function () {
 
         _renderSlider : function (name) {
 
-            var slider = $('<div class="slider"></div>'),
+            var value  = 0,
+                label  = $('<div class="value mycosti">$'+value+'</div>'),
+                slider = $('<div class="slider"></div>'),
                 widget = $('<div></div>'),
-                value  = 0,
-                title  = name,
+                title  = $('<div class="title">'+name+'</div>'),
                 config;
 
-            slider.append('<div class="value mycosti">$'+value+'</div>');
-            slider.append('<div class="title">'+title+'</div>');
+            slider.append(label);
+            slider.append(title);
             slider.append(widget);
 
             config = {
@@ -64,14 +65,8 @@ Humble( function () {
                 node    = this.node;
 
             _.each(sliders, function (slider, key) {
-
                 var value = items[key]['mycosti'];
-
-                slider = slider.find('.ui-slider');
-                value  = this._translate(value);
-
-                $(slider).slider('value', [value]);
-
+                this._updateSlider(slider, value); 
             }, this);
 
             this.bind();
@@ -80,10 +75,26 @@ Humble( function () {
         _onSlide : function (e, ui) {
 
             var key     = $(this).data('key'),
+                label   = $(this).find('.mycosti');
                 sliders = e.data.this;
 
-            $(this).find('.mycosti').html('$'+ui.value);
             sliders.model.set(key, 'mycosti', ui.value);
+            this._updateSliderLabel(label, value); 
+        },
+
+        _updateSlider : function (slider, value) {
+
+            var widget = slider.find('.ui-slider'),
+                label  = slider.find('.mycosti');
+
+            value  = this._translate(value);
+
+            widget.slider('value', [value]);
+            this._updateSliderLabel(label, value);
+        },
+
+        _updateSliderLabel : function (label, value) {
+            label.html('$'+value);
         },
 
         /**
