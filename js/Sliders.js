@@ -88,9 +88,7 @@ Humble( function () {
             var widget = slider.find('.ui-slider'),
                 label  = slider.find('.mycosti');
 
-            value  = this._translate(value);
-
-            widget.slider('value', [value]);
+            widget.slider('value', [this._translate(value)]);
             this._updateSliderLabel(label, value);
         },
 
