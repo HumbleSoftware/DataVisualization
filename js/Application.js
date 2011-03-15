@@ -44,6 +44,7 @@ function Application (applicationNode) {
 
         model.set(key, 'mycosti', value);
         visual.redraw();
+        controls.update();
     });
 
     /**
