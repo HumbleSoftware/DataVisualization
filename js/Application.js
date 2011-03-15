@@ -42,7 +42,8 @@ function Application (applicationNode) {
         var key   = $(this).data('key'),
             value = sliders.translateB(ui.value);
 
-        visual.update(key, value);
+        model.set(key, 'mycosti', value);
+        visual.redraw();
     });
 
     /**
