@@ -77,7 +77,7 @@ Humble( function () {
             var sliders = e.data.this,
                 key     = $(this).data('key'),
                 label   = $(this).find('.mycosti'),
-                value   = sliders._translateB(ui.value);
+                value   = sliders.translateB(ui.value);
 
             sliders.model.set(key, 'mycosti', value);
             sliders._updateSliderLabel(label, value); 
@@ -113,7 +113,7 @@ Humble( function () {
             return value;
         },
 
-        _translateB : function (value) {
+        translateB : function (value) {
 
             var income = 50000;
 
