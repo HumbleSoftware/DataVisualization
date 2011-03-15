@@ -76,13 +76,13 @@ Humble( function () {
             if (this.max === max) {
                 this.bars[key].animate({y: newY, height: rHeight}, 500, '>');
             } else {
-                this._redraw();
+                this.redraw();
             }
 
             this.max = max;
         },
 
-        _redraw : function (key, value) {
+        redraw : function () {
 
             var model   = this.model,
                 paper   = this.paper,
