@@ -20,8 +20,6 @@ Humble( function () {
                 totalPadding;
 
             this.paper = paper;
-
-            this.draw();
         },
 
         draw : function () {
