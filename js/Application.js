@@ -39,9 +39,10 @@ function Application (applicationNode) {
     // Update Shit
     sliderNode.delegate('.slider', 'slide', function (e, ui) {
 
-        var key = $(this).data('key');
+        var key   = $(this).data('key'),
+            value = sliders.translateB(ui.value);
 
-        visual.update(key, ui.value);
+        visual.update(key, value);
     });
 
     /**
