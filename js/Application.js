@@ -48,9 +48,12 @@ function Application (applicationNode) {
      * Handle Data Source Success
      */
     function onDataSuccess (data) {
+
         model.setXML(data);
+
         controls.update();
         sliders.update();
+        visual.draw();
     }
 }
 
