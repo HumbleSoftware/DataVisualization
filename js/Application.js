@@ -1,7 +1,9 @@
 function Application (applicationNode) {
 
     // DOM Templates
-    var T_APPLICATION = '<div class="humble-dvc-application"></div>',
+    var title = 'MoveMyTaxes',
+	C_APPLICATION = 'humble-dvc-application';
+	T_APPLICATION = '<div class="'+C_APPLICATION+'"><div class="header">'+title+'</div></div>',
         node          = $(T_APPLICATION);
 
     $(applicationNode).append(node);
@@ -16,7 +18,8 @@ function Application (applicationNode) {
         });
     }
 
-    overwriteColors();
+    // Use custom colours in Config.js
+    //overwriteColors();
 
     // Model Options
     var modelOptions = {

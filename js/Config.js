@@ -34,27 +34,27 @@ Humble.Config.DVZ.budget = {
     dimensions : {
         _2771 : {
             name  : "National Defense",
-            color : '#FF282E'
+            color : '#ff0049'
         },
         _2772 : {
             name  : "International Affairs",
-            color : '#B79949'
+            color : '#f9aa00'
         },
         _2773 : {
             name  : "General Science, Space, and Technology",
-            color : '#121F97'
+            color : '#f9e502'
         },
         _2774 : {
             name  : "Energy",
-            color : '#6FFE67'
+            color : '#c2d618'
         },
         _2775 : {
             name  : "Natural Resources and Environment",
-            color : '#B7484B'
+            color : '#70fb00'
         },
         _2776 : {
             name  : "Agriculture",
-            color : '#9A730B'
+            color : '#00c2ff'
         },
 //        _2777 : {
 //            name  : "Commerce and Housing Credit",
@@ -62,51 +62,51 @@ Humble.Config.DVZ.budget = {
 //        },
         _2778 : {
             name  : "Transportation",
-            color : '#9FFE9A'
+            color : '#0f91ff'
         },
         _2779 : {
             name  : "Community and Regional Development",
-            color : '#9A0B0E'
+            color : '#b537b6'
         },
         _2780 : {
             name  : "Education, Training, Employment, and Social Services",
-            color : '#FFD668'
+            color : '#e92192'
         },
         _2781 : {
             name  : "Health",
-            color : '#A7AFFD'
+            color : '#ff0049'
         },
         _2782 : {
             name  : "Medicare",
-            color : '#32FC28'
+            color : '#f9aa00'
         },
         _2783 : {
             name  : "Income Security",
-            color : '#FF686C'
+            color : '#f9e502'
         },
         _2784 : {
             name  : "Social Security",
-            color : '#FFE49B'
+            color : '#c2d618'
         },
         _2785 : {
             name  : "Veterans Benefits and Services",
-            color : '#4455F9'
+            color : '#70fb00'
         },
         _2786 : {
             name  : "Administration of Justice",
-            color : '#12980B'
+            color : '#00c2ff'
         },
         _2787 : {
             name  : "General Government",
-            color : '#FF9B9D'
+            color : '#0f91ff'
         },
         _2788 : {
             name  : "Net Interest",
-            color : '#FFC528'
+            color : '#b537b6'
         },
         _2789 : {
             name  : "Allowances",
-            color : '#565EB3'
+            color : '#e92192'
         }
 //        _2790 : {
 //            name  : "Undistributed Offsetting Receipts",

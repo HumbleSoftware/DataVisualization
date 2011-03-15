@@ -1,19 +1,30 @@
 body {
     margin : 0px;
     padding : 0px;
+    background-color : #787a7b;
+    font : 12px #555 'Droid Sans Mono', arial, sans-serif;
 }
 
+
+.header	{
+    font : 60px 'Droid Sans Mono', arial, sans-serif;
+    letter-spacing : -5px;
+    font-weight : bold;
+    text-shadow: 3px 3px 3px #555;
+}
 
 
 .humble-dvc-application {
     margin : 0px auto;
-    font : 12px/18px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-    color : #222222;
     padding : 8px;
     width : 1080px;
-    background : #eeeeff;
+    background-color : #babdbf;
     overflow: hidden;
     position : relative;
+    font : 12px/18px 'Droid Sans Mono', arial, sans-serif;
+    -webkit-box-shadow : 5px 5px 50px #333;
+    -moz-box-shadow : 5px 5px 50px #333;
+    -box-shadow : 5px 5px 50px #333;
 }
 .humble-dvc-sliders {
     float : right;
@@ -50,7 +61,7 @@ body {
     float : left;
     width : 320px;
     height : 640px;
-    background : #eeeeff;
+    background-color : #babdbf;
 }
 .humble-dvc-dimension {
     background : #ffffff;
