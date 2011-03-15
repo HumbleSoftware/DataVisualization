@@ -74,10 +74,10 @@ Humble( function () {
 
         _onSlide : function (e, ui) {
 
-            var key     = $(this).data('key'),
+            var sliders = e.data.this,
+                key     = $(this).data('key'),
                 label   = $(this).find('.mycosti'),
-                value   = ui.value,
-                sliders = e.data.this;
+                value   = sliders._translateB(ui.value);
 
             sliders.model.set(key, 'mycosti', value);
             sliders._updateSliderLabel(label, value); 
@@ -103,11 +103,23 @@ Humble( function () {
          */
         _translate : function (value) {
 
-            // Income
-            var max = 50000;
+            if (value < 1) return 0;
 
-            value = (value / max) * 1000;
+            var income = 50000;
+            
+            value = Math.log(value)/Math.log(income)
+            value = value * 1000;
 
+            return value;
+        },
+
+        _translateB : function (value) {
+
+            var income = 50000;
+
+            value = value / 1000;
+            value = Math.exp(value * Math.log(50000));
+            value = Math.round(value*100)/100;
             return value;
         }
     }
