@@ -75,11 +75,12 @@ Humble( function () {
         _onSlide : function (e, ui) {
 
             var key     = $(this).data('key'),
-                label   = $(this).find('.mycosti');
+                label   = $(this).find('.mycosti'),
+                value   = ui.value,
                 sliders = e.data.this;
 
-            sliders.model.set(key, 'mycosti', ui.value);
-            this._updateSliderLabel(label, value); 
+            sliders.model.set(key, 'mycosti', value);
+            sliders._updateSliderLabel(label, value); 
         },
 
         _updateSlider : function (slider, value) {
