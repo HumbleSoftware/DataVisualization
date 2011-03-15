@@ -37,7 +37,7 @@ Humble( function () {
         },
 
         setTotal : function (total) {
-            this._total.html('Total Taxes: '+total);
+            this._total.html('Total Taxes: $'+total);
         }
 
     };
