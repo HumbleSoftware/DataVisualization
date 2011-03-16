@@ -43,10 +43,14 @@ Humble( function () {
                 data : data
             };
 
+            // Options
             if ('callback' in options) {
                 if ('success' in options.callback) {
                     config.success = options.callback.success;
                 }
+            }
+            if ('income' in options) {
+                config.data[INCOME] = options.income;
             }
 
             jQuery.ajax(config);
