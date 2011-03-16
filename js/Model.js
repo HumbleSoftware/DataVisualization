@@ -16,16 +16,6 @@ Humble( function () {
     // Methods
     Model.prototype = {
 
-        setXML : function (xml) {
-
-            this.xml        = xml;
-            this.xmlDoc     = this._parse(xml);
-            this.items      = this._getItems(this.xmlDoc);
-            this.itemCount  = 0;
-            this.ratio      = this._getRatio(); 
-
-        },
-
         set : function (item, attribute, value) {
 
             // Handle special cases
@@ -41,6 +31,16 @@ Humble( function () {
 
             // Set attribute
             this._set(item, attribute, value);
+        },
+
+        setXML : function (xml) {
+
+            this.xml        = xml;
+            this.xmlDoc     = this._parse(xml);
+            this.items      = this._getItems(this.xmlDoc);
+            this.itemCount  = 0;
+            this.ratio      = this._getRatio(); 
+
         },
 
         get : function (key) {
