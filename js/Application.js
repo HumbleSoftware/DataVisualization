@@ -27,7 +27,14 @@ function Application (applicationNode) {
 
     // Controller
     controls.incomeChange(function (e, ui) {
-        
+        var income = e.target.value,
+            config = {};
+
+        config = {
+            callback : callback,
+            income   : income
+        }
+        dataSource.request(config);
     });
 
     // Fucking callback
@@ -56,7 +63,7 @@ function Application (applicationNode) {
 
         controls.update();
         sliders.update();
-        visual.draw();
+        visual.update();
     }
 }
 
