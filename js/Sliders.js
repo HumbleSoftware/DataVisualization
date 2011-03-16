@@ -28,6 +28,8 @@ Humble( function () {
             }, this);
 
             this._sliders = sliders;
+
+            this.bind();
         },
 
         _renderSlider : function (name) {
@@ -68,8 +70,6 @@ Humble( function () {
                 var value = items[key]['mycosti'];
                 this._updateSlider(slider, value); 
             }, this);
-
-            this.bind();
         },
 
         _onSlide : function (e, ui) {
