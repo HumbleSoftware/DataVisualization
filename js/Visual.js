@@ -57,8 +57,19 @@ Humble( function () {
 
                 this.bars[key] = r;
             }, this);
+
+            this._drawn = true;
         },
 
+        update : function () {
+            if (this._drawn) {
+                this.redraw();
+            } else {
+                this.draw();
+            }
+        },
+
+        /*
         update : function (key, value) {
 
             var max         = this.model.getMaxSpending(),
@@ -81,6 +92,7 @@ Humble( function () {
 
             this.max = max;
         },
+        */
 
         redraw : function () {
 
