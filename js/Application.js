@@ -36,6 +36,7 @@ function Application (applicationNode) {
             income   : income
         }
         dataSource.request(config);
+        model.setIncome(income);
     });
 
     // Fucking callback
@@ -43,6 +44,7 @@ function Application (applicationNode) {
         success : onDataSuccess
     }
     dataSource.request({callback : callback});
+    model.setIncome(50000);
 
     // Update Shit
     sliderNode.delegate('.slider', 'slide', function (e, ui) {
