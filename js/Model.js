@@ -137,7 +137,11 @@ Humble( function () {
 
                 // Fill Value Object
                 _.each(Humble.Config.DVZ.budget.fields, function (field, key) {
-                    value[key] = item.attr(key);
+                    var attr = item.attr(key);
+                    if (key === 'mycosti' || key === 'ammounti') {
+                        attr = parseFloat(attr);
+                    }
+                    value[key] = attr;
                 });
 
                 // Cache
