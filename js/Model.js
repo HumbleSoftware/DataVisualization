@@ -117,9 +117,9 @@ Humble( function () {
 
                 dimensions[$item.attr('dimensionID')] = $item.attr('dimensionName');
 
-//                if (keep) {
+                if (keep) {
                     newItems.push($item);
-//                }
+                }
             });
 
             return newItems;
