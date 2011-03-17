@@ -43,6 +43,10 @@ Humble( function () {
 
         },
 
+        setIncome : function (income) {
+            this.income = income;
+        },
+
         get : function (key) {
 
             var items  = this.items,
@@ -55,6 +59,10 @@ Humble( function () {
             });
 
             return values;
+        },
+
+        getIncome : function () {
+            return this.income();
         },
 
         getRatio : function () {
