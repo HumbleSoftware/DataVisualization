@@ -27,6 +27,7 @@ function Application (applicationNode) {
 
     // Controller
     controls.incomeChange(function (e, ui) {
+
         var income = e.target.value,
             config = {};
 
