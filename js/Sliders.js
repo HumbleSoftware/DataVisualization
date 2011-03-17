@@ -80,7 +80,7 @@ Humble( function () {
                 value   = sliders.translateB(ui.value);
 
             sliders.model.set(key, 'mycosti', value);
-            sliders._updateSliderLabel(label, value); 
+            sliders.update();
         },
 
         _updateSlider : function (slider, value) {
