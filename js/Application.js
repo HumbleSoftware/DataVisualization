@@ -47,7 +47,7 @@ function Application (applicationNode) {
     var dataSource  = new Humble.DataSource(),
         model       = new Humble.Model(),
         controls    = new Humble.Controls(controlsNode, model),
-        sliders     = new Humble.Sliders(sliderNode, model),
+        sliders     = new Humble.Sliders(sliderNode, model, {colors : colors}),
         visual      = new Humble.Visual(visualNode, model);
 
     // Controller
