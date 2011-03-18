@@ -39,13 +39,28 @@ Humble( function () {
             }, this);
 
             this.pie = paper.g.piechart(320, 320, 300, data);
+
+            // Bindings
+            var that = this;
+            this.pie.hover(function () {
+                var index = this.value.order;
+                that.highlight(index);
+            }, function () {
+                this.sector.animate({scale: [1, 1, this.cx, this.cy]}, 500, "bounce");
+            });
+        },
+
+        highlight : function (index) {
+            var sector = this.pie.series[index]
+            sector.stop();
+            sector.scale(1.02, 1.02, 320, 320);
         },
 
         update : function () {
             this.draw();
-        }
+        },
 
-                 /*
+        /**
         draw : function () {
 
             var model   = this.model,
