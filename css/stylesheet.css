@@ -8,6 +8,7 @@ body {
 .humble-dvc-application {
     margin : 0px auto;
     font : 12px/18px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+    color : #222222;
     padding : 8px;
     width : 1080px;
     background : #eeeeff;
@@ -17,14 +18,24 @@ body {
     float : right;
     width : 400px;
 }
-.humble-dvc-sliders .mycosti {
-    text-align : right;
-    position : absolute;
-    width: 400px;
-}
-
 .humble-dvc-sliders .slider {
-    margin-bottom : 6px;
+    margin-bottom : 8px;
+    position : relative;
+}
+.humble-dvc-sliders .mycosti {
+    position : absolute;
+    right : 0px;
+}
+.humble-dvc-sliders .title {
+    padding-left : 22px;
+    height : 20px;
+}
+.humble-dvc-sliders .legend {
+    position : absolute;
+    top : 1px;
+    height : 12px;
+    width : 12px;
+    border : 2px solid #ffffff;
 }
 .humble-dvc-visual {
     float : left;
