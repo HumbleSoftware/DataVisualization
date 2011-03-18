@@ -16,7 +16,7 @@ Humble( function () {
             var node    = this.node,
                 width   = node.width(),
                 height  = node.height(),
-                paper   = Raphael(document.getElementById(node.attr('id')), width, height),
+                paper   = Raphael(node.get(0), width, height),
                 totalPadding;
 
             this.paper = paper;
