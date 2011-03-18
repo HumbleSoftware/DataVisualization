@@ -3,8 +3,9 @@
  */
 Humble( function () {
 
-    var Sliders = function (node, model) {
+    var Sliders = function (node, model, options) {
 
+        this.colors     = options.colors;
         this.model      = model;
         this.node       = node;
         this.sliders    = {};
@@ -18,13 +19,15 @@ Humble( function () {
 
             var dimensions  = Humble.Config.DVZ.budget.dimensions,
                 sliders     = {},
-                node        = this.node;
+                node        = this.node,
+                count       = 0;
 
             _.each(dimensions, function (name, key) {
-                var slider = this._renderSlider(name);
+                var slider = this._renderSlider(name, count);
                 node.append(slider);
                 slider.data('key', key);
                 sliders[key] = slider;
+                count++;
             }, this);
 
             this._sliders = sliders;
@@ -32,18 +35,21 @@ Humble( function () {
             this.bind();
         },
 
-        _renderSlider : function (name) {
+        _renderSlider : function (name, count) {
 
             var value  = 0,
+                color  = this.colors[count],
                 label  = $('<div class="value mycosti">$'+value+'</div>'),
                 slider = $('<div class="slider"></div>'),
                 widget = $('<div></div>'),
                 title  = $('<div class="title">'+name+'</div>'),
+                legend = $('<div class="legend" style="background: '+color+';"></div>'),
                 config;
 
             slider.append(label);
             slider.append(title);
             slider.append(widget);
+            slider.append(legend);
 
             config = {
                 max : 1000,
