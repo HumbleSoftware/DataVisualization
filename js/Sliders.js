@@ -56,7 +56,7 @@ Humble( function () {
         },
 
         bind : function () {
-            this.node.delegate('.slider', 'slide', {this : this}, this._onSlide);
+            this.node.delegate('.slider', 'slide', {sliders : this}, this._onSlide);
         },
 
         update : function () {
@@ -74,7 +74,7 @@ Humble( function () {
 
         _onSlide : function (e, ui) {
 
-            var sliders = e.data.this,
+            var sliders = e.data.sliders,
                 key     = $(this).data('key'),
                 label   = $(this).find('.mycosti'),
                 value   = sliders.translateB(ui.value);
