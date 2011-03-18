@@ -122,7 +122,8 @@ Humble( function () {
                 rY      = height - rHeight + padding;
 
                 r.stop();
-                r.animate({y: rY, height: rHeight}, 500, '>');
+                //r.animate({y: rY, height: rHeight}, 500, '>');
+                r.attr({y: rY, height: rHeight});
                 // Implement attr if animation slow
                 // r.attr({y: rY, height: rHeight});
 
