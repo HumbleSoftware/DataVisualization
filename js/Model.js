@@ -22,6 +22,15 @@ Humble( function () {
             switch (attribute) {
 
                 case 'mycosti' : {
+
+                    var income  = this.getIncome(),
+                        total   = this.getTotalTaxes(),
+                        current = this.items[item][attribute];
+
+                    if (total - current + value > income) {
+                        value = income - total + current;
+                    }
+
                     // Update amounti
                     var amounti = this._calculateAmountI(value);
                     this._set(item, 'amounti', amounti);
@@ -62,7 +71,7 @@ Humble( function () {
         },
 
         getIncome : function () {
-            return this.income();
+            return this.income;
         },
 
         getRatio : function () {
