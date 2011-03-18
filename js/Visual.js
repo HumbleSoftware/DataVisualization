@@ -24,6 +24,30 @@ Humble( function () {
 
         draw : function () {
 
+            if (this.pie) {
+                this.pie.remove();
+                delete this.pie;
+            }
+
+            var model = this.model,
+                paper = this.paper,
+                items = model.getItems(),
+                data  = [];
+
+            _.each(items, function (item, key) {
+                data.push(item['amounti']);
+            }, this);
+
+            this.pie = paper.g.piechart(320, 320, 300, data);
+        },
+
+        update : function () {
+            this.draw();
+        }
+
+                 /*
+        draw : function () {
+
             var model   = this.model,
                 paper   = this.paper,
                 width   = paper.width,
@@ -94,6 +118,7 @@ Humble( function () {
         },
         */
 
+                 /*
         redraw : function () {
 
             var model   = this.model,
@@ -132,6 +157,7 @@ Humble( function () {
             }, this);
 
         }
+    */
     }
 
     Humble.Visual = Visual;
