@@ -1,10 +1,10 @@
 function Application (applicationNode) {
 
     // DOM Templates
-    var T_APPLICATION   = '<div id="application"></div>',
-        T_CONTROLS      = '<div id="controls"></div>';
-        T_SLIDERS       = '<div id="sliders"></div>';
-        T_VISUAL        = '<div id="visual"></div>';
+    var T_APPLICATION   = '<div class="humble-dvc-application"></div>',
+        T_CONTROLS      = '<div class="humble-dvc-controls"></div>';
+        T_SLIDERS       = '<div class="humble-dvc-sliders"></div>';
+        T_VISUAL        = '<div class="humble-dvc-visual"></div>';
 
     // DOM Nodes
     var rootNode        = $(T_APPLICATION),
