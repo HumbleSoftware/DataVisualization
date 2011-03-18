@@ -69,5 +69,3 @@ function Application (applicationNode) {
         visual.update();
     }
 }
-
-Application('body');
