@@ -19,6 +19,17 @@ Humble( function () {
         },
 
         currency : function (value) {
+            if (value != 0) {
+                value = value.toString();
+                valueParts = value.split('.');
+                if (!valueParts[1]) {
+                    value = value+'.00';
+                } else 
+                if (valueParts[1].length < 2) {
+                    value = value+'0';
+                }
+
+            }
             return '$'+value;
         }
 
