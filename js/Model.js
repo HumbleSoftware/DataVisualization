@@ -164,7 +164,7 @@ Humble( function () {
                 });
 
                 // Cache
-                values[id] = value;
+                values['_'+id] = value;
             });
 
             return values;
