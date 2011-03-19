@@ -184,7 +184,7 @@ Humble( function () {
                 total += value[field];
             }, this);
 
-            total = this.format.currency(total);
+            total = this.format.currencyNumeric(total);
 
             return total;
         },
