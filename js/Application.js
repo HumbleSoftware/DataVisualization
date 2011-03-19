@@ -38,6 +38,14 @@ function Application (applicationNode) {
         dataSource.request(config);
         model.setIncome(income);
     });
+    
+	controls.resetXML(function (e, ui) {
+		console.log("controls.resetXML()");
+        model.reset();
+        controls.update();
+        sliders.update();
+        visual.update();
+    });
 
     // Fucking callback
     var callback = {

@@ -59,6 +59,11 @@ Humble( function () {
             Humble.Event.trigger('humble:dvc:modelUpdate');
         },
 
+		reset : function()	{
+			console.log("model.reset");
+			this.setXML(this.xml);
+		},
+		
         setIncome : function (income) {
             this.income = income;
         },
