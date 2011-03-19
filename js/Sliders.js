@@ -61,6 +61,16 @@ Humble( function () {
 
         bind : function () {
             this.node.delegate('.slider', 'slide', {sliders : this}, this._onSlide);
+
+            var that = this;
+            Humble.Event.bind('humble:dvc:dimensionHover', function (e, key, hover) {
+                if (hover) {
+                    that.highlight(key);
+                } else {
+                    that.unHighlight(key);
+                }
+            });
+
         },
 
         update : function () {
@@ -74,6 +84,16 @@ Humble( function () {
                 var value = items[key]['mycosti'];
                 this._updateSlider(slider, value); 
             }, this);
+        },
+
+        highlight : function (key) {
+            var slider = this._sliders[key];
+            slider.find('.legend').addClass('hover');
+        },
+
+        unHighlight : function (key) {
+            var slider = this._sliders[key];
+            slider.find('.legend').removeClass('hover');
         },
 
         _onSlide : function (e, ui) {
