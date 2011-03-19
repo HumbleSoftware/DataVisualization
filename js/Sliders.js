@@ -68,7 +68,7 @@ Humble( function () {
                 Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
             }).delegate('.legend', 'mouseout', function (e, ui) {
                 var key = $(this).closest('.slider').data('key');
-                Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
+                Humble.Event.trigger('humble:dvc:dimensionHover', [key, false]);
             });
 
             var that = this;
