@@ -8,6 +8,7 @@ Humble( function () {
         this.xml        = null;
         this.xmlDoc     = null;
         this.items      = null;
+        this.keys       = null;
         this.itemCount  = null;
         // Ratio of my vs amount
         this.ratio      = null;
@@ -47,6 +48,7 @@ Humble( function () {
             this.xml        = xml;
             this.xmlDoc     = this._parse(xml);
             this.items      = this._getItems(this.xmlDoc);
+            this.keys       = _.keys(this.items);
             this.itemCount  = 0;
             this.ratio      = this._getRatio(); 
 
@@ -68,6 +70,14 @@ Humble( function () {
             });
 
             return values;
+        },
+
+        getKey : function (index) {
+            return (this.keys[index] ? this.keys[index] : false);
+        },
+
+        getIndex : function (key) {
+            return _.indexOf(this.keys, key);
         },
 
         getIncome : function () {
@@ -159,6 +169,7 @@ Humble( function () {
 
             return values;
         },
+
         _getTotalNumeric : function (field) {
 
             var values = this.getItems(),
