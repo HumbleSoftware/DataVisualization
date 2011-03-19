@@ -126,7 +126,8 @@ Humble( function () {
         },
 
         _updateSliderLabel : function (label, value) {
-            label.html('$'+value);
+            value = this.model.format.currency(value);
+            label.html(value);
         },
 
         /**
