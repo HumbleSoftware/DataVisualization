@@ -40,7 +40,6 @@ function Application (applicationNode) {
     });
     
 	controls.resetXML(function (e, ui) {
-		console.log("controls.resetXML()");
         model.reset();
         controls.update();
         sliders.update();
