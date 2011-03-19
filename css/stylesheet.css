@@ -33,9 +33,16 @@ body {
 .humble-dvc-sliders .legend {
     position : absolute;
     top : 1px;
+    left : 1px;
     height : 12px;
     width : 12px;
     border : 2px solid #ffffff;
+}
+.humble-dvc-sliders .legend.hover {
+height : 14px;
+width: 14px;
+top: 0px;
+left : 0px;
 }
 .humble-dvc-visual {
     float : left;
