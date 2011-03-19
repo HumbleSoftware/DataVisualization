@@ -43,15 +43,17 @@ Humble( function () {
             // Bindings
             var that = this;
             this.pie.hover(function () {
-                var index = this.value.order;
-                that.highlight(index);
+                var index = this.value.order,
+                    key   = that.model.getKey(index);
+                that.highlight(key);
             }, function () {
                 this.sector.animate({scale: [1, 1, this.cx, this.cy]}, 500, "bounce");
             });
         },
 
-        highlight : function (index) {
-            var sector = this.pie.series[index]
+        highlight : function (key) {
+            var index  = this.model.getIndex(key),
+                sector = this.pie.series[index]
             sector.stop();
             sector.scale(1.02, 1.02, 320, 320);
         },
