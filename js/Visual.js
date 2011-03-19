@@ -21,6 +21,15 @@ Humble( function () {
                 totalPadding;
 
             this.paper = paper;
+
+            that = this;
+            Humble.Event.bind('humble:dvc:dimensionHover', function (e, key, hover) {
+                if (hover) {
+                    that.highlight(key);
+                } else {
+                    that.unHighlight(key);
+                }
+            });
         },
 
         draw : function () {
@@ -49,11 +58,11 @@ Humble( function () {
             this.pie.hover(function () {
                 var index = this.value.order,
                     key   = that.model.getKey(index);
-                that.highlight(key);
+                Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
             }, function () {
                 var index = this.value.order,
                     key   = that.model.getKey(index);
-                that.unHighlight(key);
+                Humble.Event.trigger('humble:dvc:dimensionHover', [key, false]);
             });
         },
 
