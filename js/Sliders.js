@@ -60,7 +60,16 @@ Humble( function () {
         },
 
         bind : function () {
+
             this.node.delegate('.slider', 'slide', {sliders : this}, this._onSlide);
+
+            this.node.delegate('.legend', 'mouseover', function (e, ui) {
+                var key = $(this).closest('.slider').data('key');
+                Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
+            }).delegate('.legend', 'mouseout', function (e, ui) {
+                var key = $(this).closest('.slider').data('key');
+                Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
+            });
 
             var that = this;
             Humble.Event.bind('humble:dvc:dimensionHover', function (e, key, hover) {
@@ -70,7 +79,6 @@ Humble( function () {
                     that.unHighlight(key);
                 }
             });
-
         },
 
         update : function () {
