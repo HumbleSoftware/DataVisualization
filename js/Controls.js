@@ -57,10 +57,12 @@ Humble( function () {
         },
 
         setTotal : function (total) {
-            this._total.html('Total Taxes: $'+total);
+            total = this.model.format.currency(total);
+            this._total.html('Total Taxes: '+total);
         },
         setBudget : function (budget) {
-            this._budget.html('Federal Budget: $'+budget);
+            budget= this.model.format.currency(budget);
+            this._budget.html('Federal Budget: '+budget);
         }
 
     };
