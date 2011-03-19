@@ -179,7 +179,7 @@ Humble( function () {
                 total  = 0;
 
             _.each(values, function (value, key) {
-                total += parseFloat(value[field]);
+                total += value[field];
             }, this);
 
             total = total * 100;
