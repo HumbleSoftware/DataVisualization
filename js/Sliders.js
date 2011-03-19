@@ -34,10 +34,10 @@ Humble( function () {
 
         _renderSlider : function (dimension) {
 
-            var value  = 0,
+            var value  = this.model.format.currency(0),
                 name   = dimension.name,
                 color  = dimension.color,
-                label  = $('<div class="value mycosti">$'+value+'</div>'),
+                label  = $('<div class="value mycosti">'+value+'</div>'),
                 slider = $('<div class="slider"></div>'),
                 widget = $('<div></div>'),
                 title  = $('<div class="title">'+name+'</div>'),
