@@ -5,6 +5,7 @@ Humble( function () {
         this.node  = node;
         this.model = model;
         this.bars  = {};
+        this.colors = false;
 
         this.render();
     };
@@ -68,8 +69,29 @@ Humble( function () {
         },
 
         update : function () {
+
+            if (!this._colors) {
+                this._setRaphaelColors();
+                this._colors = true;
+            }
+
             this.draw();
         },
+
+        _setRaphaelColors : function () {
+
+            var colors = [],
+                model  = this.model,
+                paper  = this.paper,
+                items  = model.getItems(),
+                dimensions = Humble.Config.DVZ.budget.dimensions;
+
+            _.each(items, function (value, key) {
+                colors.push(dimensions[key].color);
+            }, this);
+
+            this.paper.g.colors = colors;
+        }
 
         /**
         draw : function () {
