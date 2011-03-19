@@ -41,7 +41,10 @@ Humble( function () {
 
             this.pie = paper.g.piechart(320, 320, 300, data);
 
-            // Bindings
+            this.bind();
+        },
+
+        bind : function () {
             var that = this;
             this.pie.hover(function () {
                 var index = this.value.order,
