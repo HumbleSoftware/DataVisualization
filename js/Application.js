@@ -18,36 +18,11 @@ function Application (applicationNode) {
     rootNode.append(visualNode);
     $(applicationNode).append(rootNode);
 
-    // Colors (override raphael default colors)
-    var colors = [
-        '#FF282E',
-        '#B79949',
-        '#121F97',
-        '#6FFE67',
-        '#B7484B',
-        '#9A730B',
-        '#7B88FD',
-        '#9FFE9A',
-        '#9A0B0E',
-        '#FFD668',
-        '#A7AFFD',
-        '#32FC28',
-        '#FF686C',
-        '#FFE49B',
-        '#4455F9',
-        '#12980B',
-        '#FF9B9D',
-        '#FFC528',
-        '#565EB3',
-        '#4DB548'
-    ];
-    Raphael.fn.g.colors = colors;
-
     // Build Objects
     var dataSource  = new Humble.DataSource(),
         model       = new Humble.Model(),
         controls    = new Humble.Controls(controlsNode, model),
-        sliders     = new Humble.Sliders(sliderNode, model, {colors : colors}),
+        sliders     = new Humble.Sliders(sliderNode, model);
         visual      = new Humble.Visual(visualNode, model);
 
     // Controller
