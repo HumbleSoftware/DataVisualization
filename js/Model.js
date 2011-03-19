@@ -54,6 +54,11 @@ Humble( function () {
 
         },
 
+		reset : function()	{
+			console.log("model.reset");
+			this.setXML(this.xml);
+		},
+		
         setIncome : function (income) {
             this.income = income;
         },

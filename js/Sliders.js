@@ -76,6 +76,7 @@ Humble( function () {
                 var value = items[key]['mycosti'];
                 this._updateSlider(slider, value); 
             }, this);
+            
         },
 
         _onSlide : function (e, ui) {
