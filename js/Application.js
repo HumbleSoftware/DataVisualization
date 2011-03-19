@@ -2,8 +2,8 @@ function Application (applicationNode) {
 
     // DOM Templates
     var T_APPLICATION   = '<div class="humble-dvc-application"></div>',
-        T_CONTROLS      = '<div class="humble-dvc-controls"></div>';
-        T_SLIDERS       = '<div class="humble-dvc-sliders"></div>';
+        T_CONTROLS      = '<div class="humble-dvc-controls"></div>',
+        T_SLIDERS       = '<div class="humble-dvc-sliders"></div>',
         T_VISUAL        = '<div class="humble-dvc-visual"></div>';
 
     // DOM Nodes
