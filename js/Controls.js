@@ -47,7 +47,6 @@ Humble( function () {
         },
 
 		resetXML : function (callback)	{
-			console.log("resetXML");
 			this._reset.click(callback);
 		},
 		
