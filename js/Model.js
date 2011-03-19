@@ -12,6 +12,8 @@ Humble( function () {
         this.itemCount  = null;
         // Ratio of my vs amount
         this.ratio      = null;
+        // Construct formatter
+        this.format     = new Humble.Formatter();
     }
 
     // Methods
@@ -182,9 +184,7 @@ Humble( function () {
                 total += value[field];
             }, this);
 
-            total = total * 100;
-            total = Math.round(total);
-            total = (total !== 0) ? total / 100 : total;
+            total = this.format.currency(total);
 
             return total;
         },
