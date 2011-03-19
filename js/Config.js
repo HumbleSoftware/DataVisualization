@@ -19,25 +19,65 @@ Humble.Config.DVZ.budget = {
         mycosti : {}
     },
     dimensions : {
-        _2771 : "National Defense",
-        _2772 : "International Affairs",
-        _2773 : "General Science, Space, and Technology",
-        _2774 : "Energy",
-        _2775 : "Natural Resources and Environment",
-        _2776 : "Agriculture",
-//        _2777 : "Commerce and Housing Credit",
-        _2778 : "Transportation",
-        _2779 : "Community and Regional Development",
-        _2780 : "Education, Training, Employment, and Social Services",
-        _2781 : "Health",
-        _2782 : "Medicare",
-        _2783 : "Income Security",
-        _2784 : "Social Security",
-        _2785 : "Veterans Benefits and Services",
-        _2786 : "Administration of Justice",
-        _2787 : "General Government",
-        _2788 : "Net Interest",
-        _2789 : "Allowances"//,
-//        _2790 : "Undistributed Offsetting Receipts"
+        _2771 : {
+            name : "National Defense"
+        },
+        _2772 : {
+            name : "International Affairs"
+        },
+        _2773 : {
+            name : "General Science, Space, and Technology"
+        },
+        _2774 : {
+            name : "Energy"
+        },
+        _2775 : {
+            name : "Natural Resources and Environment"
+        },
+        _2776 : {
+            name : "Agriculture"
+        },
+//        _2777 : {
+//            name : "Commerce and Housing Credit"
+//        },
+        _2778 : {
+            name : "Transportation"
+        },
+        _2779 : {
+            name : "Community and Regional Development"
+        },
+        _2780 : {
+            name : "Education, Training, Employment, and Social Services"
+        },
+        _2781 : {
+            name : "Health"
+        },
+        _2782 : {
+            name : "Medicare"
+        },
+        _2783 : {
+            name : "Income Security"
+        },
+        _2784 : {
+            name : "Social Security"
+        },
+        _2785 : {
+            name : "Veterans Benefits and Services"
+        },
+        _2786 : {
+            name : "Administration of Justice"
+        },
+        _2787 : {
+            name : "General Government"
+        },
+        _2788 : {
+            name : "Net Interest"
+        },
+        _2789 : {
+            name : "Allowances"
+        }
+//        _2790 : {
+//            name : "Undistributed Offsetting Receipts"
+//        }
     }
 }

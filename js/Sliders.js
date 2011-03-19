@@ -22,8 +22,9 @@ Humble( function () {
                 node        = this.node,
                 count       = 0;
 
-            _.each(dimensions, function (name, key) {
-                var slider = this._renderSlider(name, count);
+            _.each(dimensions, function (dimension, key) {
+                var name   = dimension.name,
+                    slider = this._renderSlider(name, count);
                 node.append(slider);
                 slider.data('key', key);
                 sliders[key] = slider;
