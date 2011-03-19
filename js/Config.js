@@ -25,7 +25,7 @@ Humble.Config.DVZ.budget = {
         2774 : "Energy",
         2775 : "Natural Resources and Environment",
         2776 : "Agriculture",
-        2777 : "Commerce and Housing Credit",
+//        2777 : "Commerce and Housing Credit",
         2778 : "Transportation",
         2779 : "Community and Regional Development",
         2780 : "Education, Training, Employment, and Social Services",
@@ -37,7 +37,7 @@ Humble.Config.DVZ.budget = {
         2786 : "Administration of Justice",
         2787 : "General Government",
         2788 : "Net Interest",
-        2789 : "Allowances",
-        2790 : "Undistributed Offsetting Receipts"
+        2789 : "Allowances"//,
+//        2790 : "Undistributed Offsetting Receipts"
     }
 }
