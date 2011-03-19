@@ -39,6 +39,8 @@ Humble( function () {
                 default : {}
             }
 
+            Humble.Event.trigger('humble:dvc:modelUpdate');
+
             // Set attribute
             this._set(item, attribute, value);
         },
@@ -52,6 +54,7 @@ Humble( function () {
             this.itemCount  = 0;
             this.ratio      = this._getRatio(); 
 
+            Humble.Event.trigger('humble:dvc:modelUpdate');
         },
 
         setIncome : function (income) {
