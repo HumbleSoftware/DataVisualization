@@ -60,7 +60,6 @@ Humble( function () {
         },
 
 		reset : function()	{
-			console.log("model.reset");
 			this.setXML(this.xml);
 		},
 		
