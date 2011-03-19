@@ -47,7 +47,9 @@ Humble( function () {
                     key   = that.model.getKey(index);
                 that.highlight(key);
             }, function () {
-                this.sector.animate({scale: [1, 1, this.cx, this.cy]}, 500, "bounce");
+                var index = this.value.order,
+                    key   = that.model.getKey(index);
+                that.unHighlight(key);
             });
         },
 
@@ -56,6 +58,13 @@ Humble( function () {
                 sector = this.pie.series[index]
             sector.stop();
             sector.scale(1.02, 1.02, 320, 320);
+        },
+
+        unHighlight : function (key) {
+            var index  = this.model.getIndex(key),
+                sector = this.pie.series[index]
+            sector.stop();
+            sector.animate({scale: [1, 1, 320, 320]}, 500, "bounce");
         },
 
         update : function () {
