@@ -22,6 +22,10 @@ Humble( function () {
 
             this.paper = paper;
 
+            this.bind();
+        },
+
+        bind : function () {
             that = this;
             Humble.Event.bind('humble:dvc:dimensionHover', function (e, key, hover) {
                 if (hover) {
@@ -50,10 +54,10 @@ Humble( function () {
 
             this.pie = paper.g.piechart(320, 320, 300, data);
 
-            this.bind();
+            this.bindPie();
         },
 
-        bind : function () {
+        bindPie : function () {
             var that = this;
             this.pie.hover(function () {
                 var index = this.value.order,
