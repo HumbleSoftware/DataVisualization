@@ -9,4 +9,5 @@ Humble.Event = {
     bind : function () {
         this.hostage.bind.apply(this.hostage, arguments);
     }
-}
+};
+Humble.DVC = {};
