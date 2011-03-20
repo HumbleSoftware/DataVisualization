@@ -67,18 +67,17 @@ Humble( function () {
             this.income = income;
         },
 
-        get : function (key) {
+        get : function (key, attribute) {
 
-            var items  = this.items,
-                values = {};
+            var items = this.items,
+                item,
+                value;
 
-            items.each(function (key, item) {
-                var value = item.attr('dimensionName'),
-                    id    = item.attr('dimensionID');
-                values[id] = value;
-            });
+            // Existential insanity
+            item  = (key in items ? items[key] : false);
+            value = (attribute && attribute in item ? item[attribute] : false);
 
-            return values;
+            return (value ? value : item);
         },
 
         getKey : function (index) {
