@@ -1,5 +1,7 @@
 Humble( function () {
 
+    var C_VISUAL = 'humble-dvc-visual';
+
     var Visual = function (node, model) {
 
         this.node  = node;
@@ -53,6 +55,11 @@ Humble( function () {
             }, this);
 
             this.pie = paper.g.piechart(320, 320, 300, data);
+
+            this.pie.each(function () {
+                var cover  = $(this.cover.node);
+                cover.css('cursor', 'pointer');
+            });
 
             this.bindPie();
         },
