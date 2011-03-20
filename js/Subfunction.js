@@ -11,6 +11,7 @@ Humble( function () {
         this.parentNode = node;
         this.node = $(T_SUBFUNCTION);
         this.model = model;
+        this.dataSource = this.buildDataSource();
 
         this.render();
     }
@@ -27,12 +28,26 @@ Humble( function () {
             var that = this;
 
             Humble.Event.bind('humble:dvc:dimensionDetail', function (e, key, show) {
-                console.log('showDimension', key);
+                that.dataSource.request({
+                    success : function () {
+                        console.log('request made!');
+                    }
+                });
+
             });
         },
 
-        doHover : function (key) {
+        buildDataSource : function () {
 
+            var dataSource, options;
+
+            options = {
+                url  : 'http://www.whatwepayfor.com/api/getBudgetAccount'
+            };
+
+            dataSource = new Humble.DataSource(options);
+
+            return dataSource;
         }
     }
 
