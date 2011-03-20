@@ -37,12 +37,20 @@ Humble( function () {
 
             var that = this;
 
+            // TODO some timeout for hover outs would be cool?
+            this.node.hover(function () {
+                Humble.Event.trigger('humble:dvc:dimensionHover', [that.key, true]);
+            }, function () {
+                Humble.Event.trigger('humble:dvc:dimensionHover', [that.key, false]);
+            });
+
             Humble.Event.bind('humble:dvc:dimensionHover', function (e, key, hover) {
                 if (hover) {
                     that.node.show();
                     that.doHover(key);
                 } else {
                     that.node.hide();
+                    that.key = null;
                 }
             });
         },
@@ -57,6 +65,8 @@ Humble( function () {
             this.titleNode.html(dimensions[key].name);
             this.totalNode.html(total);
             this.taxesNode.html(taxes);
+
+            this.key = key;
         }
 
     }
