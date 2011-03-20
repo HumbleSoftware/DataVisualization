@@ -53,16 +53,17 @@ function Application (applicationNode) {
         controls.update();
     });
 
+    Humble.Event.bind('humble:dvc:modelUpdate', function () {
+        controls.update();
+        sliders.update();
+        visual.update();
+    });
+
     /**
      * Handle Data Source Success
      */
     function onDataSuccess (data) {
-
         model.setXML(data);
-
-        controls.update();
-        sliders.update();
-        visual.update();
     }
 
     function buildDataSource () {
