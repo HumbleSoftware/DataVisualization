@@ -7,13 +7,15 @@ function Application (applicationNode) {
     $(applicationNode).append(node);
 
     // Build Objects
-    var dataSource  = new Humble.DataSource(),
-        model       = new Humble.Model(),
+    var model       = new Humble.Model(),
         controls    = new Humble.Controls(node, model),
         dimension   = new Humble.Dimension(node, model),
         sliders     = new Humble.Sliders(node, model),
         subfunction = new Humble.Subfunction(node, model),
-        visual      = new Humble.Visual(node, model);
+        visual      = new Humble.Visual(node, model),
+        dataSource;
+
+    dataSource = buildDataSource();
 
     // Controller
     controls.incomeChange(function (e, ui) {
@@ -22,8 +24,8 @@ function Application (applicationNode) {
             config = {};
 
         config = {
-            callback : callback,
-            income   : income
+            success : onDataSuccess,
+            data : { income : income }
         }
         dataSource.request(config);
         model.setIncome(income);
@@ -37,10 +39,7 @@ function Application (applicationNode) {
     });
 
     // Fucking callback
-    var callback = {
-        success : onDataSuccess
-    }
-    dataSource.request({callback : callback});
+    dataSource.request({success : onDataSuccess});
     model.setIncome(50000);
 
     // Update Shit
@@ -64,5 +63,18 @@ function Application (applicationNode) {
         controls.update();
         sliders.update();
         visual.update();
+    }
+
+    function buildDataSource () {
+
+        var options, dataSource;
+
+        options = {
+            url : 'http://www.whatwepayfor.com/api/getBudgetAggregate'
+        }
+
+        dataSource = new Humble.DataSource(options);
+
+        return dataSource;
     }
 }
