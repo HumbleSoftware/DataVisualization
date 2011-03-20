@@ -15,19 +15,9 @@ function Application (applicationNode) {
         visual      = new Humble.Visual(node, model),
         dataSource;
 
-    dataSource = buildDataSource();
-
     // Controller
     controls.incomeChange(function (e, ui) {
-
-        var income = e.target.value,
-            config = {};
-
-        config = {
-            success : onDataSuccess,
-            data : { income : income }
-        }
-        dataSource.request(config);
+        var income = e.target.value;
         model.setIncome(income);
     });
     
@@ -37,10 +27,6 @@ function Application (applicationNode) {
         sliders.update();
         visual.update();
     });
-
-    // Fucking callback
-    dataSource.request({success : onDataSuccess});
-    model.setIncome(50000);
 
     // Update Shit
     sliders.node.delegate('.slider', 'slide', function (e, ui) {
@@ -59,24 +45,5 @@ function Application (applicationNode) {
         visual.update();
     });
 
-    /**
-     * Handle Data Source Success
-     */
-    function onDataSuccess (data) {
-        model.setXML(data);
-    }
-
-    function buildDataSource () {
-
-        var options, dataSource;
-
-        options = {
-            data : model.requestData(),
-            url  : 'http://www.whatwepayfor.com/api/getBudgetAggregate'
-        }
-
-        dataSource = new Humble.DataSource(options);
-
-        return dataSource;
-    }
+    model.setIncome(50000);
 }

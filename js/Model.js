@@ -24,6 +24,7 @@ Humble( function () {
         this.ratio      = null;
         // Construct formatter
         this.format     = new Humble.Formatter();
+        this.dataSource = this._buildDataSource();
     }
 
     // Methods
@@ -74,7 +75,16 @@ Humble( function () {
 		},
 		
         setIncome : function (income) {
+
+            var config;
+
             this.income = income;
+
+            config = {
+                data : { income : income }
+            };
+
+            this.dataSource.request(config);
         },
 
         get : function (key, attribute) {
@@ -234,8 +244,30 @@ Humble( function () {
 
         _calculateAmountI : function (mycosti) {
             return this.getRatio() * mycosti;
-        }
+        },
 
+        _buildDataSource : function () {
+
+            var that = this,
+                options,
+                dataSource,
+                onSuccess;
+
+
+            onSuccess = function (data) {
+                that.setXML(data);
+            }
+
+            options = {
+                data    : this.requestData(),
+                success : onSuccess,
+                url     : 'http://www.whatwepayfor.com/api/getBudgetAggregate'
+            }
+
+            dataSource = new Humble.DataSource(options);
+
+            return dataSource;
+        }
     };
 
     // Namespace Hook
