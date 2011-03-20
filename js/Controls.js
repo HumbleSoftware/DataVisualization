@@ -3,7 +3,8 @@
  */
 Humble( function () {
 
-    var T_INCOME_INPUT  = '<input id="humble-dvc-input" type="text"></input>',
+    var T_CONTROLS      = '<div class="humble-dvc-controls"></div>',
+        T_INCOME_INPUT  = '<input id="humble-dvc-input" type="text"></input>',
         T_INCOME_LABEL  = '<label for="humble-dvc-input">Income</input>',
         T_TOTAL_TAXES   = '<div class="humble-dvc-total-taxes"></div>',
         T_TOTAL_BUDGET  = '<div class="humble-dvc-total-budget"></div>',
@@ -11,7 +12,8 @@ Humble( function () {
 
     var Controls = function (node, model) {
 
-        this.node = node;
+        this.parentNode = node;
+        this.node = $(T_CONTROLS);
         this.model = model;
 
         this.render();
@@ -21,16 +23,20 @@ Humble( function () {
 
         render : function () {
 
+            var node = this.node;
+
             this._income    = $(T_INCOME_INPUT);
             this._total     = $(T_TOTAL_TAXES);
             this._budget    = $(T_TOTAL_BUDGET);
 			this._reset		= $(T_RESET);
 
-            this.node.append(T_INCOME_LABEL);
-            this.node.append(this._income);
-            this.node.append(this._total);
-            this.node.append(this._budget);
-            this.node.append(this._reset);
+            node.append(T_INCOME_LABEL);
+            node.append(this._income);
+            node.append(this._total);
+            node.append(this._budget);
+            node.append(this._reset);
+
+            this.parentNode.append(node);
 
             this.bind();
         },
