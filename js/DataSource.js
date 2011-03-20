@@ -5,25 +5,32 @@ Humble( function () {
 
     // Class Constants
     var CHANGE      = 'showChange',
+        DATA_TYPE   = 'dataType',
         EXTRA       = 'showExtra',
         FILING      = 'filing',
         GROUP       = 'group',
         INCOME      = 'income',
         SORT        = 'sortdir',
+        SUCCESS     = 'success',
         TYPE        = 'type',
+        URL         = 'url',
         YEAR        = 'year';
 
-    // Constructor
-    var DataSource = function () {
+    var DEFAULT_OPTIONS = {
+        dataType : 'jsonp'
+    }
 
+    // Constructor
+    var DataSource = function (options) {
+        this.options = _.extend(DEFAULT_OPTIONS, options);
     }
 
     // Methods
     DataSource.prototype = {
 
-        request : function (options) {
+        request : function (config) {
 
-            var config = {},
+            var config = (config ? config : {});
                 data   = {};
 
             // Data
@@ -36,22 +43,10 @@ Humble( function () {
             data[CHANGE]    = 0;
             data[EXTRA]     = 0;
 
-            // Config
-            config = {
-                url : 'http://www.whatwepayfor.com/api/getBudgetAggregate',
-                dataType : 'jsonp',
-                data : data
-            };
-
-            // Options
-            if ('callback' in options) {
-                if ('success' in options.callback) {
-                    config.success = options.callback.success;
-                }
-            }
-            if ('income' in options) {
-                config.data[INCOME] = options.income;
-            }
+            config = _.extend(this.options, config);
+            config.data = (
+                config.data ? _.extend(data, config.data) : data
+            );
 
             jQuery.ajax(config);
         }
