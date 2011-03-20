@@ -13,6 +13,7 @@ body {
     width : 1080px;
     background : #eeeeff;
     overflow: hidden;
+    position : relative;
 }
 .humble-dvc-sliders {
     float : right;
@@ -49,4 +50,13 @@ body {
     width : 640px;
     height : 640px;
     background : #eeeeff;
+}
+.humble-dvc-dimension {
+    background : #ffffff;
+    width : 360px;
+    padding : 8px;
+    position : absolute;
+    top : 120px;
+    left : 10px;
+    border-radius : 4px;
 }
