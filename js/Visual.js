@@ -1,10 +1,12 @@
 Humble( function () {
 
-    var C_VISUAL = 'humble-dvc-visual';
+    var C_VISUAL = 'humble-dvc-visual',
+        T_VISUAL = '<div class="'+C_VISUAL+'"></div>';
 
     var Visual = function (node, model) {
 
-        this.node  = node;
+        this.parentNode = node;
+        this.node  = $(T_VISUAL);
         this.model = model;
         this.bars  = {};
         this.colors = false;
@@ -15,6 +17,8 @@ Humble( function () {
     Visual.prototype = {
 
         render : function () {
+
+            this.parentNode.append(this.node);
 
             var node    = this.node,
                 width   = node.width(),
