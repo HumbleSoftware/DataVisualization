@@ -8,8 +8,8 @@ Humble( function () {
     }
 
     // Constructor
-    var DataSource = function (options) {
-        this.options = _.extend(DEFAULT_OPTIONS, options);
+    function DataSource (options) {
+        this.options = _.extend({}, DEFAULT_OPTIONS, options);
     }
 
     // Methods
