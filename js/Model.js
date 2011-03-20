@@ -59,15 +59,12 @@ Humble( function () {
         },
 
         setXML : function (xml) {
-
             this.xml        = xml;
             this.xmlDoc     = this._parse(xml);
             this.items      = this._getItems(this.xmlDoc);
             this.keys       = _.keys(this.items);
             this.itemCount  = 0;
             this.ratio      = this._getRatio(); 
-
-            Humble.Event.trigger('humble:dvc:modelUpdate');
         },
 
 		reset : function()	{
@@ -108,41 +105,12 @@ Humble( function () {
             return _.indexOf(this.keys, key);
         },
 
-        getIncome : function () {
-            return this.income;
-        },
-
-        getRatio : function () {
-            return this.ratio;
-        },
-
         getItems : function () {
             return this.items;
         },
 
         getItemCount : function () {
             return _.size(this.items);
-        },
-
-        getTotalTaxes : function () {
-            return this._getTotalNumeric('mycosti');
-        },
-
-        getTotalSpending : function () {
-            return this._getTotalNumeric('amounti');
-        },
-
-        getMaxSpending : function () {
-
-            var values = this.getItems(),
-                max    = 0,
-                field  = 'amounti';
-
-            _.each(values, function (value, key) {
-                max = Math.max(max, value[field]);
-            }, this);
-
-            return max;
         },
 
         requestData : function () {
