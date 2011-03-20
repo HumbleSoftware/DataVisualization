@@ -65,7 +65,9 @@ Humble( function () {
         },
 
         bindPie : function () {
+
             var that = this;
+
             this.pie.hover(function () {
                 var index = this.value.order,
                     key   = that.model.getKey(index);
@@ -74,6 +76,12 @@ Humble( function () {
                 var index = this.value.order,
                     key   = that.model.getKey(index);
                 Humble.Event.trigger('humble:dvc:dimensionHover', [key, false]);
+            });
+
+            this.pie.click(function () {
+                var index = this.value.order,
+                    key   = that.model.getKey(index);
+                Humble.Event.trigger('humble:dvc:dimensionDetail', [key, true]);
             });
         },
 
