@@ -10,4 +10,11 @@ Humble.Event = {
         this.hostage.bind.apply(this.hostage, arguments);
     }
 };
+Humble.Class = {
+    extend : function (childClass, parentClass) {
+        var prototype = childClass.prototype;
+        childClass.prototype = new parentClass();
+        _.extend(childClass.prototype, prototype);
+    } 
+};
 Humble.DVC = {};
