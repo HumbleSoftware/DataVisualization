@@ -5,15 +5,12 @@ Humble( function () {
 
     // Class Constants
     var CHANGE      = 'showChange',
-        DATA_TYPE   = 'dataType',
         EXTRA       = 'showExtra',
         FILING      = 'filing',
         GROUP       = 'group',
         INCOME      = 'income',
         SORT        = 'sortdir',
-        SUCCESS     = 'success',
         TYPE        = 'type',
-        URL         = 'url',
         YEAR        = 'year';
 
     var DEFAULT_OPTIONS = {
