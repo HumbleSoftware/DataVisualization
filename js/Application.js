@@ -2,16 +2,13 @@ function Application (applicationNode) {
 
     // DOM Templates
     var T_APPLICATION   = '<div class="humble-dvc-application"></div>',
-        T_DIMENSION     = '<div class="humble-dvc-dimension"></div>',
         T_SUBFUNCTION   = '<div class="humble-dvc-subfunction"></div>';
 
     // DOM Nodes
     var rootNode        = $(T_APPLICATION),
-        dimensionNode   = $(T_DIMENSION),
         subfunctionNode = $(T_SUBFUNCTION);
 
     // Build that DOM
-    rootNode.append(dimensionNode);
     rootNode.append(subfunctionNode);
     $(applicationNode).append(rootNode);
 
@@ -19,7 +16,7 @@ function Application (applicationNode) {
     var dataSource  = new Humble.DataSource(),
         model       = new Humble.Model(),
         controls    = new Humble.Controls(rootNode, model),
-        dimension   = new Humble.Dimension(dimensionNode, model),
+        dimension   = new Humble.Dimension(rootNode, model),
         sliders     = new Humble.Sliders(rootNode, model),
         subfunction = new Humble.Subfunction(subfunctionNode, model),
         visual      = new Humble.Visual(rootNode, model);
