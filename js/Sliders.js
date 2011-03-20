@@ -3,11 +3,21 @@
  */
 Humble( function () {
 
+    var C_SLIDERS       = 'humble-dvc-sliders',
+        T_SLIDERS       = '<div class="'+C_SLIDERS+'"></div>',
+        T_LABEL         = '<div class="value mycosti"></div>',
+        T_LEGEND        = '<div class="legend"></div>',
+        T_SLIDER        = '<div class="slider"></div>',
+        T_TITLE         = '<div class="title"></div>';
+
     var Sliders = function (node, model, options) {
 
         this.model      = model;
-        this.node       = node;
+        this.parentNode = node;
+        this.node       = $(T_SLIDERS);
         this.sliders    = {};
+
+        node.append(this.node);
 
         this.render();
     }
@@ -37,11 +47,11 @@ Humble( function () {
             var value  = this.model.format.currency(0),
                 name   = dimension.name,
                 color  = dimension.color,
-                label  = $('<div class="value mycosti">'+value+'</div>'),
-                slider = $('<div class="slider"></div>'),
+                label  = $(T_LABEL).html(value),
+                slider = $(T_SLIDER),
                 widget = $('<div></div>'),
-                title  = $('<div class="title">'+name+'</div>'),
-                legend = $('<div class="legend" style="background: '+color+';"></div>'),
+                title  = $(T_TITLE).html(name),
+                legend = $(T_LEGEND).css('background', color),
                 config;
 
             slider.append(label);
