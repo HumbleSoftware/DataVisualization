@@ -38,6 +38,7 @@ body {
     height : 12px;
     width : 12px;
     border : 2px solid #ffffff;
+    cursor : pointer;
 }
 .humble-dvc-sliders .legend.hover {
     height : 14px;
