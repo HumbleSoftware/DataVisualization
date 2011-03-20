@@ -7,7 +7,7 @@ function Application (applicationNode) {
     $(applicationNode).append(node);
 
     // Build Objects
-    var model       = new Humble.Model(),
+    var model       = new Humble.DVC.BudgetAggregateModel(),
         controls    = new Humble.Controls(node, model),
         dimension   = new Humble.Dimension(node, model),
         sliders     = new Humble.Sliders(node, model),
