@@ -3,11 +3,13 @@
  */
 Humble( function () {
 
-    var C_SUBFUNCTION = 'humble-dvc-subfunction';
+    var C_SUBFUNCTION = 'humble-dvc-subfunction',
+        T_SUBFUNCTION = '<div class="'+C_SUBFUNCTION+'"></div>';
 
     var Subfunction = function (node, model) {
 
-        this.node = node;
+        this.parentNode = node;
+        this.node = $(T_SUBFUNCTION);
         this.model = model;
 
         this.render();
@@ -16,6 +18,7 @@ Humble( function () {
     Subfunction.prototype = {
 
         render : function () {
+            this.parentNode.append(this.node);
             this.bind();
         },
 

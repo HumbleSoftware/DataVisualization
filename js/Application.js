@@ -1,25 +1,19 @@
 function Application (applicationNode) {
 
     // DOM Templates
-    var T_APPLICATION   = '<div class="humble-dvc-application"></div>',
-        T_SUBFUNCTION   = '<div class="humble-dvc-subfunction"></div>';
+    var T_APPLICATION = '<div class="humble-dvc-application"></div>',
+        node          = $(T_APPLICATION);
 
-    // DOM Nodes
-    var rootNode        = $(T_APPLICATION),
-        subfunctionNode = $(T_SUBFUNCTION);
-
-    // Build that DOM
-    rootNode.append(subfunctionNode);
-    $(applicationNode).append(rootNode);
+    $(applicationNode).append(node);
 
     // Build Objects
     var dataSource  = new Humble.DataSource(),
         model       = new Humble.Model(),
-        controls    = new Humble.Controls(rootNode, model),
-        dimension   = new Humble.Dimension(rootNode, model),
-        sliders     = new Humble.Sliders(rootNode, model),
-        subfunction = new Humble.Subfunction(subfunctionNode, model),
-        visual      = new Humble.Visual(rootNode, model);
+        controls    = new Humble.Controls(node, model),
+        dimension   = new Humble.Dimension(node, model),
+        sliders     = new Humble.Sliders(node, model),
+        subfunction = new Humble.Subfunction(node, model),
+        visual      = new Humble.Visual(node, model);
 
     // Controller
     controls.incomeChange(function (e, ui) {
