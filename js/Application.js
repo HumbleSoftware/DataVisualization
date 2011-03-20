@@ -70,7 +70,8 @@ function Application (applicationNode) {
         var options, dataSource;
 
         options = {
-            url : 'http://www.whatwepayfor.com/api/getBudgetAggregate'
+            data : model.requestData(),
+            url  : 'http://www.whatwepayfor.com/api/getBudgetAggregate'
         }
 
         dataSource = new Humble.DataSource(options);

@@ -3,6 +3,16 @@
  */
 Humble( function () {
 
+    // Class Constants
+    var CHANGE      = 'showChange',
+        EXTRA       = 'showExtra',
+        FILING      = 'filing',
+        GROUP       = 'group',
+        INCOME      = 'income',
+        SORT        = 'sortdir',
+        TYPE        = 'type',
+        YEAR        = 'year';
+
     // Constructor
     var Model = function () {
         this.xml        = null;
@@ -123,6 +133,23 @@ Humble( function () {
             }, this);
 
             return max;
+        },
+
+        requestData : function () {
+
+            var data = {};
+
+            // Data
+            data[YEAR]      = 2010;
+            data[TYPE]      = 0;
+            data[SORT]      = 0;
+            data[INCOME]    = 50000;
+            data[FILING]    = 0;
+            data[GROUP]     = 'function';
+            data[CHANGE]    = 0;
+            data[EXTRA]     = 0;
+
+            return data;
         },
 
         _parse : function (xml) {

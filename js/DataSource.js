@@ -3,16 +3,6 @@
  */
 Humble( function () {
 
-    // Class Constants
-    var CHANGE      = 'showChange',
-        EXTRA       = 'showExtra',
-        FILING      = 'filing',
-        GROUP       = 'group',
-        INCOME      = 'income',
-        SORT        = 'sortdir',
-        TYPE        = 'type',
-        YEAR        = 'year';
-
     var DEFAULT_OPTIONS = {
         dataType : 'jsonp'
     }
@@ -27,25 +17,15 @@ Humble( function () {
 
         request : function (config) {
 
-            var config = (config ? config : {});
-                data   = {};
+            var config = (config ? config : {}),
+                c = {},
+                d = {};
 
-            // Data
-            data[YEAR]      = 2010;
-            data[TYPE]      = 0;
-            data[SORT]      = 0;
-            data[INCOME]    = 50000;
-            data[FILING]    = 0;
-            data[GROUP]     = 'function';
-            data[CHANGE]    = 0;
-            data[EXTRA]     = 0;
+            _.extend(d, this.options.data, config.data);
+            _.extend(c, this.options, config);
+            c.data = d;
 
-            config = _.extend(this.options, config);
-            config.data = (
-                config.data ? _.extend(data, config.data) : data
-            );
-
-            jQuery.ajax(config);
+            jQuery.ajax(c);
         }
     };
 
