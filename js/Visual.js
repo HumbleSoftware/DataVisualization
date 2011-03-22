@@ -52,10 +52,13 @@ Humble( function () {
             var model = this.model,
                 paper = this.paper,
                 items = model.getItems(),
+                dimensions = Humble.Config.DVZ.budget.dimensions,
                 data  = [];
 
             _.each(items, function (item, key) {
-                data.push(item['amounti']);
+                if (key in dimensions) {
+                    data.push(item['amounti']);
+                }
             }, this);
 
             this.pie = paper.g.piechart(320, 320, 300, data);
@@ -122,7 +125,9 @@ Humble( function () {
                 dimensions = Humble.Config.DVZ.budget.dimensions;
 
             _.each(items, function (value, key) {
-                colors.push(dimensions[key].color);
+                if (key in dimensions) {
+                    colors.push(dimensions[key].color);
+                }
             }, this);
 
             this.paper.g.colors = colors;
