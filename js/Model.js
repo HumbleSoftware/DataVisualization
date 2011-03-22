@@ -92,11 +92,8 @@ Humble( function () {
             var dimensions = {};
 
             _.each(items, function (item) {
-
                 var $item = $(item);
                newItems.push($item); 
-
-               // dimensions[$item.attr(this.key)] = $item.attr(this.key);
             }, this);
 
             return newItems;
