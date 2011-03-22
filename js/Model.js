@@ -116,7 +116,7 @@ Humble( function () {
                 _.each(Humble.Config.DVZ.budget.fields, function (field, key) {
                     var attr = item.attr(key);
                     if (this.parsers[key]) {
-                        this.parsers[key].apply(this, [attr]);
+                        attr = this.parsers[key].apply(this, [attr]);
                     }
                     value[key] = attr;
                 }, this);
