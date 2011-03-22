@@ -6,12 +6,24 @@ function Application (applicationNode) {
 
     $(applicationNode).append(node);
 
+    var overwriteColors = function () {
+
+        var dimensions = Humble.Config.DVZ.budget.dimensions,
+            colors = ['4d','66','7c'];
+
+        _.each(dimensions, function (dimension, key) {
+            dimensions[key].color = '#'+colors[Math.floor(Math.random()*3)]+colors[Math.floor(Math.random()*3)]+colors[Math.floor(Math.random()*3)];
+        });
+    }
+
+    overwriteColors();
+
     // Build Objects
     var model       = new Humble.DVC.BudgetAggregateModel(),
         controls    = new Humble.Controls(node, model),
         dimension   = new Humble.Dimension(node, model),
         sliders     = new Humble.Sliders(node, model),
-        subfunction = new Humble.Subfunction(node, model),
+        subfunction = new Humble.DVC.BudgetAccount(node, model),
         visual      = new Humble.Visual(node, model),
         dataSource;
 

@@ -3,20 +3,20 @@
  */
 Humble( function () {
 
-    var C_SUBFUNCTION = 'humble-dvc-subfunction',
-        T_SUBFUNCTION = '<div class="'+C_SUBFUNCTION+'"></div>';
+    var C_BUDGET_ACCOUNT = 'humble-dvc-subfunction',
+        T_BUDGET_ACCOUNT = '<div class="'+C_BUDGET_ACCOUNT+'"></div>';
 
-    var Subfunction = function (node, model) {
+    var BudgetAccount = function (node, model) {
 
         this.parentNode = node;
-        this.node = $(T_SUBFUNCTION);
+        this.node = $(T_BUDGET_ACCOUNT);
         this.model = model;
         this.dataSource = this.buildDataSource();
 
         this.render();
     }
 
-    Subfunction.prototype = {
+    BudgetAccount.prototype = {
 
         render : function () {
             this.parentNode.append(this.node);
@@ -51,6 +51,6 @@ Humble( function () {
         }
     }
 
-    Humble.Subfunction = Subfunction;
+    Humble.DVC.BudgetAccount = BudgetAccount;
 });
 
