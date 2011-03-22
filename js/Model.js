@@ -3,16 +3,6 @@
  */
 Humble( function () {
 
-    // Class Constants
-    var CHANGE      = 'showChange',
-        EXTRA       = 'showExtra',
-        FILING      = 'filing',
-        GROUP       = 'group',
-        INCOME      = 'income',
-        SORT        = 'sortdir',
-        TYPE        = 'type',
-        YEAR        = 'year';
-
     // Constructor
     var Model = function () {
         this.xml        = null;
@@ -71,19 +61,6 @@ Humble( function () {
 			this.setXML(this.xml);
 		},
 		
-        setIncome : function (income) {
-
-            var config;
-
-            this.income = income;
-
-            config = {
-                data : { income : income }
-            };
-
-            this.dataSource.request(config);
-        },
-
         get : function (key, attribute) {
 
             var items = this.items,
@@ -95,6 +72,10 @@ Humble( function () {
             value = (attribute && attribute in item ? item[attribute] : false);
 
             return (value ? value : item);
+        },
+
+        getURL : function () {
+            return this.url;
         },
 
         getKey : function (index) {
@@ -114,20 +95,7 @@ Humble( function () {
         },
 
         requestData : function () {
-
-            var data = {};
-
-            // Data
-            data[YEAR]      = 2010;
-            data[TYPE]      = 0;
-            data[SORT]      = 0;
-            data[INCOME]    = 50000;
-            data[FILING]    = 0;
-            data[GROUP]     = 'function';
-            data[CHANGE]    = 0;
-            data[EXTRA]     = 0;
-
-            return data;
+            return false;
         },
 
         _parse : function (xml) {
@@ -197,21 +165,8 @@ Humble( function () {
             return total;
         },
 
-        _getRatio : function () {
-
-            var totalSpending   = this.getTotalSpending(),
-                totalTaxes      = this.getTotalTaxes();
-
-            return (totalTaxes) ?
-                (totalSpending / totalTaxes) : false;
-        },
-
         _set : function (item, attribute, value) {
             this.items[item][attribute] = value;
-        },
-
-        _calculateAmountI : function (mycosti) {
-            return this.getRatio() * mycosti;
         },
 
         _buildDataSource : function () {
@@ -229,7 +184,7 @@ Humble( function () {
             options = {
                 data    : this.requestData(),
                 success : onSuccess,
-                url     : 'http://www.whatwepayfor.com/api/getBudgetAggregate'
+                url     : this.getURL()
             }
 
             dataSource = new Humble.DataSource(options);
