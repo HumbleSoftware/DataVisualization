@@ -20,7 +20,8 @@ function Application (applicationNode) {
 
     // Model Options
     var modelOptions = {
-        url : Humble.Config.DVZ.url+'getBudgetAggregate'
+        url : Humble.Config.DVZ.url+'getBudgetAggregate',
+        key : 'dimensionID'
     };
 
     // Build Objects

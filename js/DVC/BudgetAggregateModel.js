@@ -15,16 +15,43 @@ Humble( function () {
 
     // Constructor
     var BudgetAggregateModel = function (options) {
+
         this.url = options.url;
+        this.key = options.key;
+
         Humble.Model.apply(this, arguments);
+        this.setters = {
+            'mycosti' : this._setMycosti
+        }
+        this.parsers = {
+            'amounti' : parseFloat,
+            'mycosti' : parseFloat
+        }
     }
 
     // Methods
     BudgetAggregateModel.prototype = {
 
+        _setMycosti : function (item, attribute, value) {
+
+            var income  = this.getIncome(),
+                total   = this.getTotalTaxes(),
+                current = this.items[item][attribute];
+
+            if (total - current + value > income) {
+                value = income - total + current;
+            }
+
+            // Update amounti
+            var amounti = this._calculateAmountI(value);
+            this._set(item, 'amounti', amounti);
+        },
+
         setXML : function (xml) {
 
             Humble.Model.prototype.setXML.apply(this, arguments);
+
+            this.ratio = this._getRatio(); 
 
             Humble.Event.trigger('humble:dvc:modelUpdate');
         },

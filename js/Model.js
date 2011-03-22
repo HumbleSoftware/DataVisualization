@@ -9,7 +9,6 @@ Humble( function () {
         this.xmlDoc     = null;
         this.items      = null;
         this.keys       = null;
-        this.itemCount  = null;
         // Ratio of my vs amount
         this.ratio      = null;
         // Construct formatter
@@ -22,24 +21,8 @@ Humble( function () {
 
         set : function (item, attribute, value) {
 
-            // Handle special cases
-            switch (attribute) {
-
-                case 'mycosti' : {
-
-                    var income  = this.getIncome(),
-                        total   = this.getTotalTaxes(),
-                        current = this.items[item][attribute];
-
-                    if (total - current + value > income) {
-                        value = income - total + current;
-                    }
-
-                    // Update amounti
-                    var amounti = this._calculateAmountI(value);
-                    this._set(item, 'amounti', amounti);
-                }
-                default : {}
+            if (this.setters[attribute]) {
+                this.setters[attribute].apply(this, [item, attribute, value]);
             }
 
             Humble.Event.trigger('humble:dvc:modelUpdate');
@@ -53,8 +36,6 @@ Humble( function () {
             this.xmlDoc     = this._parse(xml);
             this.items      = this._getItems(this.xmlDoc);
             this.keys       = _.keys(this.items);
-            this.itemCount  = 0;
-            this.ratio      = this._getRatio(); 
         },
 
 		reset : function()	{
@@ -112,15 +93,11 @@ Humble( function () {
 
             _.each(items, function (item) {
 
-                var $item = $(item),
-                    keep  = ($item.attr('mycosti') > 0 ? true : false);
+                var $item = $(item);
+               newItems.push($item); 
 
-                dimensions[$item.attr('dimensionID')] = $item.attr('dimensionName');
-
-                if (keep) {
-                    newItems.push($item);
-                }
-            });
+               // dimensions[$item.attr(this.key)] = $item.attr(this.key);
+            }, this);
 
             return newItems;
         },
@@ -133,20 +110,20 @@ Humble( function () {
             _.each(items, function (item, key) {
 
                 var value = {},
-                    id    = item.attr('dimensionID');
+                    id    = item.attr(this.key);
 
                 // Fill Value Object
                 _.each(Humble.Config.DVZ.budget.fields, function (field, key) {
                     var attr = item.attr(key);
-                    if (key === 'mycosti' || key === 'amounti') {
-                        attr = parseFloat(attr);
+                    if (this.parsers[key]) {
+                        this.parsers[key].apply(this, [attr]);
                     }
                     value[key] = attr;
-                });
+                }, this);
 
                 // Cache
                 values['_'+id] = value;
-            });
+            }, this);
 
             return values;
         },
