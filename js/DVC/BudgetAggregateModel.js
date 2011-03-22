@@ -14,8 +14,8 @@ Humble( function () {
         YEAR        = 'year';
 
     // Constructor
-    var BudgetAggregateModel = function () {
-        this.url = 'http://www.whatwepayfor.com/api/getBudgetAggregate';
+    var BudgetAggregateModel = function (options) {
+        this.url = options.url;
         Humble.Model.apply(this, arguments);
     }
 

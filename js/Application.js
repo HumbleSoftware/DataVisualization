@@ -18,8 +18,13 @@ function Application (applicationNode) {
 
     overwriteColors();
 
+    // Model Options
+    var modelOptions = {
+        url : Humble.Config.DVZ.url+'getBudgetAggregate'
+    };
+
     // Build Objects
-    var model       = new Humble.DVC.BudgetAggregateModel(),
+    var model       = new Humble.DVC.BudgetAggregateModel(modelOptions),
         controls    = new Humble.Controls(node, model),
         dimension   = new Humble.Dimension(node, model),
         sliders     = new Humble.Sliders(node, model),
