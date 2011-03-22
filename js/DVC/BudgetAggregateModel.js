@@ -47,6 +47,11 @@ Humble( function () {
             this._set(item, 'amounti', amounti);
         },
 
+        set : function () {
+            Humble.Model.prototype.set.apply(this, arguments);
+            Humble.Event.trigger('humble:dvc:modelUpdate');
+        },
+
         setXML : function (xml) {
 
             Humble.Model.prototype.setXML.apply(this, arguments);

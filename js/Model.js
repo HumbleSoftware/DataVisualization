@@ -25,8 +25,6 @@ Humble( function () {
                 this.setters[attribute].apply(this, [item, attribute, value]);
             }
 
-            Humble.Event.trigger('humble:dvc:modelUpdate');
-
             // Set attribute
             this._set(item, attribute, value);
         },
