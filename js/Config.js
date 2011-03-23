@@ -11,7 +11,7 @@ Humble.Config.DVZ.budgetAccount = {
         account : {},
         agency : {},
         bureau : {},
-        function : {},
+        'function' : {},
         subfunction : {},
         spendingType : {},
         amounti : {},
