@@ -40,6 +40,13 @@ Humble( function () {
                     that.unHighlight(key);
                 }
             });
+            Humble.Event.bind('humble:dvc:dimensionDetail', function (e, key, show) {
+                if (show) {
+                    that.node.show();
+                } else {
+                    that.node.hide();
+                }
+            });
         },
 
         draw : function () {
