@@ -49,6 +49,17 @@ Humble( function () {
             this._set(item, 'amounti', amounti);
         },
 
+        /**
+         * @todo Refactor this with requestData.
+         */
+        setData : function (data) {
+            this.data = data;
+            this.dataSource.request({data : data});
+        },
+        getData : function (key) {
+
+        },
+
         setIncome : function (income) {
 
             var config;
