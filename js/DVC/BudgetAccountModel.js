@@ -30,7 +30,7 @@ Humble( function () {
         setXML : function (xml) {
             Humble.Model.prototype.setXML.apply(this, arguments);
             Humble.Event.trigger('humble:dvc:accountModelUpdate');
-        },
+        }
     };
 
     Humble.Class.extend(BudgetAccountModel, Humble.DVC.BudgetModel);
