@@ -22,9 +22,9 @@ Humble( function () {
     // Methods
     BudgetAggregateModel.prototype = {
 
-        set : function () {
+        set : function (item, attribute, value) {
             Humble.Model.prototype.set.apply(this, arguments);
-            Humble.Event.trigger('humble:dvc:modelUpdate');
+            Humble.Event.trigger('humble:dvc:modelUpdate', [item]);
         },
 
         setXML : function (xml) {
