@@ -6,6 +6,7 @@ Humble( function () {
     var C_BUDGET_ACCOUNT = 'humble-dvc-subfunction',
         T_BUDGET_ACCOUNT = '<div class="'+C_BUDGET_ACCOUNT+'"></div>',
         T_BACK           = '<div class="'+C_BUDGET_ACCOUNT+'-back"><button>Go Back</button></div>',
+        T_TITLE          = '<div class="'+C_BUDGET_ACCOUNT+'-title">Top Ten:</div>';
         T_ACCOUNTS       = '<div class="'+C_BUDGET_ACCOUNT+'-accounts"></div>';
 
     var BudgetAccount = function (node, model) {
@@ -24,8 +25,9 @@ Humble( function () {
 
             this.accountsNode = $(T_ACCOUNTS);
             this.back = $(T_BACK);
+            this.title = $(T_TITLE);
 
-            this.node.append(this.back, this.accountsNode);
+            this.node.append(this.back, this.title, this.accountsNode);
             this.node.hide();
 
             this.parentNode.append(this.node);
@@ -70,11 +72,13 @@ Humble( function () {
         },
 
         update : function () {
-            var items = this.budgetAccountModel.getItems();
+
+            var items = this.budgetAccountModel.getItems(),
+                count = 0;
 
             _.each(items, function (item, key) {
 
-                if (item['mycosti'] < 0) return;
+                if (count >= 10 || item['mycosti'] < 0) return;
 
                 var node = '<div>';
                 node += item['function'],
@@ -85,6 +89,8 @@ Humble( function () {
                 node += '</div>';
 
                 this.accountsNode.append(node);
+
+                count++;
 
             }, this);
         },
