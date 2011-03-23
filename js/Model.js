@@ -108,7 +108,7 @@ Humble( function () {
                     id    = item.attr(this.key);
 
                 // Fill Value Object
-                _.each(Humble.Config.DVZ.budget.fields, function (field, key) {
+                _.each(this.fields, function (field, key) {
                     var attr = item.attr(key);
                     if (this.parsers[key]) {
                         attr = this.parsers[key].apply(this, [attr]);
