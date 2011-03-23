@@ -15,6 +15,7 @@ Humble( function () {
 
     // Constructor
     var BudgetAccountModel = function (options) {
+        this.fields = Humble.Config.DVZ.budgetAccount.fields;
         Humble.DVC.BudgetModel.apply(this, arguments);
     }
 
