@@ -2,9 +2,22 @@
  * Config
  */
 
-Humble.Config = {}
+Humble.Config = {};
 Humble.Config.DVZ = {};
 Humble.Config.DVZ.url = 'http://www.whatwepayfor.com/api/';
+Humble.Config.DVZ.budgetAccount = {
+    name : 'getBudgetAccount',
+    fields : {
+        account : {},
+        agency : {},
+        bureau : {},
+        function : {},
+        subfunction : {},
+        spendingType : {},
+        amounti : {},
+        mycosti : {}
+    }
+};
 Humble.Config.DVZ.budget = {
     name : 'getBudget',
     fields : {
