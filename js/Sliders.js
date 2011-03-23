@@ -81,6 +81,11 @@ Humble( function () {
                 Humble.Event.trigger('humble:dvc:dimensionHover', [key, false]);
             });
 
+            this.node.delegate('.legend', 'click', function (e, ui) {
+                var key = $(this).closest('.slider').data('key');
+                Humble.Event.trigger('humble:dvc:dimensionDetail', [key, true]);
+            });
+
             var that = this;
             Humble.Event.bind('humble:dvc:dimensionHover', function (e, key, hover) {
                 if (hover) {
