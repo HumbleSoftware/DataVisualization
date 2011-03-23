@@ -46,17 +46,6 @@ function Application (applicationNode) {
         visual.update();
     });
 
-    // Update Shit
-    sliders.node.delegate('.slider', 'slide', function (e, ui) {
-
-        var key   = $(this).data('key'),
-            value = sliders.translateB(ui.value);
-
-        model.set(key, 'mycosti', value);
-        visual.update();
-        controls.update();
-    });
-
     Humble.Event.bind('humble:dvc:modelUpdate', function (e, key) {
         controls.update();
         sliders.update();
