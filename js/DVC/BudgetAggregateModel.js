@@ -35,6 +35,12 @@ Humble( function () {
             Humble.Event.trigger('humble:dvc:modelUpdate');
         },
 
+        requestData : function () {
+            var data = Humble.DVC.BudgetModel.prototype.requestData.apply(this, arguments);
+            data[GROUP]     = 'function';
+            return data;
+        },
+
         getRatio : function () {
             return this.ratio;
         },

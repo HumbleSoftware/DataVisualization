@@ -108,7 +108,6 @@ Humble( function () {
             data[SORT]      = 0;
             data[INCOME]    = 50000;
             data[FILING]    = 0;
-            data[GROUP]     = 'function';
             data[CHANGE]    = 0;
             data[EXTRA]     = 0;
 
