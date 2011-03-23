@@ -30,7 +30,7 @@ function Application (applicationNode) {
         dimension   = new Humble.Dimension(node, model),
         sliders     = new Humble.Sliders(node, model),
         subfunction = new Humble.DVC.BudgetAccount(node, model),
-        visual      = new Humble.Visual(node, model),
+        visual      = new Humble.DVC.BudgetVisualBlock(node, model),
         dataSource;
 
     // Controller
@@ -57,10 +57,10 @@ function Application (applicationNode) {
         controls.update();
     });
 
-    Humble.Event.bind('humble:dvc:modelUpdate', function () {
+    Humble.Event.bind('humble:dvc:modelUpdate', function (e, key) {
         controls.update();
         sliders.update();
-        visual.update();
+        visual.update(key);
     });
 
     model.setIncome(50000);
