@@ -56,6 +56,7 @@ Humble( function () {
             this.data = data;
             this.dataSource.request({data : data});
         },
+
         getData : function (key) {
 
         },
