@@ -28,11 +28,50 @@ Humble( function () {
             var that = this;
 
             Humble.Event.bind('humble:dvc:dimensionDetail', function (e, key, show) {
-                var id = that.model.get(key, 'dimensionID'),
-                    income = that.model.getIncome(),
-                    data = {'function' : id, income : income};
-                that.budgetAccountModel.setData(data);
+                if (show) {
+                    that.showDimensionDetail(key);
+                } else {
+                    that.hideDimensionDetail(key);
+                }
             });
+
+            Humble.Event.bind('humble:dvc:accountModelUpdate', function () {
+                that.update();
+            });
+        },
+
+        showDimensionDetail : function (key) {
+            var id = this.model.get(key, 'dimensionID'),
+                income = this.model.getIncome(),
+                data = {'function' : id, income : income};
+            this.budgetAccountModel.setData(data);
+            this.node.show();
+        },
+
+        hideDimensionDetail : function (key) {
+            this.node.hide();
+        },
+
+        update : function () {
+            var items = this.budgetAccountModel.getItems();
+
+            this.node.empty();
+
+            _.each(items, function (item, key) {
+
+                if (item['mycosti'] < 0) return;
+
+                var node = '<div>';
+                node += item['function'],
+                node += item['subfunction'],
+                node += item['bureau'],
+                node += item['agency'],
+                node += item['account'],
+                node += '</div>';
+
+                this.node.append(node);
+
+            }, this);
         },
 
         renderAccounts : function () {
@@ -44,10 +83,11 @@ Humble( function () {
             var model, options;
 
             options = {
-                url  : Humble.Config.DVZ.url+'getBudgetAccount'
+                url : Humble.Config.DVZ.url+'getBudgetAccount',
+                key : 'accountID'
             };
 
-            model = new Humble.DVC.BudgetAggregateModel(options);
+            model = new Humble.DVC.BudgetAccountModel(options);
 
             return model;
         }
