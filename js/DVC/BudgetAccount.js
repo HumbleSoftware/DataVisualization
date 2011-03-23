@@ -4,7 +4,9 @@
 Humble( function () {
 
     var C_BUDGET_ACCOUNT = 'humble-dvc-subfunction',
-        T_BUDGET_ACCOUNT = '<div class="'+C_BUDGET_ACCOUNT+'"></div>';
+        T_BUDGET_ACCOUNT = '<div class="'+C_BUDGET_ACCOUNT+'"></div>',
+        T_BACK           = '<div class="'+C_BUDGET_ACCOUNT+'-back"><button>Go Back</button></div>',
+        T_ACCOUNTS       = '<div class="'+C_BUDGET_ACCOUNT+'-accounts"></div>';
 
     var BudgetAccount = function (node, model) {
 
@@ -19,7 +21,15 @@ Humble( function () {
     BudgetAccount.prototype = {
 
         render : function () {
+
+            this.accountsNode = $(T_ACCOUNTS);
+            this.back = $(T_BACK);
+
+            this.node.append(this.back, this.accountsNode);
+            this.node.hide();
+
             this.parentNode.append(this.node);
+
             this.bind();
         },
 
@@ -38,6 +48,10 @@ Humble( function () {
             Humble.Event.bind('humble:dvc:accountModelUpdate', function () {
                 that.update();
             });
+
+            this.back.click(function () {
+                Humble.Event.trigger('humble:dvc:dimensionDetail', [null, false]);
+            });
         },
 
         showDimensionDetail : function (key) {
@@ -50,12 +64,13 @@ Humble( function () {
 
         hideDimensionDetail : function (key) {
             this.node.hide();
+
+            // Remove old content
+            this.accountsNode.empty();
         },
 
         update : function () {
             var items = this.budgetAccountModel.getItems();
-
-            this.node.empty();
 
             _.each(items, function (item, key) {
 
@@ -69,7 +84,7 @@ Humble( function () {
                 node += item['account'],
                 node += '</div>';
 
-                this.node.append(node);
+                this.accountsNode.append(node);
 
             }, this);
         },
