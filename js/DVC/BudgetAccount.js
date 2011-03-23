@@ -11,7 +11,7 @@ Humble( function () {
         this.parentNode = node;
         this.node = $(T_BUDGET_ACCOUNT);
         this.model = model;
-        this.dataSource = this.buildDataSource();
+        this.budgetAccountModel = this._buildModel();
 
         this.render();
     }
@@ -28,29 +28,30 @@ Humble( function () {
             var that = this;
 
             Humble.Event.bind('humble:dvc:dimensionDetail', function (e, key, show) {
-                that.dataSource.request({
-                    success : function () {
-                        console.log('request made!');
-                    }
-                });
-
+                var id = that.model.get(key, 'dimensionID'),
+                    income = that.model.getIncome(),
+                    data = {'function' : id, income : income};
+                that.budgetAccountModel.setData(data);
             });
         },
 
-        buildDataSource : function () {
+        renderAccounts : function () {
 
-            var dataSource, options;
+        },
+
+        _buildModel : function () {
+
+            var model, options;
 
             options = {
-                url  : 'http://www.whatwepayfor.com/api/getBudgetAccount'
+                url  : Humble.Config.DVZ.url+'getBudgetAccount'
             };
 
-            dataSource = new Humble.DataSource(options);
+            model = new Humble.DVC.BudgetAggregateModel(options);
 
-            return dataSource;
+            return model;
         }
     }
 
     Humble.DVC.BudgetAccount = BudgetAccount;
 });
-
