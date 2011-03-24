@@ -27,8 +27,6 @@ Humble( function () {
                 totalPadding;
 
             this.paper = paper;
-
-            this.bind();
         },
 
         bind : function () {
@@ -65,7 +63,6 @@ Humble( function () {
                 totalWidth = this.node.width(),
                 padding = 3;
 
-
             var sets = {};
 
             if (this.timeout) {
@@ -88,6 +85,8 @@ Humble( function () {
                 for (i = 0; i < pieces; i++) {
                     var r = paper.rect(x, y, width, height);
                     set.push(r);
+                    set.x = x;
+                    set.y = y;
 
                     if ((x + width + padding + width) > totalWidth) {
                         x = x0;
@@ -130,13 +129,141 @@ Humble( function () {
 
             var model = this.model,
                 paper = this.paper,
-                sets = this.set;
+                sets = this.sets,
+                set = sets[updateKey],
+                items = model.getItems();
+
+            var width = 18,
+                height = 18,
+                totalWidth = this.node.width(),
+                padding = 3,
+                x0 = 2;
+
+            var item   = items[updateKey],
+                amount = item['amounti'],
+                pieces = Math.ceil(amount/10000000),
+                length = set.length,
+                delta,
+                r;
+
+            var that = this;
+
+            if (pieces < length) {
+
+                delta = length - pieces;
+
+                var oldSet = paper.set();
+
+                for (var i = 0; i < delta; i++) {
+
+                    r = set.pop();
+                    oldSet.push(r);
+
+                    var xa = r.x || r.attr('x'),
+                        ya = r.y || r.attr('y');
+                }
+
+                var newEnd = set[(set.length-1)];
+                set.x = newEnd.attr('x');
+                set.y = newEnd.attr('y');
+
+                this.cancel = false;
+                var cancel = this.cancel;
+                oldSet.animate({
+                    scale : 0
+                    /*
+                    width : 0,
+                    height: 0,
+                    x : (r.attr('x') + width/2),
+                    y : (r.attr('y') + height/2)
+                    */
+                }, 250, function () {
+                    oldSet.remove();
+                    if (!cancel) {
+                        that._movePieces(xa, ya, updateKey);
+                    }
+                });
+            } else if (pieces > length) {
+
+                delta = pieces - length;
+
+                var end = set[(set.length -1)];
+
+                x = set.x;
+                y = set.y;
+
+                var fill = end.attr('fill'),
+                    stroke = end.attr('stroke');
+
+                for (var i = 0; i < delta; i++) {
+
+                    if ((x + width + padding + width) > totalWidth) {
+                        x = x0;
+                        y += height + padding;
+                    } else {
+                        x += width + padding;
+                    }
+
+                    set.x = x;
+                    set.y = y;
+
+                    r = paper.rect(x, y, width, height);
+                    r.x = x;
+                    r.y = y;
+                    r.attr({
+                        scale : 0.01,
+                        fill : fill,
+                        stroke : stroke
+                    });
+                    r.animate({scale : 1}, 250);
+                    set.push(r);
+                }
+
+                if ((x + width + padding + width) > totalWidth) {
+                    x = x0;
+                    y += height + padding;
+                } else {
+                    x += width + padding;
+                }
+
+                this.cancel = true;
+                this._movePieces(x, y, updateKey);
+            }
+        },
+
+        _movePieces : function (x, y, startKey) {
+
+            var sets = this.sets,
+                start = false,
+                x0 = 2,
+                width = 18,
+                height = 18,
+                totalWidth = this.node.width(),
+                padding = 3;
 
             _.each(sets, function (set, key) {
-                if (key == updateKey) {
-                    console.log('here');
+                if (start) {
+                    for (var i = 0; i < set.length; i++) {
+                        var r = set[i];
+                        r.attr({
+                            x : x,
+                            y : y
+                        });
+                        set.x = x;
+                        set.y = y;
+
+                        if ((x + width + padding + width) > totalWidth) {
+                            x = x0;
+                            y += height + padding;
+                        } else {
+                            x += width + padding;
+                        }
+                    }
                 }
-            }, this);
+                if (key == startKey) {
+                    start = true;
+                };
+            });
         },
 
         highlight : function (key) {
@@ -145,7 +272,7 @@ Humble( function () {
             set.attr({
                 'stroke-opacity' : 0
             });
-            set.animate({scale : [1.25, 1.25]}, 500, 'bounce');
+            set.animate({scale : [1.25, 1.25]}, 250);
         },
 
         unHighlight : function (key) {
@@ -156,19 +283,20 @@ Humble( function () {
                 'stroke-opacity' : 1,
                 'stroke-width' : '1px',
                 scale : [1, 1]
-            }, 500, 'bounce');
+            }, 250);
         },
 
         update : function (key) {
 
-
-            this.draw();
-            /*
             if (!key || !this.sets) {
+                var bind = (this.sets ? false : true);
+                this.draw();
+                if (bind) {
+                    this.bind();
+                }
             } else {
                 this.updateSets(key);
             }
-            */
         },
 
         _setRaphaelColors : function () {
