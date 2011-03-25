@@ -18,19 +18,43 @@ Humble( function () {
             return (value !== 0) ? value / 100 : value;
         },
 
-        currency : function (value) {
+        currency : function (value, large) {
+
             if (value != 0) {
                 value = value.toString();
                 valueParts = value.split('.');
-                if (!valueParts[1]) {
-                    value = value+'.00';
-                } else 
-                if (valueParts[1].length < 2) {
-                    value = value+'0';
+                if (!large) {
+                    if (!valueParts[1]) {
+                        value = value+'.00';
+                    } else 
+                    if (valueParts[1].length < 2) {
+                        value = value+'0';
+                    }
+                } else {
+                    value = valueParts[0];
+                    value = this.addCommas(value);
                 }
-
             }
+
             return '$'+value;
+        },
+
+        addCommas : function (value) {
+
+            value = value.toString();
+            value = this.reverse(value);
+            value = value.split(/(\d{3})/);
+            value = _.reject(value, function (item) { return (item === ""); });
+            value = value.join(',');
+            value = this.reverse(value);
+
+            return value;
+
+        },
+
+        reverse : function (value) {
+            value = value.toString();
+            return value.split('').reverse().join('');
         }
 
 
