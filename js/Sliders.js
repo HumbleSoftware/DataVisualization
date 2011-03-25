@@ -60,6 +60,7 @@ Humble( function () {
             slider.append(legend);
 
             config = {
+                animate : true,
                 max : 1000,
                 value : value
             };
@@ -71,8 +72,10 @@ Humble( function () {
 
         bind : function () {
 
+            // Slide Event
             this.node.delegate('.slider', 'slide', {sliders : this}, this._onSlide);
 
+            // Mouse Over
             this.node.delegate('.legend', 'mouseover', function (e, ui) {
                 var key = $(this).closest('.slider').data('key');
                 Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
@@ -81,6 +84,7 @@ Humble( function () {
                 Humble.Event.trigger('humble:dvc:dimensionHover', [key, false]);
             });
 
+            // Click
             this.node.delegate('.legend', 'click', function (e, ui) {
                 var key = $(this).closest('.slider').data('key');
                 Humble.Event.trigger('humble:dvc:dimensionDetail', [key, true]);
@@ -103,18 +107,20 @@ Humble( function () {
             });
         },
 
-        update : function () {
+        update : function (key) {
 
-            var sliders = this._sliders;
-
-            var items   = this.model.getItems(),
+            var sliders = this._sliders,
+                items   = this.model.getItems(),
                 node    = this.node;
 
-            _.each(sliders, function (slider, key) {
-                var value = items[key]['mycosti'];
-                this._updateSlider(slider, value); 
-            }, this);
-            
+            if (key) {
+                this._updateSliderLabel(sliders[key], items[key]['mycosti']);
+            } else {
+                _.each(sliders, function (slider, key) {
+                    var value = items[key]['mycosti'];
+                    this._updateSlider(slider, value); 
+                }, this);
+            }
         },
 
         highlight : function (key) {
@@ -135,19 +141,20 @@ Humble( function () {
                 value   = sliders.translateB(ui.value);
 
             sliders.model.set(key, 'mycosti', value);
-            sliders.update();
         },
 
         _updateSlider : function (slider, value) {
 
-            var widget = slider.find('.ui-slider'),
-                label  = slider.find('.mycosti');
+            var widget = slider.find('.ui-slider');
 
             widget.slider('value', [this._translate(value)]);
-            this._updateSliderLabel(label, value);
+            this._updateSliderLabel(slider, value);
         },
 
-        _updateSliderLabel : function (label, value) {
+        _updateSliderLabel : function (slider, value) {
+
+            var label = slider.find('.mycosti');
+
             value = this.model.format.currency(value);
             label.html(value);
         },

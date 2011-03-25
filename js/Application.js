@@ -51,7 +51,7 @@ function Application (applicationNode) {
 
     Humble.Event.bind('humble:dvc:modelUpdate', function (e, key) {
         controls.update();
-        sliders.update();
+        sliders.update(key);
         visual.update(key);
     });
 
