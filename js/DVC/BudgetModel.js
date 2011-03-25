@@ -27,7 +27,9 @@ Humble( function () {
             'mycosti' : this._setMycosti
         }
         this.parsers = {
-            'amounti' : parseFloat,
+            'amounti' : function (value) {
+                return parseFloat(value) * 1000;
+            },
             'mycosti' : parseFloat
         }
     }
