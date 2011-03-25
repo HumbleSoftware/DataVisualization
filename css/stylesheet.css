@@ -6,13 +6,6 @@ body {
     font : 12px #555 'Droid Sans Mono', arial, sans-serif;
 }
 
-.humble-dvc-application-header {
-    font : 48px 'Droid Sans Mono', arial, sans-serif;
-    letter-spacing : -2px;
-    font-weight : bold;
-    text-shadow : 3px 2px 0 #ccc;
-    text-align : center;
-}
 
 .humble-dvc-application {
     font : 12px/18px 'Droid Sans', arial, sans-serif;
@@ -29,23 +22,36 @@ body {
     -mox-box-shadow : 0px 0px 18px 0px #222;/*, -5px 0px 8px #444;*/
     box-shadow : 0px 0px 18px 0px #222;/*, -5px 0px 8px #444;*/
 }
+
+.humble-dvc-application {
+    background : #babdbf;
+}
+
 .humble-dvc-application a {
     text-decoration : underline;
     cursor : pointer;
 }
 
+.humble-dvc-application-header {
+    font : 48px 'Droid Sans Mono', arial, sans-serif;
+    letter-spacing : -2px;
+    font-weight : bold;
+    text-shadow : 3px 2px 0 #ccc;
+    text-align : center;
+}
 
 
-.humble-dvc-sliders-title, .humble-dvc-visual-title {
+
+.humble-dvc-visual-budget,
+.humble-dvc-sliders-title,
+.humble-dvc-visual-title,
+.humble-dvc-sliders-taxes {
     font : 18px 'Droid Sans Mono', arial, sans-serif;
     letter-spacing : -2px;
     font-weight : bold;
     text-shadow : 2px 2px 0 #ccc;
     text-align : left;
-    margin-bottom: 8px;
 }
-
-
 
 .humble-dvc-controls {
 }
@@ -58,16 +64,19 @@ body {
 }
 
 
-
 .humble-dvc-sliders {
     float : right;
     position : relative;
-    width : 400px;
+    margin-right: 20px;
+    width : 340px;
+}
+.humble-dvc-sliders-title {
+    margin-bottom: 28px;
 }
 .humble-dvc-sliders-taxes {
     position : absolute;
     right : 0px;
-    top : 8px;
+    top : 0px;
 }
 .humble-dvc-sliders .humble-dvc-slider {
     margin-bottom : 8px;
@@ -78,7 +87,11 @@ body {
     right : 0px;
 }
 .humble-dvc-sliders .humble-dvc-slider-title {
-    padding-left : 22px;
+    white-space : nowrap;
+    overflow : hidden;
+    text-overflow : ellipsis;
+    width : 260px;
+    margin-left : 22px;
     height : 20px;
 }
 .humble-dvc-sliders .humble-dvc-slider-legend {
@@ -103,28 +116,43 @@ body {
     float : left;
     position : relative;
     width : 340px;
+    margin-left : 20px;
     background-color : #babdbf;
+}
+.humble-dvc-visual-title {
+    margin-bottom : 28px;
 }
 .humble-dvc-visual-canvas {
     overflow-y : auto;
     height : 680px;
 }
 .humble-dvc-visual-legend {
+    font-size : 10px;
     position : absolute;
-    padding-left: 24px;
-    top : 6px;
+    padding-left : 15px;
+    top : 28px;
+    right : 28px;
+    /*
+    position : absolute;
+    top : 24px;
     right : 32px;
+    */
+}
+.humble-dvc-visual-budget {
+    position : absolute;
+    top: 0px;
+    right: 28px;
 }
 .humble-dvc-visual-legend-value {
     display : inline;
 }
 .humble-dvc-visual-legend-block {
     position : absolute;
-    top : 1px;
+    top : 3px;
     left : 1px;
     margin-left : 1px;
-    height : 14px;
-    width : 14px;
+    height : 10px;
+    width : 10px;
     border : 1px solid #333;
     background : #eeeeee;
     cursor : pointer;
