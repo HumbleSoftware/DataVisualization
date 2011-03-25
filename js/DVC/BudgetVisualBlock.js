@@ -41,7 +41,7 @@ Humble( function () {
                 paper;
 
             value.html(this.model.format.currency(this.unit, true));
-            legend.append(block, ' = ', value);
+            legend.append(block, ' &asymp; ', value);
 
             node.append(title, budget, legend, canvas);
             this.parentNode.append(this.node);
