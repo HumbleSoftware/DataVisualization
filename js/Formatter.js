@@ -5,6 +5,10 @@
  */
 Humble( function () {
 
+    // Class Constants
+    var BILLION     = 1000000000,
+        TRILLION    = 1000000000000;
+
     // Constructor
     var Formatter = function () {
 
@@ -19,6 +23,10 @@ Humble( function () {
         },
 
         currency : function (value, large) {
+
+            if (value > BILLION && large) {
+                return this.currencyHuge(value);
+            }
 
             if (value != 0) {
                 value = value.toString();
@@ -37,6 +45,24 @@ Humble( function () {
             }
 
             return '$'+value;
+        },
+
+        currencyHuge : function (value) {
+
+            if (value > TRILLION) {
+                value = value / TRILLION;
+                value = Math.round(value * 10) / 10;
+
+                value = '$' + value.toString() + ' Trillion'
+            } else
+            if (value > BILLION) {
+                value = value / BILLION;
+                value = Math.round(value * 10) / 10;
+
+                value = '$' + value.toString() + ' Billion'
+            }
+
+            return value;
         },
 
         addCommas : function (value) {
