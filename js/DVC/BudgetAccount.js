@@ -5,7 +5,7 @@ Humble( function () {
 
     var C_BUDGET_ACCOUNT = 'humble-dvc-subfunction',
         T_BUDGET_ACCOUNT = '<div class="'+C_BUDGET_ACCOUNT+'"></div>',
-        T_BACK           = '<div class="'+C_BUDGET_ACCOUNT+'-back"><button>Go Back</button></div>',
+        T_BACK           = '<div class="'+C_BUDGET_ACCOUNT+'-back"><a>Go Back</a> ></div>',
         T_TITLE          = '<div class="'+C_BUDGET_ACCOUNT+'-title">Top Ten:</div>';
         T_ACCOUNTS       = '<div class="'+C_BUDGET_ACCOUNT+'-accounts"></div>';
 
@@ -57,9 +57,15 @@ Humble( function () {
         },
 
         showDimensionDetail : function (key) {
-            var id = this.model.get(key, 'dimensionID'),
-                income = this.model.getIncome(),
-                data = {'function' : id, income : income};
+
+            var id      = this.model.get(key, 'dimensionID'),
+                income  = this.model.getData('income'),
+                data    = {'function' : id, income : income},
+                title   = this.model.get(key, 'dimensionName');
+
+
+            this.title.html(title+' Top 10:');
+
             this.budgetAccountModel.setData(data);
             this.node.show();
         },
@@ -76,16 +82,22 @@ Humble( function () {
             var items = this.budgetAccountModel.getItems(),
                 count = 0;
 
+            var node = '<div>';
+            node += '<div class="humble-dvc-subfunction-account">Account:</div>',
+            node += '<div class="humble-dvc-subfunction-budget">Budget:</div>',
+            node += '<div class="humble-dvc-subfunction-tax">My Tax:</div>',
+            node += '</div>';
+
+            this.accountsNode.append(node);
+
             _.each(items, function (item, key) {
 
                 if (count >= 10 || item['mycosti'] < 0) return;
 
                 var node = '<div>';
-                node += item['function'],
-                node += item['subfunction'],
-                node += item['bureau'],
-                node += item['agency'],
-                node += item['account'],
+                node += '<div class="humble-dvc-subfunction-account">'+item['account']+'</div>',
+                node += '<div class="humble-dvc-subfunction-budget">'+this.model.format.currency(item['amounti'], true)+'</div>',
+                node += '<div class="humble-dvc-subfunction-tax">'+this.model.format.currency(item['mycosti'], true)+'</div>',
                 node += '</div>';
 
                 this.accountsNode.append(node);

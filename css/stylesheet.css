@@ -44,6 +44,8 @@ body {
 .humble-dvc-visual-budget,
 .humble-dvc-sliders-title,
 .humble-dvc-visual-title,
+.humble-dvc-subfunction-title,
+.humble-dvc-subfunction-back,
 .humble-dvc-sliders-taxes {
     font : 18px 'Droid Sans Mono', arial, sans-serif;
     letter-spacing : -2px;
@@ -183,4 +185,29 @@ body {
     padding : 8px;
     position : absolute;
     border-radius : 4px;
+}
+
+.humble-dvc-subfunction {
+    position : relative;
+}
+.humble-dvc-subfunction-title {
+    margin-bottom : 20px;
+}
+.humble-dvc-subfunction-back {
+    position : absolute;
+    right : 0px;
+    top : 4px;
+    font-size : 16px;
+}
+.humble-dvc-subfunction-account {
+float : left;
+width: 420px;
+}
+.humble-dvc-subfunction-budget {
+float : left;
+width: 100px;
+}
+.humble-dvc-subfunction-tax {
+float : left;
+width: 100px;
 }
