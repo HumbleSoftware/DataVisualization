@@ -7,6 +7,7 @@ Humble( function () {
     var C_VISUAL        = 'humble-dvc-visual',
         T_VISUAL        = '<div class="'+C_VISUAL+'"></div>',
         T_TITLE         = '<div class="'+C_VISUAL+'-title">My Federal Budget:</div>',
+        T_BUDGET        = '<div class="'+C_VISUAL+'-budget"></div>',
         T_CANVAS        = '<div class="'+C_VISUAL+'-canvas"></div>',
         T_LEGEND        = '<div class="'+C_VISUAL+'-legend"></div>',
         T_LEGEND_BLOCK  = '<div class="'+C_VISUAL+'-legend-block"></div>',
@@ -19,7 +20,7 @@ Humble( function () {
         this.model      = model;
         this.bars       = {};
         this.colors     = false;
-        this.unit       = 10000000;
+        this.unit       = 10000000000;
 
         this.render();
     };
@@ -30,6 +31,7 @@ Humble( function () {
 
             var node    = this.node,
                 title   = $(T_TITLE),
+                budget  = $(T_BUDGET),
                 legend  = $(T_LEGEND),
                 block   = $(T_LEGEND_BLOCK),
                 value   = $(T_LEGEND_VALUE),
@@ -38,15 +40,16 @@ Humble( function () {
                 height  = 400,
                 paper;
 
-            value.html(this.model.format.currency(this.unit));
+            value.html(this.model.format.currency(this.unit, true));
             legend.append(block, ' = ', value);
 
-            node.append(title, legend, canvas);
+            node.append(title, budget, legend, canvas);
             this.parentNode.append(this.node);
 
             paper = Raphael(canvas.get(0), width, height);
             this.paper = paper;
             this.canvas = canvas;
+            this._budget = budget;
         },
 
         bind : function () {
@@ -328,7 +331,7 @@ Humble( function () {
             set.attr({
                 'stroke-opacity' : 0
             });
-            set.animate({scale : [1.25, 1.25]}, 250);
+            set.attr({scale : [1.25, 1.25]});//, 250);
         },
 
         unHighlight : function (key) {
@@ -353,6 +356,10 @@ Humble( function () {
 
         update : function (key) {
 
+            console.log('here');
+
+            this.setBudget(this.model.getTotalSpending());
+
             if (!key || !this.sets) {
                 var bind = (this.sets ? false : true);
                 this.draw();
@@ -362,6 +369,11 @@ Humble( function () {
             } else {
                 this.updateSets(key);
             }
+        },
+
+        setBudget : function (budget) {
+            budget = this.model.format.currency(budget, true);
+            this._budget.html(budget);
         },
 
         _setRaphaelColors : function () {
