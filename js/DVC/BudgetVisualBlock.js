@@ -255,9 +255,15 @@ Humble( function () {
                     r.x = x;
                     r.y = y;
                     r.attr({
+                        'cursor' : 'pointer',
                         scale : 0.01,
                         fill : fill,
                         stroke : stroke
+                    });
+                    r.hover(function () {
+                        Humble.Event.trigger('humble:dvc:dimensionHover', [updateKey, true]);
+                    }, function () {
+                        Humble.Event.trigger('humble:dvc:dimensionHover', [updateKey, false]);
                     });
                     r.animate({scale : 1}, 250);
                     set.push(r);
