@@ -17,6 +17,9 @@ Humble( function () {
     var BudgetAggregateModel = function (options) {
         this.fields = Humble.Config.DVZ.budget.fields;
         Humble.DVC.BudgetModel.apply(this, arguments);
+        this.parsers.amounti = function (value) {
+            return parseFloat(value) * 1000;
+        }
     }
 
     // Methods
@@ -44,11 +47,6 @@ Humble( function () {
 
         getRatio : function () {
             return this.ratio;
-        },
-
-        getTotalSpending : function () {
-            total = Humble.DVC.BudgetModel.prototype.getTotalSpending.apply(this, arguments);
-            return total * 1000;
         },
 
         _getRatio : function () {
