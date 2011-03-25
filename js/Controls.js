@@ -50,6 +50,7 @@ Humble( function () {
             node.append(this._filing);
             node.append(T_SELF_LABEL);
             node.append(this._self);
+            node.append(this._reset);
 
             this.parentNode.append(node);
 
