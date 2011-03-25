@@ -92,8 +92,8 @@ Humble( function () {
 
             this.node.show();
             this.titleNode.html(dimensions[key].name);
-            this.totalNode.html(total);
-            this.taxesNode.html(taxes);
+            this.totalNode.html('Budget: '+this.model.format.currency(total, true));
+            this.taxesNode.html('My Tax: '+this.model.format.currency(taxes));
 
             this.key = key;
         },
