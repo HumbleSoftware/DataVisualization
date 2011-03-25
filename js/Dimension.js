@@ -52,13 +52,12 @@ Humble( function () {
 
             Humble.Event.bind('humble:dvc:dimensionHover', function (e, key, hover) {
                 if (hover) {
-                    that.node.show();
                     that.doHover(key);
                 } else {
-                    that.node.hide();
-                    that.key = null;
+                    that.doHide();
                 }
             });
+
             Humble.Event.bind('humble:dvc:dimensionDetail', function (e, key, show) {
                 if (!show) {
                     //that.node.show();
@@ -66,6 +65,22 @@ Humble( function () {
                     that.node.hide();
                 }
             });
+
+            this.parentNode.mousemove(function (e) {
+
+                var x = e.pageX,
+                    y = e.pageY,
+                    offset = that.parentNode.offset();
+
+                x = (x + 10 - offset.left);
+                y = (y - 10 - offset.top);
+
+                that.node.css({
+                    'top' : y,
+                    'left' : x,
+                });
+            });
+
         },
 
         doHover : function (key) {
@@ -75,11 +90,17 @@ Humble( function () {
                 taxes = model.get(key, 'mycosti'),
                 dimensions = Humble.Config.DVZ.budget.dimensions;
 
+            this.node.show();
             this.titleNode.html(dimensions[key].name);
             this.totalNode.html(total);
             this.taxesNode.html(taxes);
 
             this.key = key;
+        },
+
+        doHide : function () {
+            this.node.hide();
+            this.key = null;
         }
 
     }
