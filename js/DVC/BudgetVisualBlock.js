@@ -219,7 +219,7 @@ Humble( function () {
                 }, 250, function () {
                     oldSet.remove();
                     if (!cancel) {
-                        that._movePieces(xa, ya, updateKey);
+                        that._movePieces(xa, ya, updateKey, true);
                     }
                 });
             } else if (pieces > length) {
@@ -243,7 +243,6 @@ Humble( function () {
                         y += height + padding;
                         if (y > totalHeight) {
                             totalHeight = y + height + padding;
-                            paper.setSize(totalWidth, totalHeight);
                         }
                     } else {
                         x += width + padding;
@@ -269,7 +268,6 @@ Humble( function () {
                     y += height + padding;
                     if (y > totalHeight) {
                         totalHeight = y + height + padding;
-                        paper.setSize(totalWidth, totalHeight);
                     }
                 } else {
                     x += width + padding;
@@ -280,7 +278,7 @@ Humble( function () {
             }
         },
 
-        _movePieces : function (x, y, startKey) {
+        _movePieces : function (x, y, startKey, resize) {
 
             var sets = this.sets,
                 paper = this.paper,
@@ -308,7 +306,6 @@ Humble( function () {
                             y += height + padding;
                             if (y > totalHeight) {
                                 totalHeight = y + height + padding;
-                                paper.setSize(totalWidth, totalHeight);
                             }
                         } else {
                             x += width + padding;
@@ -319,6 +316,7 @@ Humble( function () {
                     start = true;
                 };
             });
+            paper.setSize(totalWidth, (y + height + padding));
         },
 
         highlight : function (key) {
