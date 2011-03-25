@@ -360,8 +360,6 @@ Humble( function () {
 
         update : function (key) {
 
-            console.log('here');
-
             this.setBudget(this.model.getTotalSpending());
 
             if (!key || !this.sets) {
