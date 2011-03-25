@@ -63,12 +63,11 @@ body {
 .humble-dvc-visual {
     float : left;
     width : 340px;
-    height : 640px;
     background-color : #babdbf;
 }
 .humble-dvc-visual-canvas {
     overflow-y : auto;
-    height : 400px;
+    height : 680px;
 }
 .humble-dvc-visual-legend {
     position : relative;
