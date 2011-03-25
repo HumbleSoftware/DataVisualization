@@ -73,7 +73,7 @@ Humble( function () {
                     offset = that.parentNode.offset();
 
                 x = (x + 10 - offset.left);
-                y = (y - 10 - offset.top);
+                y = (y - 70 - offset.top);
 
                 that.node.css({
                     'top' : y,
