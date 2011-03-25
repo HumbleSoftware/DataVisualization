@@ -9,6 +9,7 @@ Humble( function () {
         FILING      = 'filing',
         GROUP       = 'group',
         INCOME      = 'income',
+        SELF        = 'selfEmployed',
         SORT        = 'sortdir',
         TYPE        = 'type',
         YEAR        = 'year';
@@ -53,8 +54,10 @@ Humble( function () {
          * @todo Refactor this with requestData.
          */
         setData : function (data) {
-            this.data = data;
-            this.dataSource.request({data : data});
+            _.each(data, function (value, key) {
+                this.data[key] = value;
+            }, this);
+            this.dataSource.request({data : this.data});
         },
 
         getData : function (key) {
@@ -90,6 +93,7 @@ Humble( function () {
             data[YEAR]      = 2010;
             data[TYPE]      = 0;
             data[SORT]      = 0;
+            data[SELF]      = 0;
             data[INCOME]    = 50000;
             data[FILING]    = 0;
             data[CHANGE]    = 0;
