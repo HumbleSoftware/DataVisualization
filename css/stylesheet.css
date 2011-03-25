@@ -6,7 +6,6 @@ body {
     font : 12px #555 'Droid Sans Mono', arial, sans-serif;
 }
 
-
 .humble-dvc-application-header {
     font : 48px 'Droid Sans Mono', arial, sans-serif;
     letter-spacing : -2px;
@@ -34,19 +33,19 @@ body {
     float : right;
     width : 400px;
 }
-.humble-dvc-sliders .slider {
+.humble-dvc-sliders .humble-dvc-slider {
     margin-bottom : 8px;
     position : relative;
 }
-.humble-dvc-sliders .mycosti {
+.humble-dvc-sliders .humble-dvc-slider-value {
     position : absolute;
     right : 0px;
 }
-.humble-dvc-sliders .title {
+.humble-dvc-sliders .humble-dvc-slider-title {
     padding-left : 22px;
     height : 20px;
 }
-.humble-dvc-sliders .legend {
+.humble-dvc-sliders .humble-dvc-slider-legend {
     position : absolute;
     top : 1px;
     left : 1px;
@@ -55,7 +54,7 @@ body {
     border : 2px solid #ffffff;
     cursor : pointer;
 }
-.humble-dvc-sliders .legend.hover {
+.humble-dvc-sliders .humble-dvc-slider-legend.hover {
     height : 14px;
     width: 14px;
     top: 0px;

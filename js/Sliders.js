@@ -3,12 +3,16 @@
  */
 Humble( function () {
 
-    var C_SLIDERS       = 'humble-dvc-sliders',
+    var C_SLIDER        = 'humble-dvc-slider',
+        C_SLIDER_LEGEND = C_SLIDER+'-legend',
+        C_SLIDERS       = 'humble-dvc-sliders',
+
         T_SLIDERS       = '<div class="'+C_SLIDERS+'"></div>',
-        T_LABEL         = '<div class="value mycosti"></div>',
-        T_LEGEND        = '<div class="legend"></div>',
-        T_SLIDER        = '<div class="slider"></div>',
-        T_TITLE         = '<div class="title"></div>';
+
+        T_VALUE         = '<div class="'+C_SLIDER+'-value"></div>',
+        T_LEGEND        = '<div class="'+C_SLIDER_LEGEND+'"></div>',
+        T_SLIDER        = '<div class="'+C_SLIDER+'"></div>',
+        T_TITLE         = '<div class="'+C_SLIDER+'-title"></div>';
 
     var Sliders = function (node, model, options) {
 
@@ -47,14 +51,14 @@ Humble( function () {
             var value  = this.model.format.currency(0),
                 name   = dimension.name,
                 color  = dimension.color,
-                label  = $(T_LABEL).html(value),
+                value  = $(T_VALUE).html(value),
                 slider = $(T_SLIDER),
                 widget = $('<div></div>'),
                 title  = $(T_TITLE).html(name),
                 legend = $(T_LEGEND).css('background', color),
                 config;
 
-            slider.append(label);
+            slider.append(value);
             slider.append(title);
             slider.append(widget);
             slider.append(legend);
@@ -73,20 +77,20 @@ Humble( function () {
         bind : function () {
 
             // Slide Event
-            this.node.delegate('.slider', 'slide', {sliders : this}, this._onSlide);
+            this.node.delegate('.'+C_SLIDER, 'slide', {sliders : this}, this._onSlide);
 
             // Mouse Over
-            this.node.delegate('.legend', 'mouseover', function (e, ui) {
-                var key = $(this).closest('.slider').data('key');
+            this.node.delegate('.'+C_SLIDER_LEGEND, 'mouseover', function (e, ui) {
+                var key = $(this).closest('.'+C_SLIDER).data('key');
                 Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
-            }).delegate('.legend', 'mouseout', function (e, ui) {
-                var key = $(this).closest('.slider').data('key');
+            }).delegate('.'+C_SLIDER_LEGEND, 'mouseout', function (e, ui) {
+                var key = $(this).closest('.'+C_SLIDER).data('key');
                 Humble.Event.trigger('humble:dvc:dimensionHover', [key, false]);
             });
 
             // Click
-            this.node.delegate('.legend', 'click', function (e, ui) {
-                var key = $(this).closest('.slider').data('key');
+            this.node.delegate('.'+C_SLIDER_LEGEND, 'click', function (e, ui) {
+                var key = $(this).closest('.'+C_SLIDER).data('key');
                 Humble.Event.trigger('humble:dvc:dimensionDetail', [key, true]);
             });
 
@@ -125,19 +129,19 @@ Humble( function () {
 
         highlight : function (key) {
             var slider = this._sliders[key];
-            slider.find('.legend').addClass('hover');
+            slider.find('.'+C_SLIDER_LEGEND).addClass('hover');
         },
 
         unHighlight : function (key) {
             var slider = this._sliders[key];
-            slider.find('.legend').removeClass('hover');
+            slider.find('.'+C_SLIDER_LEGEND).removeClass('hover');
         },
 
         _onSlide : function (e, ui) {
 
             var sliders = e.data.sliders,
                 key     = $(this).data('key'),
-                label   = $(this).find('.mycosti'),
+                label   = $(this).find('.'+C_SLIDER+'-value'),
                 value   = sliders.translateB(ui.value);
 
             sliders.model.set(key, 'mycosti', value);
@@ -153,7 +157,7 @@ Humble( function () {
 
         _updateSliderLabel : function (slider, value) {
 
-            var label = slider.find('.mycosti');
+            var label = slider.find('.'+C_SLIDER+'-value');
 
             value = this.model.format.currency(value);
             label.html(value);
