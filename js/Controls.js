@@ -59,19 +59,19 @@ Humble( function () {
 
         bind : function () {
 
+            var that = this;
+
+            this._reset.click(function () {
+                that.model.reset();
+            });
+
+            this._income.change(function (e, ui) { 
+                that.model.setIncome(e.target.value);
+            });
         },
 
-        incomeChange : function (callback) {
-            this._income.change(callback);
-        },
-
-    	resetXML : function (callback)	{
-    		this._reset.click(callback);
-    	},
-    	
         update : function () {
         }
-
     };
 
     Humble.Controls = Controls;

@@ -36,19 +36,6 @@ function Application (applicationNode) {
         visual      = new Humble.DVC.BudgetVisualBlock(node, model),
         dataSource;
 
-    // Controller
-    controls.incomeChange(function (e, ui) {
-        var income = e.target.value;
-        model.setIncome(income);
-    });
-    
-    controls.resetXML(function (e, ui) {
-        model.reset();
-        controls.update();
-        sliders.update();
-        visual.update();
-    });
-
     Humble.Event.bind('humble:dvc:modelUpdate', function (e, key) {
         controls.update();
         sliders.update(key);
