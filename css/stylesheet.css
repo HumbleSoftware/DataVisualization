@@ -47,9 +47,27 @@ body {
 
 
 
+.humble-dvc-controls {
+}
+.humble-dvc-controls {
+    margin : 18px 0px;
+}
+.humble-dvc-controls-total {
+    padding-right: 12px;
+    display: inline;
+}
+
+
+
 .humble-dvc-sliders {
     float : right;
+    position : relative;
     width : 400px;
+}
+.humble-dvc-sliders-taxes {
+    position : absolute;
+    right : 0px;
+    top : 8px;
 }
 .humble-dvc-sliders .humble-dvc-slider {
     margin-bottom : 8px;

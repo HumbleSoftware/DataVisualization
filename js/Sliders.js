@@ -8,7 +8,8 @@ Humble( function () {
     // Sliders constants
     var C_SLIDERS       = 'humble-dvc-sliders',
         T_SLIDERS_TITLE = '<div class="'+C_SLIDERS+'-title">My Taxes:</div>',
-        T_SLIDERS       = '<div class="'+C_SLIDERS+'"></div>';
+        T_SLIDERS       = '<div class="'+C_SLIDERS+'"></div>',
+        T_TAXES         = '<div class="'+C_SLIDERS+'-taxes"></div>';
 
     // Slider constants
     var C_SLIDER        = 'humble-dvc-slider',
@@ -37,9 +38,11 @@ Humble( function () {
             var dimensions  = Humble.Config.DVZ.budget.dimensions,
                 sliders     = {},
                 node        = this.node,
+                taxes       = $(T_TAXES),
                 title       = $(T_SLIDERS_TITLE);
 
             node.append(title);
+            node.append(taxes);
 
             _.each(dimensions, function (dimension, key) {
                 var slider = this._renderSlider(dimension);
@@ -49,6 +52,7 @@ Humble( function () {
             }, this);
 
             this._sliders = sliders;
+            this._taxes   = taxes;
 
             this.bind();
         },
@@ -122,6 +126,7 @@ Humble( function () {
 
             var sliders = this._sliders,
                 items   = this.model.getItems(),
+                total   = this.model.getTotalTaxes();
                 node    = this.node;
 
             if (key) {
@@ -132,6 +137,13 @@ Humble( function () {
                     this._updateSlider(slider, value); 
                 }, this);
             }
+
+            this.setTotal(total);
+        },
+
+        setTotal : function (total) {
+            total = this.model.format.currency(total, true);
+            this._taxes.html('Total: '+total);
         },
 
         highlight : function (key) {
