@@ -29,6 +29,24 @@ body {
     -mox-box-shadow : 0px 0px 18px 0px #222;/*, -5px 0px 8px #444;*/
     box-shadow : 0px 0px 18px 0px #222;/*, -5px 0px 8px #444;*/
 }
+.humble-dvc-application a {
+    text-decoration : underline;
+    cursor : pointer;
+}
+
+
+
+.humble-dvc-sliders-title, .humble-dvc-visual-title {
+    font : 18px 'Droid Sans Mono', arial, sans-serif;
+    letter-spacing : -2px;
+    font-weight : bold;
+    text-shadow : 2px 2px 0 #ccc;
+    text-align : left;
+    margin-bottom: 8px;
+}
+
+
+
 .humble-dvc-sliders {
     float : right;
     width : 400px;
@@ -60,8 +78,12 @@ body {
     top: 0px;
     left : 0px;
 }
+
+
+
 .humble-dvc-visual {
     float : left;
+    position : relative;
     width : 340px;
     background-color : #babdbf;
 }
@@ -70,8 +92,10 @@ body {
     height : 680px;
 }
 .humble-dvc-visual-legend {
-    position : relative;
+    position : absolute;
     padding-left: 24px;
+    top : 6px;
+    right : 32px;
 }
 .humble-dvc-visual-legend-value {
     display : inline;
@@ -81,12 +105,13 @@ body {
     top : 1px;
     left : 1px;
     margin-left : 1px;
-    height : 17px;
-    width : 17px;
+    height : 14px;
+    width : 14px;
     border : 1px solid #333;
     background : #eeeeee;
     cursor : pointer;
 }
+
 
 .humble-dvc-dimension {
     background : #ffffff;
