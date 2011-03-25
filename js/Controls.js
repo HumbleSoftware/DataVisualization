@@ -3,12 +3,13 @@
  */
 Humble( function () {
 
-    var T_CONTROLS      = '<div class="humble-dvc-controls"></div>',
-        T_INCOME_INPUT  = '<input id="humble-dvc-input" type="text"></input>',
-        T_INCOME_LABEL  = '<label for="humble-dvc-input">Income</input>',
-        T_TOTAL_TAXES   = '<div class="humble-dvc-total-taxes"></div>',
-        T_TOTAL_BUDGET  = '<div class="humble-dvc-total-budget"></div>',
-        T_RESET     	= '<input id="humble-dvc-reset-xml" type="button" value="Reset"></input>';
+    var C_CONTROLS      = 'humble-dvc-controls',
+        T_CONTROLS      = '<div class="'+C_CONTROLS+'"></div>',
+        T_INCOME_INPUT  = '<input id="humble-dvc-controls-input" type="text"></input>',
+        T_INCOME_LABEL  = '<label for="humble-dvc-controls-input">Income</input>',
+        T_TOTAL_TAXES   = '<div class="humble-dvc-controls-total"></div>',
+        T_TOTAL_BUDGET  = '<div class="humble-dvc-controls-total"></div>',
+        T_RESET     	= '<a id="humble-dvc-controls-reset">Reset</a>';
 
     var Controls = function (node, model) {
 
