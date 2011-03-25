@@ -1,15 +1,25 @@
+/**
+ * @todo Refactor out the Visualization component into something reusable and 
+ * general.  This class should be an implementation of that visualization.
+ */
 Humble( function () {
 
-    var C_VISUAL = 'humble-dvc-visual',
-        T_VISUAL = '<div class="'+C_VISUAL+'"></div>';
+    var C_VISUAL        = 'humble-dvc-visual',
+        T_VISUAL        = '<div class="'+C_VISUAL+'"></div>',
+        T_TITLE         = '<div class="'+C_VISUAL+'-title">My Federal Budget:</div>',
+        T_CANVAS        = '<div class="'+C_VISUAL+'-canvas"></div>',
+        T_LEGEND        = '<div class="'+C_VISUAL+'-legend"></div>',
+        T_LEGEND_BLOCK  = '<div class="'+C_VISUAL+'-legend-block"></div>',
+        T_LEGEND_VALUE  = '<div class="'+C_VISUAL+'-legend-value"></div>';
 
     var BudgetVisualBlock = function (node, model) {
 
         this.parentNode = node;
-        this.node  = $(T_VISUAL);
-        this.model = model;
-        this.bars  = {};
-        this.colors = false;
+        this.node       = $(T_VISUAL);
+        this.model      = model;
+        this.bars       = {};
+        this.colors     = false;
+        this.unit       = 10000000;
 
         this.render();
     };
@@ -18,14 +28,23 @@ Humble( function () {
 
         render : function () {
 
+            var node    = this.node,
+                title   = $(T_TITLE),
+                legend  = $(T_LEGEND),
+                block   = $(T_LEGEND_BLOCK),
+                value   = $(T_LEGEND_VALUE),
+                canvas  = $(T_CANVAS),
+                width   = 320,
+                height  = 400,
+                paper;
+
+            value.html(this.model.format.currency(this.unit));
+            legend.append(block, ' = ', value);
+
+            node.append(title, legend, canvas);
             this.parentNode.append(this.node);
 
-            var node    = this.node,
-                width   = node.width(),
-                height  = node.height(),
-                paper   = Raphael(node.get(0), width, height),
-                totalPadding;
-
+            paper = Raphael(canvas.get(0), width, height);
             this.paper = paper;
         },
 
@@ -67,8 +86,9 @@ Humble( function () {
                 y = 2,
                 width = 18,
                 height = 18,
-                totalWidth = this.node.width(),
-                padding = 3;
+                totalWidth = this.paper.width,
+                padding = 3,
+                unit = this.unit;
 
             var sets = {};
 
@@ -86,7 +106,7 @@ Humble( function () {
 
                 var item   = items[key],
                     amount = item['amounti'],
-                    pieces = Math.ceil(amount/10000000),
+                    pieces = Math.ceil(amount/unit),
                     set    = paper.set();
 
                 for (i = 0; i < pieces; i++) {
@@ -142,13 +162,13 @@ Humble( function () {
 
             var width = 18,
                 height = 18,
-                totalWidth = this.node.width(),
+                totalWidth = this.paper.width,
                 padding = 3,
                 x0 = 2;
 
             var item   = items[updateKey],
                 amount = item['amounti'],
-                pieces = Math.ceil(amount/10000000),
+                pieces = Math.ceil(amount/this.unit),
                 length = set.length,
                 delta,
                 r;
