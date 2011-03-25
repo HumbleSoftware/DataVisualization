@@ -51,13 +51,21 @@ Humble( function () {
 
             if (value > TRILLION) {
                 value = value / TRILLION;
-                value = Math.round(value * 10) / 10;
+                if (value < 10) {
+                    value = Math.round(value * 10) / 10;
+                } else {
+                    value = Math.round(value);
+                }
 
                 value = '$' + value.toString() + ' Trillion'
             } else
             if (value > BILLION) {
                 value = value / BILLION;
-                value = Math.round(value * 10) / 10;
+                if (value < 10) {
+                    value = Math.round(value * 10) / 10;
+                } else {
+                    value = Math.round(value);
+                }
 
                 value = '$' + value.toString() + ' Billion'
             }
