@@ -6,7 +6,7 @@ Humble( function () {
     var C_CONTROLS      = 'humble-dvc-controls',
         T_CONTROLS      = '<div class="'+C_CONTROLS+'"></div>',
         T_INCOME_INPUT  = '<input id="'+C_CONTROLS+'-income" type="text"></input>',
-        T_INCOME_LABEL  = '<label for="'+C_CONTROLS+'-income">Income</label>',
+        T_INCOME_LABEL  = '<label for="'+C_CONTROLS+'-income">Income $</label>',
         T_FILING_INPUT  = '<select id="'+C_CONTROLS+'-filing"></select>',
         T_FILING_LABEL  = '<label for="'+C_CONTROLS+'-filing">Filing Status</label>',
         T_SELF_INPUT    = '<input id="'+C_CONTROLS+'-self" type="checkbox"></input>',
@@ -89,7 +89,6 @@ Humble( function () {
         },
 
         update : function () {
-
             var income = this.model.getData('income');
             this._income.attr({'value' : income});
         }
