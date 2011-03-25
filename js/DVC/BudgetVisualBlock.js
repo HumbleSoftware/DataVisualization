@@ -87,6 +87,7 @@ Humble( function () {
                 width = 18,
                 height = 18,
                 totalWidth = this.paper.width,
+                totalHeight = this.paper.height,
                 padding = 3,
                 unit = this.unit;
 
@@ -118,6 +119,10 @@ Humble( function () {
                     if ((x + width + padding + width) > totalWidth) {
                         x = x0;
                         y += height + padding;
+                        if (y > totalHeight) {
+                            totalHeight = y + height + padding;
+                            paper.setSize(totalWidth, totalHeight);
+                        }
                     } else {
                         x += width + padding;
                     }
@@ -162,7 +167,8 @@ Humble( function () {
 
             var width = 18,
                 height = 18,
-                totalWidth = this.paper.width,
+                totalWidth = paper.width,
+                totalHeight = paper.height,
                 padding = 3,
                 x0 = 2;
 
@@ -227,6 +233,10 @@ Humble( function () {
                     if ((x + width + padding + width) > totalWidth) {
                         x = x0;
                         y += height + padding;
+                        if (y > totalHeight) {
+                            totalHeight = y + height + padding;
+                            paper.setSize(totalWidth, totalHeight);
+                        }
                     } else {
                         x += width + padding;
                     }
@@ -249,6 +259,10 @@ Humble( function () {
                 if ((x + width + padding + width) > totalWidth) {
                     x = x0;
                     y += height + padding;
+                    if (y > totalHeight) {
+                        totalHeight = y + height + padding;
+                        paper.setSize(totalWidth, totalHeight);
+                    }
                 } else {
                     x += width + padding;
                 }
@@ -261,11 +275,13 @@ Humble( function () {
         _movePieces : function (x, y, startKey) {
 
             var sets = this.sets,
+                paper = this.paper,
                 start = false,
                 x0 = 2,
                 width = 18,
                 height = 18,
-                totalWidth = this.node.width(),
+                totalWidth = paper.width,
+                totalHeight = paper.height,
                 padding = 3;
 
             _.each(sets, function (set, key) {
@@ -282,6 +298,10 @@ Humble( function () {
                         if ((x + width + padding + width) > totalWidth) {
                             x = x0;
                             y += height + padding;
+                            if (y > totalHeight) {
+                                totalHeight = y + height + padding;
+                                paper.setSize(totalWidth, totalHeight);
+                            }
                         } else {
                             x += width + padding;
                         }

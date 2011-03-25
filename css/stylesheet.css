@@ -67,7 +67,8 @@ body {
     background-color : #babdbf;
 }
 .humble-dvc-visual-canvas {
-    overflow-y : scroll;
+    overflow-y : auto;
+    height : 400px;
 }
 .humble-dvc-visual-legend {
     position : relative;
