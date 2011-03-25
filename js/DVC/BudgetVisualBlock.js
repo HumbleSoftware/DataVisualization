@@ -46,6 +46,7 @@ Humble( function () {
 
             paper = Raphael(canvas.get(0), width, height);
             this.paper = paper;
+            this.canvas = canvas;
         },
 
         bind : function () {
@@ -183,6 +184,8 @@ Humble( function () {
 
             if (pieces < length) {
 
+                this.scroll(updateKey);
+
                 delta = length - pieces;
 
                 var oldSet = paper.set();
@@ -217,6 +220,8 @@ Humble( function () {
                     }
                 });
             } else if (pieces > length) {
+
+                this.scroll(updateKey);
 
                 delta = pieces - length;
 
@@ -314,7 +319,11 @@ Humble( function () {
         },
 
         highlight : function (key) {
+
             var set = this.sets[key];
+
+            this.scroll(key);
+
             set.stop();
             set.attr({
                 'stroke-opacity' : 0
@@ -331,6 +340,15 @@ Humble( function () {
                 'stroke-width' : '1px',
                 scale : [1, 1]
             }, 250);
+        },
+
+        scroll : function (key) {
+
+            var set = this.sets[key],
+                y   = set[0].attr('y');
+
+            this.canvas.stop();
+            this.canvas.animate({'scrollTop' : y});
         },
 
         update : function (key) {
