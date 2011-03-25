@@ -65,9 +65,25 @@ Humble( function () {
                 that.model.reset();
             });
 
+            // Income
             this._income.change(function (e, ui) { 
                 that.model.setData({
                     income : e.target.value
+                });
+            });
+
+            // Filing
+            this._filing.change(function (e, ui) { 
+                that.model.setData({
+                    filing : e.target.value
+                });
+            });
+
+            // Check
+            this._self.change(function (e, ui) {
+                var selfEmployed = (e.target.value ? '1' : 0);
+                that.model.setData({
+                    selfEmployed : selfEmployed
                 });
             });
         },
