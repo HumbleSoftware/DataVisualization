@@ -58,7 +58,12 @@ Humble( function () {
                 if (hover) {
                     that.highlight(key);
                 } else {
-                    that.unHighlight(key);
+                    console.log(that);
+                    if (that.doNotHoverHide) {
+                        that.doNotHoverHide = false;
+                    } else {
+                        that.unHighlight(key);
+                    }
                 }
             });
             Humble.Event.bind('humble:dvc:dimensionDetail', function (e, key, show) {
@@ -72,6 +77,7 @@ Humble( function () {
                         'stroke-width' : '1px',
                         scale : [1, 1]
                     });
+                    that.doNotHoverHide = true;
                     that.node.hide();
                 }
             });
