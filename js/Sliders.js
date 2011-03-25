@@ -143,7 +143,7 @@ Humble( function () {
 
         setTotal : function (total) {
             total = this.model.format.currency(total, true);
-            this._taxes.html('Total: '+total);
+            this._taxes.html(total);
         },
 
         highlight : function (key) {
