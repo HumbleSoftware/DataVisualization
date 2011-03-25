@@ -62,10 +62,32 @@ body {
 }
 .humble-dvc-visual {
     float : left;
-    width : 320px;
+    width : 340px;
     height : 640px;
     background-color : #babdbf;
 }
+.humble-dvc-visual-canvas {
+    overflow-y : scroll;
+}
+.humble-dvc-visual-legend {
+    position : relative;
+    padding-left: 24px;
+}
+.humble-dvc-visual-legend-value {
+    display : inline;
+}
+.humble-dvc-visual-legend-block {
+    position : absolute;
+    top : 1px;
+    left : 1px;
+    margin-left : 1px;
+    height : 17px;
+    width : 17px;
+    border : 1px solid #333;
+    background : #eeeeee;
+    cursor : pointer;
+}
+
 .humble-dvc-dimension {
     background : #ffffff;
     width : 360px;
