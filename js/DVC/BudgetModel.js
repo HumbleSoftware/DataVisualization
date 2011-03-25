@@ -36,7 +36,7 @@ Humble( function () {
 
         _setMycosti : function (item, attribute, value) {
 
-            var income  = this.getIncome(),
+            var income  = this.getData('income'),
                 total   = this.getTotalTaxes(),
                 current = this.items[item][attribute];
 
@@ -58,24 +58,7 @@ Humble( function () {
         },
 
         getData : function (key) {
-
-        },
-
-        setIncome : function (income) {
-
-            var config;
-
-            this.income = income;
-
-            config = {
-                data : { income : income }
-            };
-
-            this.dataSource.request(config);
-        },
-
-        getIncome : function () {
-            return this.income;
+            return (this.data[key] ? this.data[key] : false);
         },
 
         getTotalTaxes : function () {
@@ -111,6 +94,8 @@ Humble( function () {
             data[FILING]    = 0;
             data[CHANGE]    = 0;
             data[EXTRA]     = 0;
+
+            this.data = data;
 
             return data;
         },

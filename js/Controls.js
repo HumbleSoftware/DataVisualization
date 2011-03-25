@@ -66,11 +66,16 @@ Humble( function () {
             });
 
             this._income.change(function (e, ui) { 
-                that.model.setIncome(e.target.value);
+                that.model.setData({
+                    income : e.target.value
+                });
             });
         },
 
         update : function () {
+
+            var income = this.model.getData('income');
+            this._income.attr({'value' : income});
         }
     };
 

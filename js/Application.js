@@ -42,5 +42,5 @@ function Application (applicationNode) {
         visual.update(key);
     });
 
-    model.setIncome(50000);
+    model.setData({income : 50000});
 }
