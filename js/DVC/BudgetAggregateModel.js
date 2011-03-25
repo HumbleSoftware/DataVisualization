@@ -46,6 +46,11 @@ Humble( function () {
             return this.ratio;
         },
 
+        getTotalSpending : function () {
+            total = Humble.DVC.BudgetModel.prototype.getTotalSpending.apply(this, arguments);
+            return total * 1000;
+        },
+
         _getRatio : function () {
 
             var totalSpending   = this.getTotalSpending(),
