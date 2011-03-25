@@ -42,6 +42,13 @@ Humble( function () {
                 if (!show) {
                     that.node.show();
                 } else {
+                    var set = that.sets[key];
+                    set.attr({
+                        'stroke' : '#333',
+                        'stroke-opacity' : 1,
+                        'stroke-width' : '1px',
+                        scale : [1, 1]
+                    });
                     that.node.hide();
                 }
             });

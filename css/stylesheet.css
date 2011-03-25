@@ -2,29 +2,33 @@ body {
     margin : 0px;
     padding : 0px;
     background-color : #787a7b;
+    color : #111122;
     font : 12px #555 'Droid Sans Mono', arial, sans-serif;
 }
 
 
-.header	{
-    font : 60px 'Droid Sans Mono', arial, sans-serif;
-    letter-spacing : -5px;
+.humble-dvc-application-header {
+    font : 48px 'Droid Sans Mono', arial, sans-serif;
+    letter-spacing : -2px;
     font-weight : bold;
-    text-shadow: 3px 3px 3px #555;
+    text-shadow : 3px 2px 0 #ccc;
+    text-align : center;
 }
 
-
 .humble-dvc-application {
-    margin : 0px auto;
-    padding : 8px;
-    width : 1080px;
-    background-color : #babdbf;
-    overflow: hidden;
+    font : 12px/18px 'Droid Sans', arial, sans-serif;
     position : relative;
-    font : 12px/18px 'Droid Sans Mono', arial, sans-serif;
-    -webkit-box-shadow : 5px 5px 50px #333;
-    -moz-box-shadow : 5px 5px 50px #333;
-    -box-shadow : 5px 5px 50px #333;
+    overflow : hidden;
+    margin : 0px auto;
+    padding : 14px;
+    width : 750px;
+    background : #babdbf;
+    border : 1px solid #000;
+    border-top : 0px;
+    border-bottom : 0px;
+    -webkit-box-shadow : 0px 0px 18px 0px #222;/*, -5px 0px 8px #444;*/
+    -mox-box-shadow : 0px 0px 18px 0px #222;/*, -5px 0px 8px #444;*/
+    box-shadow : 0px 0px 18px 0px #222;/*, -5px 0px 8px #444;*/
 }
 .humble-dvc-sliders {
     float : right;

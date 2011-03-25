@@ -1,9 +1,9 @@
 function Application (applicationNode) {
 
     // DOM Templates
-    var title = 'MoveMyTaxes',
-	C_APPLICATION = 'humble-dvc-application';
-	T_APPLICATION = '<div class="'+C_APPLICATION+'"><div class="header">'+title+'</div></div>',
+    var TITLE         = 'Move My Taxes',
+        C_APPLICATION = 'humble-dvc-application',
+        T_APPLICATION = '<div class="'+C_APPLICATION+'"><div class="'+C_APPLICATION+'-header">'+TITLE+'</div></div>',
         node          = $(T_APPLICATION);
 
     $(applicationNode).append(node);
@@ -42,7 +42,7 @@ function Application (applicationNode) {
         model.setIncome(income);
     });
     
-	controls.resetXML(function (e, ui) {
+    controls.resetXML(function (e, ui) {
         model.reset();
         controls.update();
         sliders.update();
