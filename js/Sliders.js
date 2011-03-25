@@ -1,14 +1,18 @@
 /**
  * Class Sliders
+ *
+ * @todo Refactor out slider widget.
  */
 Humble( function () {
 
+    // Sliders constants
+    var C_SLIDERS       = 'humble-dvc-sliders',
+        T_SLIDERS_TITLE = '<div class="'+C_SLIDERS+'-title">My Taxes:</div>',
+        T_SLIDERS       = '<div class="'+C_SLIDERS+'"></div>';
+
+    // Slider constants
     var C_SLIDER        = 'humble-dvc-slider',
         C_SLIDER_LEGEND = C_SLIDER+'-legend',
-        C_SLIDERS       = 'humble-dvc-sliders',
-
-        T_SLIDERS       = '<div class="'+C_SLIDERS+'"></div>',
-
         T_VALUE         = '<div class="'+C_SLIDER+'-value"></div>',
         T_LEGEND        = '<div class="'+C_SLIDER_LEGEND+'"></div>',
         T_SLIDER        = '<div class="'+C_SLIDER+'"></div>',
@@ -32,7 +36,10 @@ Humble( function () {
 
             var dimensions  = Humble.Config.DVZ.budget.dimensions,
                 sliders     = {},
-                node        = this.node;
+                node        = this.node,
+                title       = $(T_SLIDERS_TITLE);
+
+            node.append(title);
 
             _.each(dimensions, function (dimension, key) {
                 var slider = this._renderSlider(dimension);
