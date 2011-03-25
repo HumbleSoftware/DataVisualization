@@ -5,11 +5,20 @@ Humble( function () {
 
     var C_CONTROLS      = 'humble-dvc-controls',
         T_CONTROLS      = '<div class="'+C_CONTROLS+'"></div>',
-        T_INCOME_INPUT  = '<input id="humble-dvc-controls-input" type="text"></input>',
-        T_INCOME_LABEL  = '<label for="humble-dvc-controls-input">Income</input>',
-        T_TOTAL_TAXES   = '<div class="humble-dvc-controls-total"></div>',
-        T_TOTAL_BUDGET  = '<div class="humble-dvc-controls-total"></div>',
-        T_RESET     	= '<a id="humble-dvc-controls-reset">Reset</a>';
+        T_INCOME_INPUT  = '<input id="'+C_CONTROLS+'-income" type="text"></input>',
+        T_INCOME_LABEL  = '<label for="'+C_CONTROLS+'-income">Income</label>',
+        T_FILING_INPUT  = '<select id="'+C_CONTROLS+'-filing"></select>',
+        T_FILING_LABEL  = '<label for="'+C_CONTROLS+'-filing">Filing Status</label>',
+        T_SELF_INPUT    = '<input id="'+C_CONTROLS+'-self" type="checkbox"></input>',
+        T_SELF_LABEL    = '<label for="'+C_CONTROLS+'-self">Self Employed</label>',
+        T_RESET     	= '<a id="'+C_CONTROLS+'-reset">Reset</a>';
+
+    var FILING_OPTIONS  = [
+        'Single',
+        'Married Filing Jointly',
+        'Married Filing Separately',
+        'Head of Household'
+    ]
 
     var Controls = function (node, model) {
 
@@ -27,15 +36,20 @@ Humble( function () {
             var node = this.node;
 
             this._income    = $(T_INCOME_INPUT);
-            this._total     = $(T_TOTAL_TAXES);
-            this._budget    = $(T_TOTAL_BUDGET);
+            this._filing    = $(T_FILING_INPUT);
+            this._self      = $(T_SELF_INPUT);
     		this._reset		= $(T_RESET);
+
+            _.each (FILING_OPTIONS, function (option, value) {
+                this._filing.append('<option value="'+value+'">'+option+'</option>');
+            }, this);
 
             node.append(T_INCOME_LABEL);
             node.append(this._income);
-            node.append(this._total);
-            node.append(this._budget);
-            node.append(this._reset);
+            node.append(T_FILING_LABEL);
+            node.append(this._filing);
+            node.append(T_SELF_LABEL);
+            node.append(this._self);
 
             this.parentNode.append(node);
 
@@ -43,10 +57,7 @@ Humble( function () {
         },
 
         bind : function () {
-            var that = this;
-            Humble.Event.bind('humble:dvc:modelUpdate', function (e) {
-                that.setBudget(that.model.getTotalSpending());
-            });
+
         },
 
         incomeChange : function (callback) {
@@ -58,17 +69,6 @@ Humble( function () {
     	},
     	
         update : function () {
-            var total = this.model.getTotalTaxes();
-            this.setTotal(total);
-        },
-
-        setTotal : function (total) {
-            total = this.model.format.currency(total);
-            this._total.html('Total Taxes: '+total);
-        },
-        setBudget : function (budget) {
-            budget= this.model.format.currency(budget);
-            this._budget.html('Federal Budget: '+budget);
         }
 
     };
