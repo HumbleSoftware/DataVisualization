@@ -122,9 +122,9 @@ Humble( function () {
             mycosti = ratioTaxes * mycosti;
 
             node = '<div>';
-            node += '<div class="humble-dvc-subfunction-account">'+account['account']+'</div>',
-            node += '<div class="humble-dvc-subfunction-budget">'+this.model.format.currency(amounti, true)+'</div>',
-            node += '<div class="humble-dvc-subfunction-tax">'+this.model.format.currency(mycosti)+'</div>',
+            node += '<div class="humble-dvc-subfunction-account">'+account['account']+'</div>';
+            node += '<div class="humble-dvc-subfunction-budget">'+this.model.format.currency(amounti, true)+'</div>';
+            node += '<div class="humble-dvc-subfunction-tax">'+this.model.format.currency(mycosti)+'</div>';
             node += '</div>';
 
             return node;

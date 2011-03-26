@@ -49,7 +49,7 @@ Humble( function () {
 
         getRatioSpending : function (key) {
 
-            var item    = this.itemsCache[key];
+            var item    = this.itemsCache[key],
                 amount0 = item['amounti'],
                 amounti = this.items[key]['amounti'],
                 ratio   = amounti / amount0;
@@ -59,7 +59,7 @@ Humble( function () {
 
         getRatioTaxes : function (key) {
 
-            var item    = this.itemsCache[key];
+            var item    = this.itemsCache[key],
                 mycost0 = item['mycosti'],
                 mycosti = this.items[key]['mycosti'],
                 ratio   = mycosti / mycost0;
