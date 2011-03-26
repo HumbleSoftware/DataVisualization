@@ -121,7 +121,12 @@ Humble( function () {
 
             var amount0  = this.itemsCache[key]['amounti'],
                 tax0     = this.itemsCache[key]['mycosti'],
-                amounti  = amount0 + .26066 * amount0 * (mycosti - tax0) / tax0;
+                ratio    = this.getIncomeTaxReceiptRatio(),
+                taxDelta = (mycosti - tax0) / tax0,
+                amounti;
+
+            // Original taxes plus change apportioned to slider
+            amounti  = amount0 + ratio * amount0 * taxDelta;
 
             return amounti;
         }
