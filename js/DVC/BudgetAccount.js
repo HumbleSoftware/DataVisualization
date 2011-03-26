@@ -63,14 +63,16 @@ Humble( function () {
                 data    = {'function' : id, income : income},
                 title   = this.model.get(key, 'dimensionName');
 
-
+            this.dimension = key;
             this.title.html(title+' Top 10:');
-
             this.budgetAccountModel.setData(data);
             this.node.show();
         },
 
-        hideDimensionDetail : function (key) {
+        hideDimensionDetail : function () {
+
+            this.dimension = null;
+
             this.node.hide();
 
             // Remove old content
@@ -80,9 +82,11 @@ Humble( function () {
         update : function () {
 
             var items = this.budgetAccountModel.getItems(),
-                count = 0;
+                count = 0,
+                node,
+                list;
 
-            var node = '<div>';
+            node = '<div>';
             node += '<div class="humble-dvc-subfunction-account">Account:</div>',
             node += '<div class="humble-dvc-subfunction-budget">Budget:</div>',
             node += '<div class="humble-dvc-subfunction-tax">My Tax:</div>',
@@ -90,7 +94,7 @@ Humble( function () {
 
             this.accountsNode.append(node);
 
-            var list = _.sortBy(items, function (item) {
+            list = _.sortBy(items, function (item) {
                 return -item.amounti;
             }); 
 
@@ -105,20 +109,22 @@ Humble( function () {
             }, this);
         },
 
-        renderAccounts : function () {
-
-        },
-
         _renderAccount : function (account) {
 
             var amounti = account['amounti'],
                 mycosti = account['mycosti'],
+                ratioSpending = this.model.getRatioSpending(this.dimension),
+                ratioTaxes = this.model.getRatioTaxes(this.dimension),
                 node;
+
+            // Apply ratios
+            amounti = ratioSpending * amounti;
+            mycosti = ratioTaxes * mycosti;
 
             node = '<div>';
             node += '<div class="humble-dvc-subfunction-account">'+account['account']+'</div>',
             node += '<div class="humble-dvc-subfunction-budget">'+this.model.format.currency(amounti, true)+'</div>',
-            node += '<div class="humble-dvc-subfunction-tax">'+this.model.format.currency(mycosti, true)+'</div>',
+            node += '<div class="humble-dvc-subfunction-tax">'+this.model.format.currency(mycosti)+'</div>',
             node += '</div>';
 
             return node;
