@@ -89,6 +89,7 @@ Humble( function () {
                 paper = this.paper,
                 total = model.getTotalSpending(),
                 items = model.getItems(),
+                itemCount = model.getItemCount();
                 dimensions = Humble.Config.DVZ.budget.dimensions,
                 data  = [];
 
@@ -112,6 +113,8 @@ Humble( function () {
             this.timeout = setTimeout ( function () {
 
             paper.clear();
+
+            var itemCounter = 1;
 
             _.each(dimensions, function (dimension, key) {
 
@@ -137,12 +140,20 @@ Humble( function () {
                         x += width + padding;
                     }
                 }
+		
+
+                // Makes half of the dimensions opaque; need desaturating->hex function		
+                var opacity = 1;
+		if(itemCount > 9 && itemCounter <= 9)	{
+                    opacity = .8;
+                }
 
                 set.attr({
                     'cursor' : 'pointer',
                     'fill' : dimensions[key].color,
                     'stroke' : '#333',
-                    'stroke-width' : '1px'
+                    'stroke-width' : '1px',
+                    'fill-opacity' : opacity
                 });
 
                 $(set).css('cursor', 'pointer');
@@ -158,6 +169,8 @@ Humble( function () {
                 });
 
                 sets[key] = set;
+                
+                itemCounter++;
 
             });
 
