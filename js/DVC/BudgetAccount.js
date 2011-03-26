@@ -90,18 +90,16 @@ Humble( function () {
 
             this.accountsNode.append(node);
 
-            _.each(items, function (item, key) {
+            var list = _.sortBy(items, function (item) {
+                return -item.amounti;
+            }); 
+
+            _.each(list, function (item, key) {
 
                 if (count >= 10 || item['mycosti'] < 0) return;
 
-                var node = '<div>';
-                node += '<div class="humble-dvc-subfunction-account">'+item['account']+'</div>',
-                node += '<div class="humble-dvc-subfunction-budget">'+this.model.format.currency(item['amounti'], true)+'</div>',
-                node += '<div class="humble-dvc-subfunction-tax">'+this.model.format.currency(item['mycosti'], true)+'</div>',
-                node += '</div>';
-
+                var node = this._renderAccount(item);
                 this.accountsNode.append(node);
-
                 count++;
 
             }, this);
@@ -109,6 +107,21 @@ Humble( function () {
 
         renderAccounts : function () {
 
+        },
+
+        _renderAccount : function (account) {
+
+            var amounti = account['amounti'],
+                mycosti = account['mycosti'],
+                node;
+
+            node = '<div>';
+            node += '<div class="humble-dvc-subfunction-account">'+account['account']+'</div>',
+            node += '<div class="humble-dvc-subfunction-budget">'+this.model.format.currency(amounti, true)+'</div>',
+            node += '<div class="humble-dvc-subfunction-tax">'+this.model.format.currency(mycosti, true)+'</div>',
+            node += '</div>';
+
+            return node;
         },
 
         _buildModel : function () {
