@@ -47,16 +47,24 @@ Humble( function () {
             return data;
         },
 
-        getPercent : function (key) {
+        getRatioSpending : function (key) {
 
-            var item = this.itemsCache[key];
+            var item    = this.itemsCache[key];
+                amount0 = item['amounti'],
+                amounti = this.items[key]['amounti'],
+                ratio   = amounti / amount0;
 
-            console.log(this, key);
+            return ratio;
+        },
 
-            console.log(item);
+        getRatioTaxes : function (key) {
 
-            return (item && item['mycosti'] ? 
-                this.items[key]['mycosti'] / item['mycosti'] : false);
+            var item    = this.itemsCache[key];
+                mycost0 = item['mycosti'],
+                mycosti = this.items[key]['mycosti'],
+                ratio   = mycosti / mycost0;
+
+            return ratio;
         },
 
         getRatio : function () {
