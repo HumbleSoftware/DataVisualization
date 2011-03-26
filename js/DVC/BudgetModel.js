@@ -49,7 +49,7 @@ Humble( function () {
             }
 
             // Update amounti
-            var amounti = this._calculateAmountI(value);
+            var amounti = this._calculateAmountI(item, value);
             this._set(item, 'amounti', amounti);
         },
 
@@ -117,8 +117,13 @@ Humble( function () {
                 (totalSpending / totalTaxes) : false;
         },
 
-        _calculateAmountI : function (mycosti) {
-            return this.getRatio() * mycosti;
+        _calculateAmountI : function (key, mycosti) {
+
+            var amount0  = this.itemsCache[key]['amounti'],
+                tax0     = this.itemsCache[key]['mycosti'],
+                amounti  = amount0 + .26066 * amount0 * (mycosti - tax0) / tax0;
+
+            return amounti;
         }
     };
 
