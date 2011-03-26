@@ -35,7 +35,7 @@ Humble( function () {
             Humble.Model.prototype.setXML.apply(this, arguments);
 
             this.ratio = this._getRatio(); 
-            this._incomeTaxReceiptRatio();
+            this._getIncomeTaxReceiptRatio();
             this.itemsCache = this._getItems(this.xmlDoc);
 
             Humble.Event.trigger('humble:dvc:modelUpdate');
@@ -45,6 +45,18 @@ Humble( function () {
             var data = Humble.DVC.BudgetModel.prototype.requestData.apply(this, arguments);
             data[GROUP]     = 'function';
             return data;
+        },
+
+        getPercent : function (key) {
+
+            var item = this.itemsCache[key];
+
+            console.log(this, key);
+
+            console.log(item);
+
+            return (item && item['mycosti'] ? 
+                this.items[key]['mycosti'] / item['mycosti'] : false);
         },
 
         getRatio : function () {
@@ -64,7 +76,7 @@ Humble( function () {
             return this._incomeTaxReceiptRatio;
         },
 
-        _incomeTaxReceiptRatio : function () {
+        _getIncomeTaxReceiptRatio : function () {
             var ratio = INCOME_TAX_RECEIPT / this.getTotalSpending();
             this._incomeTaxReceiptRatio = ratio;
         }
