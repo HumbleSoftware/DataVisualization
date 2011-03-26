@@ -11,6 +11,7 @@ Humble( function () {
         INCOME      = 'income',
         SELF        = 'selfEmployed',
         SORT        = 'sortdir',
+        SORTBY      = 'sortby',
         TYPE        = 'type',
         YEAR        = 'year';
 
@@ -95,6 +96,7 @@ Humble( function () {
             data[YEAR]      = 2010;
             data[TYPE]      = 0;
             data[SORT]      = 0;
+            data[SORTBY]    = 0;
             data[SELF]      = 0;
             data[INCOME]    = 50000;
             data[FILING]    = 0;
