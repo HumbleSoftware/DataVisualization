@@ -13,6 +13,9 @@ Humble( function () {
         TYPE        = 'type',
         YEAR        = 'year';
 
+    // Other Constants
+    var INCOME_TAX_RECEIPT = 935771000000;
+
     // Constructor
     var BudgetAggregateModel = function (options) {
         this.fields = Humble.Config.DVZ.budget.fields;
@@ -32,6 +35,8 @@ Humble( function () {
             Humble.Model.prototype.setXML.apply(this, arguments);
 
             this.ratio = this._getRatio(); 
+            this._incomeTaxReceiptRatio();
+            this.itemsCache = this._getItems(this.xmlDoc);
 
             Humble.Event.trigger('humble:dvc:modelUpdate');
         },
@@ -53,7 +58,17 @@ Humble( function () {
 
             return (totalTaxes) ?
                 (totalSpending / totalTaxes) : false;
+        },
+
+        getIncomeTaxReceiptRatio : function () {
+            return this._incomeTaxReceiptRatio;
+        },
+
+        _incomeTaxReceiptRatio : function () {
+            var ratio = INCOME_TAX_RECEIPT / this.getTotalSpending();
+            this._incomeTaxReceiptRatio = ratio;
         }
+
     };
 
     Humble.Class.extend(BudgetAggregateModel, Humble.DVC.BudgetModel);
