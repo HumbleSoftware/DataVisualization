@@ -24,6 +24,8 @@ Humble( function () {
 
         currency : function (value, large) {
 
+            value = this.currencyNumeric(value);
+
             if (value > BILLION && large) {
                 return this.currencyHuge(value);
             }
