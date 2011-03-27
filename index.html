@@ -14,6 +14,13 @@
 <script type="text/javascript">
 jQuery(function () {
     Application('#dvc-application');
+    $('#about-link').click(function () {
+        console.log('here');
+        $('#about-content').show();
+    });
+    $('#about-hide').click(function () {
+        $('#about-content').hide();
+    });
 });
 </script>
 <style type="text/css">
@@ -24,20 +31,79 @@ a:active {
     color : #222;
 }
 #footer {
-    font-size : 12px;
+    font-size : 10px;
     margin : 0px auto 24px auto;
     text-align : right;
     color : #222;
     width : 780px;
     padding : 4px 0px;
 }
+#license img {
+    vertical-align : middle;
+}
+
+#about {
+    width : 750px;
+    margin : 0px auto;
+    position : relative;
+    z-index : 10001;
+}
+#about-link,
+#about-hide {
+    right : 0px;
+    position : absolute;
+    text-decoration : underline;
+    cursor : pointer;
+    font-size : 10px;
+}
+
+#about-hide {
+    right : 10px;
+    top : 0px;
+}
+
+#about-content {
+    position : absolute;
+    z-index : 10001;
+    width : 280px;
+    background : #fff;
+    right : -120px;
+    padding : 10px;
+    font-size : 11px;
+    border : 1px solid #222;
+    border-top : 0px;
+}
+
 </style>
 </head>
 
 <body>
+
+<div id="about">
+<div id="about-nav"><a id="about-link">about</a></div>
+<div id="about-content" style="display:none;">
+<div id="about-hide"><a>hide /\</a></div>
+<p>
+This project was created for the <a href="http://datavizchallenge.org/">Data Viz Challenge</a> 
+by <a href="http://www.humblesoftware.com/">Humble Software Development</a>.  The content on
+this page is licensed under a <a href="http://creativecommons.org/licenses/by/3.0/">
+Creative Commons Attribution 3.0 Unported License</a>.  Source code for the project may be obtained
+at <a href="https://github.com/HumbleSoftware/DataVisualization/">github</a> and is licensed under
+the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
+</p>
+</div>
+</div>
+
+
 <div id="dvc-application"></div>
+
 <div id="footer">
-&copy; 2011 <a href="http://www.humblesoftware.com/">Humble Software Development</a>
+    <div id="license">
+    <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/80x15.png" /></a> Content on this page is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>
+    </div>
+    <div id="notice">
+    This project was created for the <a href="http://datavizchallenge.org/">Data Viz Challenge</a> by <a href="http://www.humblesoftware.com/">Humble Software Development</a>
+    </div>
 </div>
 </body>
 
