@@ -22,6 +22,14 @@ Humble( function () {
         this.colors     = false;
         this.unit       = 10000000000;
 
+        this.config = {
+            padding : 3,
+            height : 18,
+            width : 18,
+            x : 2.5,
+            y : 2.5
+        };
+
         this.render();
     };
 
@@ -54,7 +62,8 @@ Humble( function () {
 
         bind : function () {
 
-            var that = this;
+            var that = this,
+                dimensions = Humble.Config.DVZ.budget.dimensions;
 
             Humble.Event.bind('humble:dvc:dimensionHover', function (e, key, hover) {
 
@@ -73,6 +82,7 @@ Humble( function () {
                 } else {
                     var set = that.sets[key];
                     set.attr({
+                        'fill' : dimensions[key].color,
                         'stroke' : '#333',
                         'stroke-opacity' : 1,
                         'stroke-width' : '1px',
@@ -88,19 +98,19 @@ Humble( function () {
 
             var model = this.model,
                 paper = this.paper,
+                config = this.config,
                 total = model.getTotalSpending(),
                 items = model.getItems(),
                 itemCount = model.getItemCount();
                 dimensions = Humble.Config.DVZ.budget.dimensions,
                 data  = [];
 
-            var x0 = x = 2.5,
-                y = 2.5,
-                width = 18,
-                height = 18,
-                totalWidth = this.paper.width,
-                totalHeight = this.paper.height,
-                padding = 3,
+            var x0 = x = config.x,
+                y = config.y,
+                width = config.width,
+                height = config.height,
+                padding = config.padding,
+                parity = 1,
                 unit = this.unit;
 
             var sets = {};
@@ -132,17 +142,12 @@ Humble( function () {
                     set.push(r);
                     set.x = x;
                     set.y = y;
+                    set.parity = parity;
 
-                    if ((x + width + padding + width) > totalWidth) {
-                        x = x0;
-                        y += height + padding;
-                        if (y > totalHeight) {
-                            totalHeight = y + height + padding;
-                            paper.setSize(totalWidth, totalHeight);
-                        }
-                    } else {
-                        x += width + padding;
-                    }
+                    var newXY =  that._calculateXY(x, y, parity);
+                    x = newXY.x;
+                    y = newXY.y;
+                    parity = newXY.parity;
                 }
     	
 
@@ -194,22 +199,54 @@ Humble( function () {
                 Humble.Event.trigger('humble:dvc:dimensionHover', [tempKey, false]);
                 tempKey = null;
             });
-    },
+        },
+
+        _calculateXY : function (x, y, parity) {
+
+            var config      = this.config,
+                paper       = this.paper,
+                x0          = config.x,
+                width       = config.width,
+                height      = config.height,
+                padding     = config.padding,
+                totalWidth  = paper.width,
+                totalHeight = paper.height;
+
+            if ((parity === 1 && (x + width + padding + width) > totalWidth) || 
+                (parity === -1 && (x - width - padding) < 0)) {
+
+                parity *= -1
+                if (parity == 1) {
+                x = x0;
+                }
+                y += height + padding;
+                if (y > totalHeight) {
+                    totalHeight = y + height + padding;
+                    paper.setSize(totalWidth, totalHeight);
+                }
+            } else {
+                x += (width + padding) * parity;
+            }
+
+            return {x : x, y : y, parity : parity};
+        },
 
         updateSets : function (updateKey) {
 
             var model = this.model,
                 paper = this.paper,
                 sets = this.sets,
+                config = this.config,
                 set = sets[updateKey],
                 items = model.getItems();
 
-            var width = 18,
-                height = 18,
+            var width = config.width,
+                height = config.height,
+                padding = config.padding,
                 totalWidth = paper.width,
                 totalHeight = paper.height,
-                padding = 3,
-                x0 = 2;
+                x0 = config.x,
+                parity;
 
             var item   = items[updateKey],
                 amount = item['amounti'],
@@ -232,12 +269,12 @@ Humble( function () {
 
                     r = set.pop();
                     oldSet.push(r);
-
-                    var xa = r.x || r.attr('x'),
-                        ya = r.y || r.attr('y');
                 }
 
                 var newEnd = set[(set.length-1)];
+                if (Math.abs(set.y - newEnd.attr('y')) > 0.5) {
+                    set.parity = set.parity * -1;
+                }
                 set.x = newEnd.attr('x');
                 set.y = newEnd.attr('y');
 
@@ -245,16 +282,10 @@ Humble( function () {
                 var cancel = this.cancel;
                 oldSet.animate({
                     scale : 0
-                    /*
-                    width : 0,
-                    height: 0,
-                    x : (r.attr('x') + width/2),
-                    y : (r.attr('y') + height/2)
-                    */
                 }, 250, function () {
                     oldSet.remove();
                     if (!cancel) {
-                        that._movePieces(xa, ya, updateKey, true);
+                        that._movePieces(set.x, set.y, set.parity, updateKey, true);
                     }
                 });
             } else if (pieces > length) {
@@ -267,24 +298,21 @@ Humble( function () {
 
                 x = set.x;
                 y = set.y;
+                parity = set.parity;
 
                 var fill = end.attr('fill'),
                     stroke = end.attr('stroke');
 
                 for (var i = 0; i < delta; i++) {
 
-                    if ((x + width + padding + width) > totalWidth) {
-                        x = x0;
-                        y += height + padding;
-                        if (y > totalHeight) {
-                            totalHeight = y + height + padding;
-                        }
-                    } else {
-                        x += width + padding;
-                    }
+                    var newXY = this._calculateXY(x, y, parity);
+                    x = newXY.x;
+                    y = newXY.y;
+                    parity = newXY.parity;
 
                     set.x = x;
                     set.y = y;
+                    set.parity = parity;
 
                     r = paper.rect(x, y, width, height);
                     r.x = x;
@@ -304,36 +332,38 @@ Humble( function () {
                     set.push(r);
                 }
 
-                if ((x + width + padding + width) > totalWidth) {
-                    x = x0;
-                    y += height + padding;
-                    if (y > totalHeight) {
-                        totalHeight = y + height + padding;
-                    }
-                } else {
-                    x += width + padding;
-                }
-
                 this.cancel = true;
-                this._movePieces(x, y, updateKey);
+                this._movePieces(x, y, parity, updateKey);
             }
         },
 
-        _movePieces : function (x, y, startKey, resize) {
+        /**
+         * Takes arguments for end position
+         */
+        _movePieces : function (x, y, parity, startKey, resize) {
+
+            console.log('x: ', x, 'y: ', y, 'parity: ', parity);
 
             var sets = this.sets,
                 paper = this.paper,
+                config = this.config,
                 start = false,
-                x0 = 2,
-                width = 18,
-                height = 18,
+                x0 = config.x,
+                width = config.width,
+                height = config.height,
+                padding = config.padding,
                 totalWidth = paper.width,
-                totalHeight = paper.height,
-                padding = 3;
+                totalHeight = paper.height;
 
             _.each(sets, function (set, key) {
                 if (start) {
                     for (var i = 0; i < set.length; i++) {
+
+                        var newXY = this._calculateXY(x, y, parity);
+                        x = newXY.x;
+                        y = newXY.y;
+                        parity = newXY.parity;
+
                         var r = set[i];
                         r.attr({
                             x : x,
@@ -341,22 +371,12 @@ Humble( function () {
                         });
                         set.x = x;
                         set.y = y;
-
-                        if ((x + width + padding + width) > totalWidth) {
-                            x = x0;
-                            y += height + padding;
-                            if (y > totalHeight) {
-                                totalHeight = y + height + padding;
-                            }
-                        } else {
-                            x += width + padding;
-                        }
                     }
                 }
                 if (key == startKey) {
                     start = true;
                 };
-            });
+            }, this);
             paper.setSize(totalWidth, (y + height + padding));
         },
 
