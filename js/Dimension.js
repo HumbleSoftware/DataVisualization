@@ -81,8 +81,8 @@ Humble( function () {
                     y = e.pageY,
                     offset = that.parentNode.offset();
 
-                x = (x + 10 - offset.left);
-                y = (y - 70 - offset.top);
+                x = (x + 28 - offset.left);
+                y = (y - that.node.height()/2 - offset.top);
 
                 that.node.css({
                     'top' : y,
