@@ -37,11 +37,17 @@ function Application (applicationNode) {
         visual      = new Humble.DVC.BudgetVisualBlock(node, model),
         dataSource;
 
+    sliders.node.hide();
+    visual.node.hide();
+
+    Humble.Event.bind('humble:dvc:splash', function (e) {
+        sliders.node.show();
+        visual.node.show();
+    });
+
     Humble.Event.bind('humble:dvc:modelUpdate', function (e, key) {
         controls.update();
         sliders.update(key);
         visual.update(key);
     });
-
-    model.setData({income : 50000});
 }

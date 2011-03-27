@@ -14,6 +14,7 @@ body {
     margin : 0px auto;
     padding : 14px;
     width : 750px;
+    min-height : 280px;
     background : #babdbf;
     border : 1px solid #000;
     border-top : 0px;
@@ -33,6 +34,10 @@ body {
     cursor : pointer;
 }
 
+.humble-dvc-application input {
+    border : 1px solid #787a7b;
+}
+
 .humble-dvc-application-header,
 .humble-dvc-splash-title {
     font : 48px 'Droid Sans Mono', arial, sans-serif;
@@ -40,6 +45,7 @@ body {
     font-weight : bold;
     text-shadow : 3px 2px 0 #ccc;
     text-align : center;
+    text-decoration : none;
 }
 
 
@@ -50,6 +56,7 @@ body {
 .humble-dvc-subfunction-title,
 .humble-dvc-subfunction-back,
 .humble-dvc-dimension-title,
+.humble-dvc-splash,
 .humble-dvc-sliders-taxes {
     font : 18px 'Droid Sans Mono', arial, sans-serif;
     letter-spacing : -2px;
@@ -63,8 +70,48 @@ body {
     position : absolute;
     top : 0px;
     width : 750px;
-    height : 1000px;
+    height : 280px;
     z-index : 10000;
+}
+.humble-dvc-splash-title {
+    margin-top : 18px;
+}
+.humble-dvc-splash-copy {
+    text-align: center;
+    margin: 48px 0px 48px 0px;
+}
+.humble-dvc-splash-controls {
+    width : 750px;
+    text-align : center;
+    position : relative;
+}
+.humble-dvc-splash-income,
+.humble-dvc-splash-label {
+    letter-spacing : 0px;
+    font-size : 16px;
+}
+.humble-dvc-splash-label-income {
+    position : absolute;
+    font-size : 12px;
+    top : -13px;
+    left : 198px;
+}
+.humble-dvc-splash-income {
+    margin-right: 12px;
+    padding : 2px;
+}
+.humble-dvc-splash-button {
+    padding : 2px 6px;
+    display : inline;
+    border : 1px solid #787a7b;
+    border-radius : 4px;
+    -webkit-box-shadow : 2px 2px 3px 0px #222;
+    -mox-box-shadow : 2px 2px 3px 0px #222;
+    box-shadow : 2px 2px 3px 0px #222;
+    cursor : pointer;
+}
+.humble-dvc-splash-button a {
+    text-decoration : none;
 }
 
 
