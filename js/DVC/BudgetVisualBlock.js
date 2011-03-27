@@ -342,8 +342,6 @@ Humble( function () {
          */
         _movePieces : function (x, y, parity, startKey, resize) {
 
-            console.log('x: ', x, 'y: ', y, 'parity: ', parity);
-
             var sets = this.sets,
                 paper = this.paper,
                 config = this.config,
