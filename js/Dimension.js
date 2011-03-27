@@ -5,6 +5,7 @@ Humble( function () {
 
     var C_DIMENSION = 'humble-dvc-dimension',
         T_DIMENSION = '<div class="'+C_DIMENSION+'"></div>',
+        T_SPENDING  = '<div class="'+C_DIMENSION+'-spending"></div>',
         T_TITLE     = '<div class="'+C_DIMENSION+'-title"></div>',
         T_TOTAL     = '<div class="'+C_DIMENSION+'-total"></div>',
         T_TAXES     = '<div class="'+C_DIMENSION+'-taxes"></div>';
@@ -24,17 +25,25 @@ Humble( function () {
 
             var node = this.node;
 
-            this.titleNode = $(T_TITLE);
-            this.totalNode = $(T_TOTAL);
-            this.taxesNode = $(T_TAXES);
+            this.titleNode      = $(T_TITLE);
+            this.totalNode      = $(T_TOTAL);
+            this.taxesNode      = $(T_TAXES);
+            this.spendingNode   = $(T_SPENDING);
 
             node.append(this.titleNode);
             node.append(this.totalNode);
             node.append(this.taxesNode);
+            node.append(this.spendingNode);
 
             node.hide();
 
             this.parentNode.append(node);
+
+            // Spending sub widget
+            this.spending = new Humble.DVC.Spending(
+                this.spendingNode,
+                this.model
+            );
 
             this.bind();
         },
@@ -62,7 +71,7 @@ Humble( function () {
                 if (!show) {
                     //that.node.show();
                 } else {
-                    that.node.hide();
+                    that.doHide();
                 }
             });
 
@@ -85,15 +94,21 @@ Humble( function () {
 
         doHover : function (key) {
 
+            if (key == this.key) return;
+
             var model = this.model,
+                spending = this.spending,
                 total = model.get(key, 'amounti'),
                 taxes = model.get(key, 'mycosti'),
                 dimensions = Humble.Config.DVZ.budget.dimensions;
 
             this.node.show();
+
             this.titleNode.html(dimensions[key].name);
             this.totalNode.html('Budget: '+this.model.format.currency(total, true));
             this.taxesNode.html('My Tax: '+this.model.format.currency(taxes));
+
+            this.spending.update(key);
 
             this.key = key;
         },
@@ -101,8 +116,17 @@ Humble( function () {
         doHide : function () {
             this.node.hide();
             this.key = null;
-        }
+        },
 
+        _getSpendingHTML : function () {
+
+            var html = '';
+
+
+
+
+            return html;
+        }
     }
 
     Humble.Dimension = Dimension;

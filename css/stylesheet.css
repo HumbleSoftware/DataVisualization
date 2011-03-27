@@ -46,6 +46,7 @@ body {
 .humble-dvc-visual-title,
 .humble-dvc-subfunction-title,
 .humble-dvc-subfunction-back,
+.humble-dvc-dimension-title,
 .humble-dvc-sliders-taxes {
     font : 18px 'Droid Sans Mono', arial, sans-serif;
     letter-spacing : -2px;
@@ -179,13 +180,55 @@ body {
 
 .humble-dvc-dimension {
     z-index : 1000;
-    background : #ffffff;
-    min-width : 160px;
-    height : 50px;
+    background : #eee;
+    min-width : 200px;
     padding : 8px;
     position : absolute;
     border-radius : 4px;
 }
+.humble-dvc-dimension-title {
+    font-size : 14px;
+    margin-bottom : 5px;
+}
+.humble-dvc-dimension-taxes {
+}
+.humble-dvc-dimension-total {
+}
+.humble-dvc-dimension-spending {
+}
+.humble-dvc-dimension .humble-dvc-spending {
+    width : 220px;
+    position : relative;
+}
+.humble-dvc-dimension .humble-dvc-spending-pie {
+    height : 90px;
+    width : 90px;
+    position : absolute;
+    right : 0px;
+    bottom : 0px;
+}
+.humble-dvc-dimension .humble-dvc-spending-legend {
+    font-size : 10px;
+    position : relative;
+}
+.humble-dvc-dimension .humble-dvc-spending-legend {
+
+}
+.humble-dvc-dimension .humble-dvc-spending-legend-block {
+    position : absolute;
+    margin-top : 4px;
+    height : 10px;
+    width : 10px;
+    border : 1px solid #000;
+}
+.humble-dvc-dimension .humble-dvc-spending-legend-label {
+    padding-left : 14px;
+}
+
+
+
+
+
 
 .humble-dvc-subfunction {
     position : relative;
