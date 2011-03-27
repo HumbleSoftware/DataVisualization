@@ -19,6 +19,34 @@ Humble.Config.DVZ.budgetAccount = {
     }
 };
 
+var Color = [
+
+    '#8c1c1c',
+    '#d92b2b',
+    '#d9adad',
+
+    '#d9d9ad',
+    '#d9d92b',
+    '#8c8c1c',
+
+    '#1c8c1c',
+    '#2bd92b',
+    '#aed9ae',
+
+    '#add9d9',
+    '#2bd9d9',
+    '#1c8c8c',
+
+    '#1c1c8c',
+    '#2b2bd9',
+    '#adadd9',
+
+    '#d9adca',
+    '#d92b9f',
+    '#8c1c67'
+];
+
+/*
 var Color  = new Array(
     '#ff0049', //strawberry
     '#fd7100', //red-orange
@@ -30,6 +58,7 @@ var Color  = new Array(
     '#b537b6', //purple
     '#e92192'  //fuschia
 );
+*/
 
 Humble.Config.DVZ.spendingColors = {
     deficit : '#dd1111',
@@ -92,39 +121,39 @@ Humble.Config.DVZ.budget = {
         },
         _2781 : {
             name  : "Health",
-            color : Color[0]
+            color : Color[9]
         },
         _2782 : {
             name  : "Medicare",
-            color : Color[1]
+            color : Color[10]
         },
         _2783 : {
             name  : "Income Security",
-            color : Color[2]
+            color : Color[11]
         },
         _2784 : {
             name  : "Social Security",
-            color : Color[3]
+            color : Color[12]
         },
         _2785 : {
             name  : "Veterans Benefits and Services",
-            color : Color[4]
+            color : Color[13]
         },
         _2786 : {
             name  : "Administration of Justice",
-            color : Color[5]
+            color : Color[14]
         },
         _2787 : {
             name  : "General Government",
-            color : Color[6]
+            color : Color[15]
         },
         _2788 : {
             name  : "Net Interest",
-            color : Color[7]
+            color : Color[16]
         },
         _2789 : {
             name  : "Allowances",
-            color : Color[8]
+            color : Color[17]
         }
 //        _2790 : {
 //            name  : "Undistributed Offsetting Receipts",
