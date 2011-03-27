@@ -94,7 +94,7 @@ Humble( function () {
                 data  = [];
 
             var x0 = x = 2.5,
-                y = 2,
+                y = 2.5,
                 width = 18,
                 height = 18,
                 totalWidth = this.paper.width,
@@ -125,6 +125,7 @@ Humble( function () {
 
                 for (i = 0; i < pieces; i++) {
                     var r = paper.rect(x, y, width, height);
+                    console.log(x);
                     set.push(r);
                     set.x = x;
                     set.y = y;
@@ -140,11 +141,11 @@ Humble( function () {
                         x += width + padding;
                     }
                 }
-		
+    	
 
-                // Makes half of the dimensions opaque; need desaturating->hex function		
+                // Makes half of the dimensions opaque; need desaturating->hex function    	
                 var opacity = 1;
-		if(itemCount > 9 && itemCounter <= 9)	{
+                if(itemCount > 9 && itemCounter <= 9) {
                     opacity = .8;
                 }
 
@@ -152,6 +153,7 @@ Humble( function () {
                     'cursor' : 'pointer',
                     'fill' : dimensions[key].color,
                     'stroke' : '#333',
+                    'stroke-width' : '1px',
                     'fill-opacity' : opacity
                 });
 
