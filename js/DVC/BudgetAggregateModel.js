@@ -44,6 +44,11 @@ Humble( function () {
             Humble.Event.trigger('humble:dvc:modelUpdate');
         },
 
+        setData : function () {
+            Humble.Event.trigger('humble:dvc:modelRequest');
+            Humble.DVC.BudgetModel.prototype.setData.apply(this, arguments);
+        },
+
         requestData : function () {
             var data = Humble.DVC.BudgetModel.prototype.requestData.apply(this, arguments);
             data[GROUP]     = 'function';
