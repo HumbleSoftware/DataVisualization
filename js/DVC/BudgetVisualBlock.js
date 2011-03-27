@@ -280,12 +280,15 @@ Humble( function () {
 
                 this.cancel = false;
                 var cancel = this.cancel;
+
+                var xa = set.x, ya = set.y, paritya = set.parity;
+
                 oldSet.animate({
                     scale : 0
                 }, 250, function () {
                     oldSet.remove();
                     if (!cancel) {
-                        that._movePieces(set.x, set.y, set.parity, updateKey, true);
+                        that._movePieces(xa, ya, paritya, updateKey, true);
                     }
                 });
             } else if (pieces > length) {
@@ -369,6 +372,7 @@ Humble( function () {
                         });
                         set.x = x;
                         set.y = y;
+                        set.parity = parity;
                     }
                 }
                 if (key == startKey) {
