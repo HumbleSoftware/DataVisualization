@@ -209,29 +209,57 @@ Humble( function () {
         /**
          * Slider Value
          *
-         * Slider goes from 0 to 100
+         * Slider goes from 0 to 1000
          */
-        _translate : function (value) {
+        _translate : function (payment) {
 
-            if (value < 1) return 0;
-
-            var income = 50000;
-            
-            value = Math.log(value)/Math.log(income)
-            value = value * 1000;
-
+            var value,
+                maxValue,
+                income = 50000;
+                           
+            value = this.normalize(payment, income);
+            maxValue = this.normalize(income, income);
+            value = (value / maxValue) * 1000;
             return value;
         },
 
         translateB : function (value) {
 
-            var income = 50000;
+            var payment,
+                income = 50000,
+                
+            payment = value / 1000;
+            payment = payment * this.normalize(income,income);
+            payment = this.inverseNormalize(payment,income);
+            payment = Math.round(payment*100)/100;
+            return payment;    
+        },
+        
+        normalize : function(value,max) {
 
-            value = value / 1000;
-            value = Math.exp(value * Math.log(50000));
-            value = Math.round(value*100)/100;
-            return value;
+            var lowEnd = Math.PI * -0.25,
+                highEnd = 30 * Math.PI,
+                range = highEnd - lowEnd,
+                normalized;
+                
+            normalized = ((value/max)*range) + lowEnd;
+            normalized = Math.atan(normalized);
+            normalized = normalized - (Math.atan(lowEnd));
+            return normalized;
+        },
+        
+        inverseNormalize : function(value,max)  {
+       
+            var lowEnd = Math.PI * -0.25,
+                highEnd = 30 * Math.PI,
+                range = highEnd - lowEnd,
+                inverted;
+
+            inverted = Math.tan(value + Math.atan(lowEnd));            
+            inverted = ((inverted - lowEnd) / range) * max;
+            return inverted;
         }
+         
     }
 
     Humble.Sliders = Sliders;
