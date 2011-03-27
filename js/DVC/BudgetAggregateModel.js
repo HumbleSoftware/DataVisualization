@@ -14,7 +14,8 @@ Humble( function () {
         YEAR        = 'year';
 
     // Other Constants
-    var INCOME_TAX_RECEIPT = 935771000000;
+    var INCOME_TAX_RECEIPT  = 935771000000,
+        TOTAL_RECEIPTS      = 2165119000000;
 
     // Constructor
     var BudgetAggregateModel = function (options) {
@@ -36,6 +37,8 @@ Humble( function () {
 
             this.ratio = this._getRatio(); 
             this._getIncomeTaxReceiptRatio();
+            this._getDeficitRatio();
+            this._getOtherTaxesRatio();
             this.itemsCache = this._getItems(this.xmlDoc);
 
             Humble.Event.trigger('humble:dvc:modelUpdate');
@@ -87,8 +90,45 @@ Humble( function () {
         _getIncomeTaxReceiptRatio : function () {
             var ratio = INCOME_TAX_RECEIPT / this.getTotalSpending();
             this._incomeTaxReceiptRatio = ratio;
-        }
+        },
 
+        getOtherTaxesRatio : function () {
+            return this._otherTaxesRatio;
+        },
+
+        _getOtherTaxesRatio : function () {
+            var ratio = (TOTAL_RECEIPTS - INCOME_TAX_RECEIPT) / this.getTotalSpending();
+            this._otherTaxesRatio = ratio;
+        },
+
+        getDeficitRatio : function (key) {
+            return this._deficitRatio;
+        },
+
+        _getDeficitRatio : function () {
+            var ratio = 1 - TOTAL_RECEIPTS / this.getTotalSpending();
+            this._deficitRatio = ratio;
+        },
+
+        getDeficitSpending : function (key) {
+
+            var item        = this.itemsCache[key],
+                amount0     = item['amounti'],
+                ratio       = this.getDeficitRatio(),
+                spending    = ratio * amount0;
+
+            return spending;
+        },
+
+        getOtherTaxSpending : function (key) {
+
+            var item        = this.itemsCache[key],
+                amount0     = item['amounti'],
+                ratio       = this.getOtherTaxesRatio(),
+                spending    = ratio * amount0;
+
+            return spending;
+        }
     };
 
     Humble.Class.extend(BudgetAggregateModel, Humble.DVC.BudgetModel);
