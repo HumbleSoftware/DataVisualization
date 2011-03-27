@@ -22,8 +22,9 @@ body {
     box-shadow : 0px 0px 18px 0px #222;/*, -5px 0px 8px #444;*/
 }
 
-.humble-dvc-application {
-    background : #babdbf;
+.humble-dvc-application,
+.humble-dvc-sliders-loading {
+    background-color : #babdbf;
 }
 
 .humble-dvc-application a {
@@ -97,6 +98,17 @@ body {
     position : absolute;
     right : 0px;
     top : 0px;
+}
+.humble-dvc-sliders-container {
+    position : relative;
+}
+.humble-dvc-sliders-loading {
+    background : #babdbf url('../images/ajax-loader.gif') center 150px no-repeat;
+    position : absolute;
+    opacity : .8;
+    z-index : 10;
+    top : 0px;
+    right : 0px;
 }
 .humble-dvc-sliders .humble-dvc-slider {
     margin-bottom : 8px;

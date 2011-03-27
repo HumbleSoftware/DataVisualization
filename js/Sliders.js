@@ -8,7 +8,9 @@ Humble( function () {
     // Sliders constants
     var C_SLIDERS       = 'humble-dvc-sliders',
         T_SLIDERS_TITLE = '<div class="'+C_SLIDERS+'-title">My Taxes:</div>',
+        T_LOADING       = '<div class="'+C_SLIDERS+'-loading"></div>',
         T_SLIDERS       = '<div class="'+C_SLIDERS+'"></div>',
+        T_CONTAINER     = '<div class="'+C_SLIDERS+'-container"></div>',
         T_TAXES         = '<div class="'+C_SLIDERS+'-taxes"></div>';
 
     // Slider constants
@@ -39,20 +41,30 @@ Humble( function () {
                 sliders     = {},
                 node        = this.node,
                 taxes       = $(T_TAXES),
-                title       = $(T_SLIDERS_TITLE);
+                title       = $(T_SLIDERS_TITLE),
+                container   = $(T_CONTAINER),
+                loading     = $(T_LOADING);
+
+            loading.hide();
 
             node.append(title);
             node.append(taxes);
+            node.append(container);
+            container.append(loading);
 
             _.each(dimensions, function (dimension, key) {
                 var slider = this._renderSlider(dimension);
-                node.append(slider);
+                container.append(slider);
                 slider.data('key', key);
                 sliders[key] = slider;
             }, this);
 
             this._sliders = sliders;
             this._taxes   = taxes;
+            this._loading = loading;
+
+            loading.height(container.height());
+            loading.width(container.width()+12);
 
             this.bind();
         },
@@ -120,6 +132,9 @@ Humble( function () {
                     that.node.hide();
                 }
             });
+            Humble.Event.bind('humble:dvc:modelRequest', function (e) {
+                that.showLoading();
+            });
         },
 
         update : function (key) {
@@ -138,6 +153,8 @@ Humble( function () {
                 }, this);
             }
 
+            this.hideLoading();
+
             this.setTotal(total);
         },
 
@@ -154,6 +171,13 @@ Humble( function () {
         unHighlight : function (key) {
             var slider = this._sliders[key];
             slider.find('.'+C_SLIDER_LEGEND).removeClass('hover');
+        },
+
+        showLoading : function () {
+            this._loading.show();
+        },
+        hideLoading : function () {
+            this._loading.hide();
         },
 
         _onSlide : function (e, ui) {
