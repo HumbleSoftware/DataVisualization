@@ -31,6 +31,11 @@ var Color  = new Array(
     '#e92192'  //fuschia
 );
 
+Humble.Config.DVZ.spendingColors = {
+deficit : '#dd1111',
+income  : '#ffffff',
+other   : '#111111'
+}
 Humble.Config.DVZ.budget = {
     name : 'getBudget',
     fields : {
