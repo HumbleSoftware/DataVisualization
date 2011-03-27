@@ -58,7 +58,6 @@ Humble( function () {
                 if (hover) {
                     that.highlight(key);
                 } else {
-                    console.log(that);
                     if (that.doNotHoverHide) {
                         that.doNotHoverHide = false;
                     } else {
@@ -125,7 +124,6 @@ Humble( function () {
 
                 for (i = 0; i < pieces; i++) {
                     var r = paper.rect(x, y, width, height);
-                    console.log(x);
                     set.push(r);
                     set.x = x;
                     set.y = y;
@@ -144,17 +142,19 @@ Humble( function () {
     	
 
                 // Makes half of the dimensions opaque; need desaturating->hex function    	
+                /*
                 var opacity = 1;
                 if(itemCount > 9 && itemCounter <= 9) {
                     opacity = .8;
                 }
+                */
 
                 set.attr({
                     'cursor' : 'pointer',
                     'fill' : dimensions[key].color,
                     'stroke' : '#333',
-                    'stroke-width' : '1px',
-                    'fill-opacity' : opacity
+                    'stroke-width' : '1px'
+                 //   'fill-opacity' : opacity
                 });
 
                 $(set).css('cursor', 'pointer');
@@ -347,25 +347,48 @@ Humble( function () {
 
         highlight : function (key) {
 
-            var set = this.sets[key];
+            var set = this.sets[key],
+                deficitSpending = this.model.getDeficitSpending(key),
+                otherSpending = this.model.getOtherTaxSpending(key),
+                deficitBlocks = this.translate(deficitSpending),
+                otherBlocks = this.translate(otherSpending),
+                i = 0;
 
             this.scroll(key);
 
             set.stop();
             set.attr({
-                'stroke-opacity' : 0
+                'stroke' : 'none'
             });
-            set.attr({scale : [1.25, 1.25]});//, 250);
 
-            if (set.length > 20) {
-                set.attr({fill: '#fff'});
+            set.attr({scale : [1.25, 1.25]});
+
+            // Apply spending type colors
+            for (i; i < deficitBlocks && i < set.length; i++) { 
+                set[i].attr({
+                    fill : '#dd1111'
+                });
+            }
+            for (i; i < (otherBlocks + deficitBlocks) && i < set.length; i++) { 
+                set[i].attr({
+                    fill : '#111'
+                });
+            }
+            for (i; i < set.length; i++) {
+                set[i].attr({
+                    fill : '#fff'
+                });
             }
         },
 
         unHighlight : function (key) {
-            var set = this.sets[key];
+
+            var set = this.sets[key],
+                dimensions = Humble.Config.DVZ.budget.dimensions;
+
             set.stop();
             set.animate({
+                'fill' : dimensions[key].color,
                 'stroke' : '#333',
                 'stroke-opacity' : 1,
                 'stroke-width' : '1px',
@@ -380,6 +403,11 @@ Humble( function () {
 
             this.canvas.stop();
             this.canvas.animate({'scrollTop' : y});
+        },
+
+        translate : function (value) {
+            var blocks = Math.floor(value / this.unit);
+            return blocks;
         },
 
         update : function (key) {
