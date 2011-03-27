@@ -93,7 +93,7 @@ Humble( function () {
                 dimensions = Humble.Config.DVZ.budget.dimensions,
                 data  = [];
 
-            var x0 = x = 2,
+            var x0 = x = 2.5,
                 y = 2,
                 width = 18,
                 height = 18,
@@ -152,7 +152,6 @@ Humble( function () {
                     'cursor' : 'pointer',
                     'fill' : dimensions[key].color,
                     'stroke' : '#333',
-                    'stroke-width' : '1px',
                     'fill-opacity' : opacity
                 });
 
@@ -355,6 +354,10 @@ Humble( function () {
                 'stroke-opacity' : 0
             });
             set.attr({scale : [1.25, 1.25]});//, 250);
+
+            if (set.length > 20) {
+                set.attr({fill: '#fff'});
+            }
         },
 
         unHighlight : function (key) {
