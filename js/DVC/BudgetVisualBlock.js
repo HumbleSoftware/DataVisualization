@@ -347,7 +347,8 @@ Humble( function () {
 
         highlight : function (key) {
 
-            var set = this.sets[key],
+            var colors = Humble.Config.DVZ.spendingColors,
+                set = this.sets[key],
                 deficitSpending = this.model.getDeficitSpending(key),
                 otherSpending = this.model.getOtherTaxSpending(key),
                 deficitBlocks = this.translate(deficitSpending),
@@ -366,17 +367,17 @@ Humble( function () {
             // Apply spending type colors
             for (i; i < deficitBlocks && i < set.length; i++) { 
                 set[i].attr({
-                    fill : '#dd1111'
+                    fill : colors.deficit
                 });
             }
             for (i; i < (otherBlocks + deficitBlocks) && i < set.length; i++) { 
                 set[i].attr({
-                    fill : '#111'
+                    fill : colors.other
                 });
             }
             for (i; i < set.length; i++) {
                 set[i].attr({
-                    fill : '#fff'
+                    fill : colors.income
                 });
             }
         },
