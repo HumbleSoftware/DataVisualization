@@ -215,7 +215,7 @@ Humble( function () {
 
             var value,
                 maxValue,
-                income = 50000;
+                income = this.model.getData('income');
                            
             value = this.normalize(payment, income);
             maxValue = this.normalize(income, income);
@@ -226,7 +226,7 @@ Humble( function () {
         translateB : function (value) {
 
             var payment,
-                income = 50000,
+                income = this.model.getData('income');
                 
             payment = value / 1000;
             payment = payment * this.normalize(income,income);
