@@ -29,6 +29,7 @@ function Application (applicationNode) {
 
     // Build Objects
     var model       = new Humble.DVC.BudgetAggregateModel(modelOptions),
+        splash      = new Humble.DVC.Splash(node, model),
         controls    = new Humble.Controls(node, model),
         dimension   = new Humble.Dimension(node, model),
         sliders     = new Humble.Sliders(node, model),
