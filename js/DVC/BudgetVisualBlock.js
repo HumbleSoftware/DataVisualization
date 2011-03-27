@@ -53,16 +53,18 @@ Humble( function () {
         },
 
         bind : function () {
-            that = this;
+
+            var that = this;
+
             Humble.Event.bind('humble:dvc:dimensionHover', function (e, key, hover) {
+
                 if (hover) {
                     that.highlight(key);
+                } else 
+                if (that.doNotHoverHide) {
+                    that.doNotHoverHide = false;
                 } else {
-                    if (that.doNotHoverHide) {
-                        that.doNotHoverHide = false;
-                    } else {
-                        that.unHighlight(key);
-                    }
+                    that.unHighlight(key);
                 }
             });
             Humble.Event.bind('humble:dvc:dimensionDetail', function (e, key, show) {
@@ -102,6 +104,9 @@ Humble( function () {
                 unit = this.unit;
 
             var sets = {};
+
+            // Key for firing hover events
+            var tempKey = null;
 
             if (this.timeout) {
                 clearTimeout(this.timeout);
@@ -164,9 +169,15 @@ Humble( function () {
                 });
 
                 set.hover(function () {
-                    Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
-                }, function () {
-                    Humble.Event.trigger('humble:dvc:dimensionHover', [key, false]);
+                    if (tempKey === key) {
+                        return;
+                    } else {
+                        if (tempKey) {
+                            Humble.Event.trigger('humble:dvc:dimensionHover', [tempKey, false]);
+                        }
+                        Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
+                        tempKey = key;
+                    }
                 });
 
                 sets[key] = set;
@@ -179,7 +190,11 @@ Humble( function () {
 
             });
 
-        },
+            $(this.paper.canvas).hover(function () {}, function () {
+                Humble.Event.trigger('humble:dvc:dimensionHover', [tempKey, false]);
+                tempKey = null;
+            });
+    },
 
         updateSets : function (updateKey) {
 
