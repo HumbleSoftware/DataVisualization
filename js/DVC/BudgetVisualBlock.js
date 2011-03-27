@@ -174,15 +174,7 @@ Humble( function () {
                 });
 
                 set.hover(function () {
-                    if (tempKey === key) {
-                        return;
-                    } else {
-                        if (tempKey) {
-                            Humble.Event.trigger('humble:dvc:dimensionHover', [tempKey, false]);
-                        }
-                        Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
-                        tempKey = key;
-                    }
+                    that._setHover(key);
                 });
 
                 sets[key] = set;
@@ -196,9 +188,24 @@ Humble( function () {
             });
 
             $(this.paper.canvas).hover(function () {}, function () {
-                Humble.Event.trigger('humble:dvc:dimensionHover', [tempKey, false]);
-                tempKey = null;
+                if (that.tempKey) { 
+                    Humble.Event.trigger('humble:dvc:dimensionHover', [that.tempKey, false]);
+                    that.tempKey = null;
+                }
             });
+        },
+
+        _setHover : function (key) {
+
+            if (this.tempKey === key) {
+                return;
+            } else {
+                if (this.tempKey) {
+                    Humble.Event.trigger('humble:dvc:dimensionHover', [this.tempKey, false]);
+                }
+                Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
+                this.tempKey = key;
+            }
         },
 
         _calculateXY : function (x, y, parity) {
@@ -327,9 +334,7 @@ Humble( function () {
                         stroke : stroke
                     });
                     r.hover(function () {
-                        Humble.Event.trigger('humble:dvc:dimensionHover', [updateKey, true]);
-                    }, function () {
-                        Humble.Event.trigger('humble:dvc:dimensionHover', [updateKey, false]);
+                        that._setHover(updateKey);
                     });
                     r.animate({scale : 1}, 250);
                     set.push(r);
