@@ -317,6 +317,7 @@ body {
 
 
 .humble-dvc-subfunction {
+    padding : 0px 16px 16px 16px;
     margin-top : 48px;
     position : relative;
 }
@@ -325,9 +326,12 @@ body {
 }
 .humble-dvc-subfunction-back {
     position : absolute;
-    right : 0px;
+    right : 16px;
     top : 4px;
     font-size : 16px;
+}
+.humble-dvc-subfunction-accounts {
+overflow : hidden;
 }
 .humble-dvc-subfunction-account {
 float : left;
