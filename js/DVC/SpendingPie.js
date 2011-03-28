@@ -34,7 +34,6 @@ Humble( function () {
             // Do legend colors
             _.each(spendingColors, function (color, key) {
                 var c = '.'+C_SPENDING+'-'+key+' .'+C_SPENDING+'-legend-block';
-                console.log(c);
                 this.legendNode.find(c).css({'background' : color});
             }, this);
 
