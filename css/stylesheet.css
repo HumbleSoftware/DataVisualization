@@ -57,7 +57,9 @@ body {
 .humble-dvc-dimension-title,
 .humble-dvc-splash,
 .humble-dvc-subfunction-thead,
-.humble-dvc-sliders-taxes {
+.humble-dvc-sliders-taxes,
+.humble-dvc-subfunction-budget,
+.humble-dvc-subfunction-taxes {
     font : 18px 'Droid Sans Mono', arial, sans-serif;
     letter-spacing : -2px;
     font-weight : bold;
@@ -333,7 +335,7 @@ body {
 }
 .humble-dvc-subfunction-accounts {
     overflow : hidden;
-    clear : both;
+    margin-top : 40px;
 }
 .humble-dvc-subfunction-thead {
     font-size : 14px;
@@ -341,21 +343,39 @@ body {
     font-weight : bold;
     text-shadow : 1px 1px 0 #ccc;
 }
-.humble-dvc-subfunction-account {
+.humble-dvc-subfunction-thead .humble-dvc-subfunction-account,
+.humble-dvc-subfunction-thead .humble-dvc-subfunction-account-budget,
+.humble-dvc-subfunction-thead .humble-dvc-subfunction-tax{
+    padding-left: 0px;
+}
+
+.humble-dvc-subfunction-budget,
+.humble-dvc-subfunction-taxes {
+    font-size : 14px;
+    letter-spacing : 0px;
+    font-weight : bold;
+    text-shadow : 1px 1px 0 #ccc;
+}
+
+.humble-dvc-subfunction-accounts .humble-dvc-subfunction-account {
     float : left;
     width: 420px;
+    padding-left: 2px;
 }
-.humble-dvc-subfunction-budget {
+.humble-dvc-subfunction-accounts .humble-dvc-subfunction-account-budget {
     float : left;
     width: 100px;
+    padding-left: 2px;
 }
-.humble-dvc-subfunction-tax {
+.humble-dvc-subfunction-accounts .humble-dvc-subfunction-tax {
     float : left;
     width: 100px;
+    padding-left: 2px;
 }
 .humble-dvc-subfunction .humble-dvc-spending {
-    float : right;
-    position : relative;
+    position : absolute;
+    top : 28px;
+    left : 220px;
     width : 210px;
     margin-right: 10px;
     height : 100px;

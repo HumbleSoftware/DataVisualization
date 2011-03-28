@@ -7,6 +7,8 @@ Humble( function () {
         T_BUDGET_ACCOUNT = '<div class="'+C_BUDGET_ACCOUNT+'"></div>',
         T_BACK           = '<div class="'+C_BUDGET_ACCOUNT+'-back"><a>Go Back</a> ></div>',
         T_TITLE          = '<div class="'+C_BUDGET_ACCOUNT+'-title">Top Ten:</div>',
+        T_TAXES          = '<div class="'+C_BUDGET_ACCOUNT+'-taxes"></div>',
+        T_BUDGET         = '<div class="'+C_BUDGET_ACCOUNT+'-budget"></div>',
         T_ACCOUNTS       = '<div class="'+C_BUDGET_ACCOUNT+'-accounts"></div>',
         T_SPENDING       = '<div class="'+C_BUDGET_ACCOUNT+'-spending"></div>';
 
@@ -27,9 +29,18 @@ Humble( function () {
             this.accountsNode = $(T_ACCOUNTS);
             this.back = $(T_BACK);
             this.title = $(T_TITLE);
+            this.budget = $(T_BUDGET);
+            this.taxes = $(T_TAXES);
             var spending = $(T_SPENDING);
 
-            this.node.append(this.back, this.title, spending, this.accountsNode);
+            this.node.append(
+                this.back,
+                this.title,
+                this.budget,
+                this.taxes,
+                spending,
+                this.accountsNode
+            );
             this.node.hide();
 
             this.parentNode.append(this.node);
@@ -66,14 +77,19 @@ Humble( function () {
 
         showDimensionDetail : function (key) {
 
-            var id      = this.model.get(key, 'dimensionID'),
-                income  = this.model.getData('income'),
+            var model   = this.model,
+                id      = model.get(key, 'dimensionID'),
+                income  = model.getData('income'),
                 data    = {'function' : id, income : income},
-                title   = this.model.get(key, 'dimensionName');
+                title   = model.get(key, 'dimensionName');
+                budget  = model.get(key, 'amounti');
+                taxes   = model.get(key, 'mycosti');
 
             this.spending.update(key);
             this.dimension = key;
-            this.title.html(title+' Top 10:');
+            this.title.html(title);
+            this.budget.html('Budget: ' + (model.format.currency(budget, true)));
+            this.taxes.html('My Taxes: ' + (model.format.currency(taxes)));
             this.budgetAccountModel.setData(data);
             this.node.show();
         },
@@ -96,8 +112,8 @@ Humble( function () {
                 list;
 
             node = '<div class="'+C_BUDGET_ACCOUNT+'-thead">';
-            node += '<div class="humble-dvc-subfunction-account">Account:</div>',
-            node += '<div class="humble-dvc-subfunction-budget">Budget:</div>',
+            node += '<div class="humble-dvc-subfunction-account">Top 10 Accounts:</div>',
+            node += '<div class="humble-dvc-subfunction-account-budget">Budget:</div>',
             node += '<div class="humble-dvc-subfunction-tax">My Tax:</div>',
             node += '</div>';
 
@@ -132,7 +148,7 @@ Humble( function () {
 
             node = '<div>';
             node += '<div class="humble-dvc-subfunction-account">'+account['account']+'</div>';
-            node += '<div class="humble-dvc-subfunction-budget">'+this.model.format.currency(amounti, true)+'</div>';
+            node += '<div class="humble-dvc-subfunction-account-budget">'+this.model.format.currency(amounti, true)+'</div>';
             node += '<div class="humble-dvc-subfunction-tax">'+this.model.format.currency(mycosti)+'</div>';
             node += '</div>';
 
