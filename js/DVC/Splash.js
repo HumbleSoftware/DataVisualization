@@ -65,6 +65,7 @@ Humble( function () {
 
             var input = this.input,
                 value = input.attr('value'),
+                value = value.replace(',',''),
                 valid = ((value - 0) == value && value.length > 0);
 
             if (!valid) {
