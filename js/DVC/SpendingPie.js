@@ -5,6 +5,7 @@ Humble( function () {
 
     var C_SPENDING  = 'humble-dvc-spending',
         T_SPENDING  = '<div class="'+C_SPENDING+'"></div>',
+        T_TITLE     = '<div class="'+C_SPENDING+'-title">Spending:</div>',
         T_PIE       = '<div class="'+C_SPENDING+'-pie"></div>',
         T_LEGEND    = '<div class="'+C_SPENDING+'-legend"></div>';
 
@@ -26,6 +27,7 @@ Humble( function () {
 
             this.parentNode.append(node);
 
+            var title = $(T_TITLE);
             this.pieNode    = $(T_PIE);
             this.legendNode = $(T_LEGEND);
 
@@ -37,6 +39,7 @@ Humble( function () {
                 this.legendNode.find(c).css({'background' : color});
             }, this);
 
+            node.append(title);
             node.append(this.pieNode);
             node.append(this.legendNode);
         },
