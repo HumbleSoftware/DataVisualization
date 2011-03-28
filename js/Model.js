@@ -50,7 +50,7 @@ Humble( function () {
             item  = (key in items ? items[key] : false);
             value = (attribute && attribute in item ? item[attribute] : false);
 
-            return (value ? value : item);
+            return (value !== false ? value : item);
         },
 
         getURL : function () {
