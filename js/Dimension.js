@@ -86,7 +86,7 @@ Humble( function () {
 
                 that.node.css({
                     'top' : y,
-                    'left' : x,
+                    'left' : x
                 });
             });
 
