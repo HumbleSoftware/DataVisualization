@@ -238,6 +238,35 @@ Humble( function () {
             return {x : x, y : y, parity : parity};
         },
 
+        _calculateNewXY : function (x, y, parity, delta) {
+
+            var config      = this.config,
+                paper       = this.paper,
+                x0          = config.x,
+                width       = config.width,
+                height      = config.height,
+                padding     = config.padding,
+                totalWidth  = paper.width,
+                totalHeight = paper.height;
+
+            for (var i = 0; i < delta; i++) {
+
+                if ((parity === -1 && (x + width + padding + width) > totalWidth) || 
+                    (parity === 1 && (x - width - padding) < 0)) {
+
+                    parity *= -1
+                    if (parity == -1) {
+                        x = x0;
+                    }
+                    y -= (height + padding);
+                } else {
+                    x -= (width + padding) * parity;
+                }
+            }
+
+            return {x : x, y : y, parity : parity};
+        },
+
         updateSets : function (updateKey) {
 
             var model = this.model,
@@ -271,19 +300,15 @@ Humble( function () {
                 delta = length - pieces;
 
                 var oldSet = paper.set();
-
                 for (var i = 0; i < delta; i++) {
-
                     r = set.pop();
                     oldSet.push(r);
                 }
 
-                var newEnd = set[(set.length-1)];
-                if (Math.abs(set.y - newEnd.attr('y')) > 0.5) {
-                    set.parity = set.parity * -1;
-                }
-                set.x = newEnd.attr('x');
-                set.y = newEnd.attr('y');
+                var newEndXY = this._calculateNewXY(set.x, set.y, set.parity, delta);
+                set.x = newEndXY.x,
+                set.y = newEndXY.y,
+                set.parity = newEndXY.parity;
 
                 this.cancel = false;
                 var cancel = this.cancel;
@@ -449,7 +474,7 @@ Humble( function () {
         },
 
         translate : function (value) {
-            var blocks = Math.floor(value / this.unit);
+            var blocks = Math.round(value / this.unit);
             return blocks;
         },
 
