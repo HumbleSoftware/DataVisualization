@@ -21,29 +21,29 @@ Humble.Config.DVZ.budgetAccount = {
 
 var Color = [
 
-    '#8c1c1c',
-    '#d92b2b',
-    '#d9adad',
+    '#f74e7f',
+    '#ff0049',
+    '#a53455',
 
-    '#d9d9ad',
-    '#d9d92b',
-    '#8c8c1c',
+    '#ff6238',
+    '#fe4817',
+    '#ba3815',
 
-    '#1c8c1c',
-    '#2bd92b',
-    '#aed9ae',
+    '#cebe0e',
+    '#feeb17',
+    '#faec53',
 
-    '#add9d9',
-    '#2bd9d9',
-    '#1c8c8c',
+    '#2db408',
+    '#43ff10',
+    '#81ff5f',
 
-    '#1c1c8c',
-    '#2b2bd9',
-    '#adadd9',
+    '#0755fb',
+    '#0f79fd',
+    '#569ffa',
 
-    '#d9adca',
-    '#d92b9f',
-    '#8c1c67'
+    '#8f09a7',
+    '#d80ffc',
+    '#e35dfb'
 ];
 
 /*
@@ -61,9 +61,9 @@ var Color  = new Array(
 */
 
 Humble.Config.DVZ.spendingColors = {
-    deficit : '#d92b2b',
-    other   : '#2bd92b',
-    income  : '#222222'
+    deficit : '#333333',
+    other   : '#777777',
+    income  : '#eeeeee'
 };
 Humble.Config.DVZ.budget = {
     name : 'getBudget',
