@@ -449,7 +449,7 @@ Humble( function () {
         },
 
         translate : function (value) {
-            var blocks = Math.floor(value / this.unit);
+            var blocks = Math.round(value / this.unit);
             return blocks;
         },
 
