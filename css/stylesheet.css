@@ -121,6 +121,7 @@ body {
     border-bottom: 1px solid #cfcfcf;
     padding : 10px 8px;
     margin : 18px 0px 24px 0px;
+    position : relative;
 }
 .humble-dvc-controls label {
     -webkit-user-select: none;
@@ -133,15 +134,26 @@ body {
     cursor : pointer;
     vertical-align : middle;
 }
-#humble-dvc-controls-filing,
-#humble-dvc-controls-income,
-#humble-dvc-controls-self {
-    margin : 0px 18px 0px 4px;
+.humble-dvc-controls-filing {
+    text-align: center;
+    padding-left : 120px;
+}
+.humble-dvc-controls-income {
+    position : absolute;
+    left : 6px;
+}
+.humble-dvc-controls-self {
+    position : absolute;
+    top : 12px;
+    right : 6px;
+}
+.humble-dvc-controls-self input {
+    margin-top : -2px;
 }
 #humble-dvc-controls-reset {
     position : absolute;
-    top : 186px;
-    right : 36px;
+    top : 92px;
+    right : 22px;
     font-size : 10px;
     z-index : 100;
 }
