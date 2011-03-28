@@ -31,7 +31,7 @@ var Color = [
 
     '#cebe0e',
     '#feeb17',
-    '#faec53',
+    '#f8ed77',
 
     '#2db408',
     '#43ff10',
