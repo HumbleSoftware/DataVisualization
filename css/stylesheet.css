@@ -190,7 +190,7 @@ body {
     left : 1px;
     height : 12px;
     width : 12px;
-    border : 2px solid #ffffff;
+    border : 1px solid #222;
     cursor : pointer;
 }
 .humble-dvc-sliders .humble-dvc-slider-legend.hover {
@@ -255,6 +255,7 @@ body {
     padding : 8px;
     position : absolute;
     border-radius : 4px;
+    border : 1px solid #787a7b;
 }
 .humble-dvc-dimension-title {
     font-size : 14px;
