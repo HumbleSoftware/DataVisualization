@@ -116,16 +116,6 @@ Humble( function () {
         doHide : function () {
             this.node.hide();
             this.key = null;
-        },
-
-        _getSpendingHTML : function () {
-
-            var html = '';
-
-
-
-
-            return html;
         }
     }
 
