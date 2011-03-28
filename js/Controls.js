@@ -80,9 +80,12 @@ Humble( function () {
 
             // Income
             this._income.change(function (e, ui) { 
-                that.model.setData({
-                    income : e.target.value
-                });
+                that._doIncome();
+            });
+            this._income.keypress(function (e) {
+                if (e.keyCode == 13) {
+                    that._doIncome();
+                }
             });
 
             // Filing
@@ -107,6 +110,23 @@ Humble( function () {
                     that.node.hide();
                 }
             });
+        },
+
+        _doIncome : function () {
+
+            var input = this._income,
+                value = input.attr('value'),
+                value = value.replace(',',''),
+                valid = ((value - 0) == value && value.length > 0);
+
+            if (!valid) {
+                input.css({'backgroundColor' : '#ffaaaa'});
+                input.animate({'backgroundColor' : '#ffffff'},1000);
+            } else {
+                this.model.setData({
+                    income : value
+                });
+            }
         },
 
         update : function () {
