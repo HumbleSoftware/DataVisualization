@@ -159,13 +159,14 @@ Humble( function () {
         },
 
         setTotal : function (total) {
-            rawTotal = total;
+            //rawTotal = total;
             total = this.model.format.currency(total, true);
+            /*
             if(rawTotal > this.model.getData('income'))
                 this._taxes.css({'color' : '#ff0049'});
             else
                 this._taxes.css({'color' : '#111122'});
-            console.log(total);
+            */
             this._taxes.html(total);
         },
 
