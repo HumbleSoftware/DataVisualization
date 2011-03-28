@@ -139,7 +139,11 @@ body {
     margin : 0px 18px 0px 4px;
 }
 #humble-dvc-controls-reset {
-    float : right;
+    position : absolute;
+    top : 186px;
+    right : 36px;
+    font-size : 10px;
+    z-index : 100;
 }
 
 
@@ -302,6 +306,7 @@ body {
 
 
 .humble-dvc-subfunction {
+    margin-top : 48px;
     position : relative;
 }
 .humble-dvc-subfunction-title {
