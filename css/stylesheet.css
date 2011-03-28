@@ -234,8 +234,8 @@ body {
 }
 .humble-dvc-visual-budget {
     position : absolute;
-    top: 0px;
-    right: 28px;
+    top : 0px;
+    left : 195px;
 }
 .humble-dvc-visual-legend-value {
     display : inline;
