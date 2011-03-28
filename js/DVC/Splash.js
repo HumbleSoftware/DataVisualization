@@ -65,11 +65,12 @@ Humble( function () {
 
             var input = this.input,
                 value = input.attr('value'),
+                value = value.replace(',',''),
                 valid = ((value - 0) == value && value.length > 0);
 
             if (!valid) {
                 input.css({'backgroundColor' : '#ffaaaa'});
-                input.animate({'backgroundColor' : '#ffffff'});
+                input.animate({'backgroundColor' : '#ffffff'},1000);
             } else {
                 this.hide();
                 Humble.Event.trigger('humble:dvc:splash');
