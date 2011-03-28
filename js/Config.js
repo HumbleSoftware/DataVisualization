@@ -21,28 +21,28 @@ Humble.Config.DVZ.budgetAccount = {
 
 var Color = [
 
-    '#f74e7f',
     '#ff0049',
     '#a53455',
+    '#f74e7f',
 
-    '#ff6238',
-    '#fe4817',
-    '#ba3815',
+    '#fe7919',
+    '#c65a0a',
+    '#fea05c',
 
-    '#cebe0e',
     '#feeb17',
+    '#cebe0e',
     '#f8ed77',
 
-    '#2db408',
     '#43ff10',
-    '#81ff5f',
+    '#2db408',
+    '#8cfd6d',
 
-    '#0755fb',
     '#0f79fd',
-    '#569ffa',
-
-    '#8f09a7',
+    '#0755fb',
+    '#8ebbff',
+    
     '#d80ffc',
+    '#8f09a7',
     '#e35dfb'
 ];
 
