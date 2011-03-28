@@ -73,7 +73,7 @@ Humble( function () {
             } else {
                 this.hide();
                 Humble.Event.trigger('humble:dvc:splash');
-                this.model.setData('income', value);
+                this.model.setData({'income' : value});
             }
         },
 
