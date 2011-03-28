@@ -10,6 +10,7 @@ Humble( function () {
         T_TAXES          = '<div class="'+C_BUDGET_ACCOUNT+'-taxes"></div>',
         T_BUDGET         = '<div class="'+C_BUDGET_ACCOUNT+'-budget"></div>',
         T_ACCOUNTS       = '<div class="'+C_BUDGET_ACCOUNT+'-accounts"></div>',
+        T_BUDGETPIE      = '<div class="'+C_BUDGET_ACCOUNT+'-budgetpie"></div>',
         T_SPENDING       = '<div class="'+C_BUDGET_ACCOUNT+'-spending"></div>';
 
     var BudgetAccount = function (node, model) {
@@ -31,7 +32,8 @@ Humble( function () {
             this.title = $(T_TITLE);
             this.budget = $(T_BUDGET);
             this.taxes = $(T_TAXES);
-            var spending = $(T_SPENDING);
+            var spending = $(T_SPENDING),
+                budgetpie = $(T_BUDGETPIE);
 
             this.node.append(
                 this.back,
@@ -39,6 +41,7 @@ Humble( function () {
                 this.budget,
                 this.taxes,
                 spending,
+                budgetpie,
                 this.accountsNode
             );
             this.node.hide();
@@ -48,6 +51,12 @@ Humble( function () {
             // Spending sub widget
             this.spending = new Humble.DVC.Spending(
                 spending,
+                this.model
+            );
+
+            // Budget
+            this.budgetpie = new Humble.DVC.BudgetPie(
+                budgetpie,
                 this.model
             );
 
@@ -86,6 +95,7 @@ Humble( function () {
                 taxes   = model.get(key, 'mycosti');
 
             this.spending.update(key);
+            this.budgetpie.update(key);
             this.dimension = key;
             this.title.html(title);
             this.budget.html('Budget: ' + (model.format.currency(budget, true)));

@@ -59,6 +59,8 @@ body {
 .humble-dvc-subfunction-thead,
 .humble-dvc-sliders-taxes,
 .humble-dvc-subfunction-budget,
+.humble-dvc-subfunction .humble-dvc-spending-title,
+.humble-dvc-subfunction .humble-dvc-budgetpie-title,
 .humble-dvc-subfunction-taxes {
     font : 18px 'Droid Sans Mono', arial, sans-serif;
     letter-spacing : -2px;
@@ -289,6 +291,9 @@ body {
     width : 220px;
     position : relative;
 }
+.humble-dvc-dimension .humble-dvc-spending-title {
+    display : none;
+}
 .humble-dvc-dimension .humble-dvc-spending-pie {
     height : 90px;
     width : 90px;
@@ -335,7 +340,7 @@ body {
 }
 .humble-dvc-subfunction-accounts {
     overflow : hidden;
-    margin-top : 40px;
+    margin-top : 78px;
 }
 .humble-dvc-subfunction-thead {
     font-size : 14px;
@@ -343,14 +348,11 @@ body {
     font-weight : bold;
     text-shadow : 1px 1px 0 #ccc;
 }
-.humble-dvc-subfunction-thead .humble-dvc-subfunction-account,
-.humble-dvc-subfunction-thead .humble-dvc-subfunction-account-budget,
-.humble-dvc-subfunction-thead .humble-dvc-subfunction-tax{
-    padding-left: 0px;
-}
 
 .humble-dvc-subfunction-budget,
-.humble-dvc-subfunction-taxes {
+.humble-dvc-subfunction-taxes,
+.humble-dvc-subfunction .humble-dvc-spending-title,
+.humble-dvc-subfunction .humble-dvc-budgetpie-title {
     font-size : 14px;
     letter-spacing : 0px;
     font-weight : bold;
@@ -372,36 +374,63 @@ body {
     width: 100px;
     padding-left: 2px;
 }
+.humble-dvc-subfunction-thead .humble-dvc-subfunction-account,
+.humble-dvc-subfunction-thead .humble-dvc-subfunction-account-budget,
+.humble-dvc-subfunction-thead .humble-dvc-subfunction-tax {
+    padding-left: 0px;
+}
 .humble-dvc-subfunction .humble-dvc-spending {
     position : absolute;
-    top : 28px;
+    top : 44px;
     left : 220px;
     width : 210px;
     margin-right: 10px;
-    height : 100px;
+    height : 140px;
 }
-.humble-dvc-subfunction .humble-dvc-spending-pie {
+.humble-dvc-budgetpie {
+    position : absolute;
+    top : 44px;
+    left : 460px;
+    width : 280px;
+    margin-right: 10px;
+    height : 140px;
+}
+.humble-dvc-subfunction .humble-dvc-spending-title,
+.humble-dvc-subfunction .humble-dvc-budgetpie-title {
+    padding-left : 8px;
+}
+.humble-dvc-subfunction .humble-dvc-spending-pie, 
+.humble-dvc-subfunction .humble-dvc-budgetpie-pie {
     width : 80px;
     height : 80px;
     position : absolute;
-    top : 0px;
+    top : 20px;
     left : 0px;
 }
-.humble-dvc-subfunction .humble-dvc-spending-legend {
+.humble-dvc-subfunction .humble-dvc-spending-legend,
+.humble-dvc-subfunction .humble-dvc-budgetpie-legend {
     position : absolute;
-    top : 8px;
+    top : 28px;
     right : 10px;
 }
-.humble-dvc-subfunction .humble-dvc-spending-legend-block {
+.humble-dvc-subfunction .humble-dvc-spending-legend-block,
+.humble-dvc-subfunction .humble-dvc-budgetpie-legend-block {
     position : absolute;
     margin-top : 1px;
     height : 14px;
     width : 14px;
     border : 1px solid #000;
 }
-.humble-dvc-subfunction .humble-dvc-spending-legend-label {
+.humble-dvc-subfunction .humble-dvc-spending-legend-label,
+.humble-dvc-subfunction .humble-dvc-budgetpie-legend-label {
     padding-left : 20px;
     height : 24px;
+}
+.humble-dvc-subfunction .humble-dvc-budgetpie-legend-label {
+width : 162px;
+    white-space : nowrap;
+    overflow : hidden;
+    text-overflow : ellipsis;
 }
 
 
