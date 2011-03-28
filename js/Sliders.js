@@ -101,6 +101,7 @@ Humble( function () {
 
             // Slide Event
             this.node.delegate('.'+C_SLIDER, 'slide', {sliders : this}, this._onSlide);
+            this.node.delegate('.'+C_SLIDER, 'slidestop', {sliders : this}, this._onSlide);
 
             // Mouse Over
             this.node.delegate('.'+C_SLIDER_LEGEND, 'mouseover', function (e, ui) {
@@ -163,6 +164,16 @@ Humble( function () {
             this._taxes.html(total);
         },
 
+        pingTotal : function () {
+
+            var taxes = this._taxes,
+                color = '#112';
+
+            taxes.stop();
+            taxes.css({'color' : '#ffaaaa'});
+            taxes.animate({'color' : color},1000);
+        },
+
         highlight : function (key) {
             var slider = this._sliders[key];
             slider.find('.'+C_SLIDER_LEGEND).addClass('hover');
@@ -183,9 +194,20 @@ Humble( function () {
         _onSlide : function (e, ui) {
 
             var sliders = e.data.sliders,
+                model   = sliders.model,
                 key     = $(this).data('key'),
                 label   = $(this).find('.'+C_SLIDER+'-value'),
-                value   = sliders.translateB(ui.value);
+                widget  = $(this).find('.ui-slider'),
+                value   = sliders.translateB(ui.value),
+                old     = model.get(key, 'mycosti'),
+                total   = model.getTotalTaxes(),
+                income  = model.getData('income');
+
+            if (total - old + value > income) {
+                value = income - total + old;
+                widget.slider('option', 'value', sliders._translate(value));
+                sliders.pingTotal();
+            }
 
             sliders.model.set(key, 'mycosti', value);
         },
