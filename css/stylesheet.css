@@ -203,6 +203,7 @@ body {
     width : 260px;
     margin-left : 22px;
     height : 20px;
+    cursor : pointer;
 }
 .humble-dvc-sliders .humble-dvc-slider-legend {
     position : absolute;

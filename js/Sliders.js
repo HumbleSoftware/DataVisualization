@@ -16,10 +16,11 @@ Humble( function () {
     // Slider constants
     var C_SLIDER        = 'humble-dvc-slider',
         C_SLIDER_LEGEND = C_SLIDER+'-legend',
+        C_SLIDER_TITLE  = C_SLIDER+'-title',
         T_VALUE         = '<div class="'+C_SLIDER+'-value"></div>',
         T_LEGEND        = '<div class="'+C_SLIDER_LEGEND+'"></div>',
         T_SLIDER        = '<div class="'+C_SLIDER+'"></div>',
-        T_TITLE         = '<div class="'+C_SLIDER+'-title"></div>';
+        T_TITLE         = '<div class="'+C_SLIDER_TITLE+'"></div>';
 
     var Sliders = function (node, model, options) {
 
@@ -111,9 +112,20 @@ Humble( function () {
                 var key = $(this).closest('.'+C_SLIDER).data('key');
                 Humble.Event.trigger('humble:dvc:dimensionHover', [key, false]);
             });
+            this.node.delegate('.'+C_SLIDER_TITLE, 'mouseover', function (e, ui) {
+                var key = $(this).closest('.'+C_SLIDER).data('key');
+                Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
+            }).delegate('.'+C_SLIDER_TITLE, 'mouseout', function (e, ui) {
+                var key = $(this).closest('.'+C_SLIDER).data('key');
+                Humble.Event.trigger('humble:dvc:dimensionHover', [key, false]);
+            });
 
             // Click
             this.node.delegate('.'+C_SLIDER_LEGEND, 'click', function (e, ui) {
+                var key = $(this).closest('.'+C_SLIDER).data('key');
+                Humble.Event.trigger('humble:dvc:dimensionDetail', [key, true]);
+            });
+            this.node.delegate('.'+C_SLIDER_TITLE, 'click', function (e, ui) {
                 var key = $(this).closest('.'+C_SLIDER).data('key');
                 Humble.Event.trigger('humble:dvc:dimensionDetail', [key, true]);
             });
