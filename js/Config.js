@@ -63,7 +63,7 @@ var Color  = new Array(
 Humble.Config.DVZ.spendingColors = {
     deficit : '#333333',
     other   : '#777777',
-    income  : '#eeeeee'
+    income  : '#cccccc'
 };
 Humble.Config.DVZ.budget = {
     name : 'getBudget',

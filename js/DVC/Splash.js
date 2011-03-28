@@ -70,7 +70,7 @@ Humble( function () {
 
             if (!valid) {
                 input.css({'backgroundColor' : '#ffaaaa'});
-                input.animate({'backgroundColor' : '#ffffff'});
+                input.animate({'backgroundColor' : '#ffffff'},1000);
             } else {
                 this.hide();
                 Humble.Event.trigger('humble:dvc:splash');
