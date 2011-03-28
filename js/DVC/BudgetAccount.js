@@ -6,8 +6,9 @@ Humble( function () {
     var C_BUDGET_ACCOUNT = 'humble-dvc-subfunction',
         T_BUDGET_ACCOUNT = '<div class="'+C_BUDGET_ACCOUNT+'"></div>',
         T_BACK           = '<div class="'+C_BUDGET_ACCOUNT+'-back"><a>Go Back</a> ></div>',
-        T_TITLE          = '<div class="'+C_BUDGET_ACCOUNT+'-title">Top Ten:</div>';
-        T_ACCOUNTS       = '<div class="'+C_BUDGET_ACCOUNT+'-accounts"></div>';
+        T_TITLE          = '<div class="'+C_BUDGET_ACCOUNT+'-title">Top Ten:</div>',
+        T_ACCOUNTS       = '<div class="'+C_BUDGET_ACCOUNT+'-accounts"></div>',
+        T_SPENDING       = '<div class="'+C_BUDGET_ACCOUNT+'-spending"></div>';
 
     var BudgetAccount = function (node, model) {
 
@@ -26,11 +27,18 @@ Humble( function () {
             this.accountsNode = $(T_ACCOUNTS);
             this.back = $(T_BACK);
             this.title = $(T_TITLE);
+            var spending = $(T_SPENDING);
 
-            this.node.append(this.back, this.title, this.accountsNode);
+            this.node.append(this.back, this.title, spending, this.accountsNode);
             this.node.hide();
 
             this.parentNode.append(this.node);
+
+            // Spending sub widget
+            this.spending = new Humble.DVC.Spending(
+                spending,
+                this.model
+            );
 
             this.bind();
         },
@@ -63,6 +71,7 @@ Humble( function () {
                 data    = {'function' : id, income : income},
                 title   = this.model.get(key, 'dimensionName');
 
+            this.spending.update(key);
             this.dimension = key;
             this.title.html(title+' Top 10:');
             this.budgetAccountModel.setData(data);
@@ -86,7 +95,7 @@ Humble( function () {
                 node,
                 list;
 
-            node = '<div>';
+            node = '<div class="'+C_BUDGET_ACCOUNT+'-thead">';
             node += '<div class="humble-dvc-subfunction-account">Account:</div>',
             node += '<div class="humble-dvc-subfunction-budget">Budget:</div>',
             node += '<div class="humble-dvc-subfunction-tax">My Tax:</div>',
