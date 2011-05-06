@@ -23,7 +23,7 @@ Humble( function () {
         render : function () {
 
             var node = this.node,
-                spendingColors = Humble.Config.DVZ.spendingColors;
+                spendingColors = Humble.Config.DVC.spendingColors;
 
             this.colors = {
                 dimension : spendingColors.deficit,

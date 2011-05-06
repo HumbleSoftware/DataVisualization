@@ -10,7 +10,7 @@ function Application (applicationNode) {
 
     var overwriteColors = function () {
 
-        var dimensions = Humble.Config.DVZ.budget.dimensions,
+        var dimensions = Humble.Config.DVC.budget.dimensions,
             colors = ['4d','66','7c'];
 
         _.each(dimensions, function (dimension, key) {
@@ -23,7 +23,7 @@ function Application (applicationNode) {
 
     // Model Options
     var modelOptions = {
-        url : Humble.Config.DVZ.url+'getBudgetAggregate',
+        url : Humble.Config.DVC.url+'getBudgetAggregate',
         key : 'dimensionID'
     };
 

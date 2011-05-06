@@ -63,7 +63,7 @@ Humble( function () {
         bind : function () {
 
             var that = this,
-                dimensions = Humble.Config.DVZ.budget.dimensions;
+                dimensions = Humble.Config.DVC.budget.dimensions;
 
             Humble.Event.bind('humble:dvc:dimensionHover', function (e, key, hover) {
 
@@ -102,7 +102,7 @@ Humble( function () {
                 total = model.getTotalSpending(),
                 items = model.getItems(),
                 itemCount = model.getItemCount();
-                dimensions = Humble.Config.DVZ.budget.dimensions,
+                dimensions = Humble.Config.DVC.budget.dimensions,
                 data  = [];
 
             var x0 = x = config.x,
@@ -414,7 +414,7 @@ Humble( function () {
 
         highlight : function (key) {
 
-            var colors = Humble.Config.DVZ.spendingColors,
+            var colors = Humble.Config.DVC.spendingColors,
                 set = this.sets[key],
                 deficitSpending = this.model.getDeficitSpending(key),
                 otherSpending = this.model.getOtherTaxSpending(key),
@@ -452,7 +452,7 @@ Humble( function () {
         unHighlight : function (key) {
 
             var set = this.sets[key],
-                dimensions = Humble.Config.DVZ.budget.dimensions;
+                dimensions = Humble.Config.DVC.budget.dimensions;
 
             set.stop();
             set.animate({
@@ -504,7 +504,7 @@ Humble( function () {
                 model  = this.model,
                 paper  = this.paper,
                 items  = model.getItems(),
-                dimensions = Humble.Config.DVZ.budget.dimensions;
+                dimensions = Humble.Config.DVC.budget.dimensions;
 
             _.each(items, function (value, key) {
                 if (key in dimensions) {

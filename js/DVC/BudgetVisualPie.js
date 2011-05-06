@@ -59,7 +59,7 @@ Humble( function () {
             var model = this.model,
                 paper = this.paper,
                 items = model.getItems(),
-                dimensions = Humble.Config.DVZ.budget.dimensions,
+                dimensions = Humble.Config.DVC.budget.dimensions,
                 data  = [];
 
             _.each(items, function (item, key) {
@@ -129,7 +129,7 @@ Humble( function () {
                 model  = this.model,
                 paper  = this.paper,
                 items  = model.getItems(),
-                dimensions = Humble.Config.DVZ.budget.dimensions;
+                dimensions = Humble.Config.DVC.budget.dimensions;
 
             _.each(items, function (value, key) {
                 if (key in dimensions) {

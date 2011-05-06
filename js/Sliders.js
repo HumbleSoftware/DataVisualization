@@ -38,7 +38,7 @@ Humble( function () {
 
         render : function () {
 
-            var dimensions  = Humble.Config.DVZ.budget.dimensions,
+            var dimensions  = Humble.Config.DVC.budget.dimensions,
                 sliders     = {},
                 node        = this.node,
                 taxes       = $(T_TAXES),

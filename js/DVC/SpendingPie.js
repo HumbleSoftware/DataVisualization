@@ -23,7 +23,7 @@ Humble( function () {
         render : function () {
 
             var node = this.node,
-                spendingColors = Humble.Config.DVZ.spendingColors;
+                spendingColors = Humble.Config.DVC.spendingColors;
 
             this.parentNode.append(node);
 
@@ -76,7 +76,7 @@ Humble( function () {
                 config  = this.pieConfig,
                 colors0 = this._getRaphaelColors(),
                 colors  = [],
-                spendingColors = Humble.Config.DVZ.spendingColors;
+                spendingColors = Humble.Config.DVC.spendingColors;
                 
             colors.push(spendingColors.deficit);
             colors.push(spendingColors.income);

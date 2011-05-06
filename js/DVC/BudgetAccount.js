@@ -170,7 +170,7 @@ Humble( function () {
             var model, options;
 
             options = {
-                url : Humble.Config.DVZ.url+'getBudgetAccount',
+                url : Humble.Config.DVC.url+'getBudgetAccount',
                 key : 'accountID'
             };
 

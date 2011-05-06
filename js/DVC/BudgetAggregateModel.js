@@ -19,7 +19,7 @@ Humble( function () {
 
     // Constructor
     var BudgetAggregateModel = function (options) {
-        this.fields = Humble.Config.DVZ.budget.fields;
+        this.fields = Humble.Config.DVC.budget.fields;
         Humble.DVC.BudgetModel.apply(this, arguments);
     }
 

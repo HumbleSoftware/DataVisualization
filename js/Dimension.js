@@ -100,7 +100,7 @@ Humble( function () {
                 spending = this.spending,
                 total = model.get(key, 'amounti'),
                 taxes = model.get(key, 'mycosti'),
-                dimensions = Humble.Config.DVZ.budget.dimensions;
+                dimensions = Humble.Config.DVC.budget.dimensions;
 
             this.node.show();
 

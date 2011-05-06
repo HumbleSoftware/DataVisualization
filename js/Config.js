@@ -3,9 +3,9 @@
  */
 
 Humble.Config = {};
-Humble.Config.DVZ = {};
-Humble.Config.DVZ.url = 'http://www.whatwepayfor.com/api/';
-Humble.Config.DVZ.budgetAccount = {
+Humble.Config.DVC = {};
+Humble.Config.DVC.url = 'http://www.whatwepayfor.com/api/';
+Humble.Config.DVC.budgetAccount = {
     name : 'getBudgetAccount',
     fields : {
         account : {},
@@ -60,12 +60,12 @@ var Color  = new Array(
 );
 */
 
-Humble.Config.DVZ.spendingColors = {
+Humble.Config.DVC.spendingColors = {
     deficit : '#333333',
     other   : '#777777',
     income  : '#cccccc'
 };
-Humble.Config.DVZ.budget = {
+Humble.Config.DVC.budget = {
     name : 'getBudget',
     fields : {
         dimensionID : {
