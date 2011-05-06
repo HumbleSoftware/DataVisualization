@@ -112,13 +112,6 @@ Humble( function () {
                 var key = $(this).closest('.'+C_SLIDER).data('key');
                 Humble.Event.trigger('humble:dvc:dimensionHover', [key, false]);
             });
-            this.node.delegate('.'+C_SLIDER_TITLE, 'mouseover', function (e, ui) {
-                var key = $(this).closest('.'+C_SLIDER).data('key');
-                Humble.Event.trigger('humble:dvc:dimensionHover', [key, true]);
-            }).delegate('.'+C_SLIDER_TITLE, 'mouseout', function (e, ui) {
-                var key = $(this).closest('.'+C_SLIDER).data('key');
-                Humble.Event.trigger('humble:dvc:dimensionHover', [key, false]);
-            });
 
             // Click
             this.node.delegate('.'+C_SLIDER_LEGEND, 'click', function (e, ui) {
