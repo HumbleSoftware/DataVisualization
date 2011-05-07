@@ -6,14 +6,17 @@ body {
     font : 12px 'Droid Sans', arial, sans-serif;
 }
 
+#dvc-application {
+    text-align : center;
+}
+
 .humble-dvc-application {
+    text-align : left;
     font : 12px/18px 'Droid Sans', arial, sans-serif;
     position : relative;
     overflow : hidden;
     margin : 0px auto;
-    padding : 14px;
-    width : 750px;
-    min-height : 280px;
+    width : 778px;
     background : #babdbf;
     border : 1px solid #000;
     border-top : 0px;
@@ -39,15 +42,19 @@ body {
 
 .humble-dvc-application-header,
 .humble-dvc-splash-title {
-    font : 48px 'Droid Sans Mono', arial, sans-serif;
+    height : 48px;
+    line-height : 48px;
+    vertical-align : bottom;
+    font : 48px arial, sans-serif;
     letter-spacing : -2px;
     font-weight : bold;
     text-shadow : 3px 2px 0 #ccc;
     text-align : center;
     text-decoration : none;
 }
-
-
+.humble-dvc-application-splash {
+    margin-top : 50px;
+}
 
 .humble-dvc-visual-budget,
 .humble-dvc-sliders-title,
@@ -69,16 +76,8 @@ body {
     text-align : left;
 }
 
-
 .humble-dvc-splash {
-    position : absolute;
-    top : 0px;
-    width : 750px;
-    height : 280px;
-    z-index : 10000;
-}
-.humble-dvc-splash-title {
-    margin-top : 18px;
+    height : 180px;
 }
 .humble-dvc-splash-copy {
     text-align: center;
@@ -94,20 +93,38 @@ body {
     letter-spacing : 0px;
     font-size : 16px;
 }
+.humble-dvc-splash-label {
+    position : absolute;
+    width : 196px;
+    right : 50%;
+    top : 0px;
+    padding-top : 4px;
+    font-size : 18px;
+    text-align : left;
+}
 .humble-dvc-splash-label-income {
     position : absolute;
+    width : 170px;
     font-size : 12px;
     top : -13px;
-    left : 198px;
+    left : 16px;
 }
 .humble-dvc-splash-income {
+    position : absolute;
     margin-right: 12px;
     padding : 2px;
+    width : 170px;
+    top : 2px;
+    right : 50%;
 }
 .humble-dvc-splash-button {
+    position : absolute;
+    top : 0px;
+    left : 50%;
     padding : 2px 6px;
-    display : inline;
     border : 1px solid #787a7b;
+    width : 170px;
+    overflow : hidden;
     border-radius : 4px;
     -webkit-box-shadow : 2px 2px 3px 0px #222;
     -mox-box-shadow : 2px 2px 3px 0px #222;
@@ -433,8 +450,3 @@ width : 162px;
     overflow : hidden;
     text-overflow : ellipsis;
 }
-
-
-
-
-
