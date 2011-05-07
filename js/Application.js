@@ -3,11 +3,11 @@ function Application (applicationNode) {
     // DOM Templates
     var TITLE         = 'Move My Taxes',
         C_APPLICATION = 'humble-dvc-application',
-        T_APPLICATION = '<div class="'+C_APPLICATION+'"><div class="'+C_APPLICATION+'-header">'+TITLE+'</div></div>',
+        T_APPLICATION = '<div class="'+C_APPLICATION+'"><div class="'+C_APPLICATION+'-header '+C_APPLICATION+'-splash">'+TITLE+'</div></div>',
         node          = $(T_APPLICATION);
 
     $(applicationNode).append(node);
-
+    
     var overwriteColors = function () {
 
         var dimensions = Humble.Config.DVC.budget.dimensions,
@@ -39,10 +39,13 @@ function Application (applicationNode) {
 
     sliders.node.hide();
     visual.node.hide();
+    controls.node.hide();
 
     Humble.Event.bind('humble:dvc:splash', function (e) {
         sliders.node.show();
         visual.node.show();
+        controls.node.show();
+        node.find('.'+C_APPLICATION+'-splash').removeClass(C_APPLICATION+'-splash');
     });
 
     Humble.Event.bind('humble:dvc:modelUpdate', function (e, key) {
