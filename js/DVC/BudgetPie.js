@@ -106,11 +106,11 @@ Humble( function () {
             var html = '';
 
             html += '<div class="'+C_BUDGET+'-legend-item '+C_BUDGET+'-dimension">';
-            html += '<div class="'+C_BUDGET+'-legend-block"></div>';
+            html += '<div class="'+C_BUDGET+'-legend-block">&nbsp;</div>';
             html += '<div class="'+C_BUDGET+'-legend-label">'+title+'</div>';
             html += '</div>';
             html += '<div class="'+C_BUDGET+'-legend-item '+C_BUDGET+'-other">';
-            html += '<div class="'+C_BUDGET+'-legend-block"></div>';
+            html += '<div class="'+C_BUDGET+'-legend-block">&nbsp;</div>';
             html += '<div class="'+C_BUDGET+'-legend-label">Other</div>';
             html += '</div>';
 

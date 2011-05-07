@@ -100,15 +100,15 @@ Humble( function () {
             var html = '';
 
             html += '<div class="'+C_SPENDING+'-legend-item '+C_SPENDING+'-deficit">';
-            html += '<div class="'+C_SPENDING+'-legend-block"></div>';
+            html += '<div class="'+C_SPENDING+'-legend-block">&nbsp;</div>';
             html += '<div class="'+C_SPENDING+'-legend-label">Deficit Spending</div>';
             html += '</div>';
             html += '<div class="'+C_SPENDING+'-legend-item '+C_SPENDING+'-income">';
-            html += '<div class="'+C_SPENDING+'-legend-block"></div>';
+            html += '<div class="'+C_SPENDING+'-legend-block">&nbsp;</div>';
             html += '<div class="'+C_SPENDING+'-legend-label">Income Taxes</div>';
             html += '</div>';
             html += '<div class="'+C_SPENDING+'-legend-item '+C_SPENDING+'-other">';
-            html += '<div class="'+C_SPENDING+'-legend-block"></div>';
+            html += '<div class="'+C_SPENDING+'-legend-block">&nbsp;</div>';
             html += '<div class="'+C_SPENDING+'-legend-label">Other Taxes</div>';
             html += '</div>';
 
