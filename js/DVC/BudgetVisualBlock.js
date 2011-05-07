@@ -455,13 +455,13 @@ Humble( function () {
                 dimensions = Humble.Config.DVC.budget.dimensions;
 
             set.stop();
-            set.animate({
+            set.attr({
                 'fill' : dimensions[key].color,
                 'stroke' : '#333',
                 'stroke-opacity' : 1,
                 'stroke-width' : '1px',
                 scale : [1, 1]
-            }, 250);
+            });
         },
 
         scroll : function (key) {
