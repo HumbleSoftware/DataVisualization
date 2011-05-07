@@ -9,8 +9,7 @@ Humble( function () {
         T_CONTROLS      = '<div class="'+C_SPLASH+'-controls"></div>',
         T_BUTTON        = '<div class="'+C_SPLASH+'-button"><a>Move My Taxes &gt;</a></div>',
         T_INCOME_INPUT  = '<input id="' +C_SPLASH+'-income" class="'+C_SPLASH+'-income" type="text"></input>',
-        T_INCOME_LABEL  = '<label for="'+C_SPLASH+'-income" class="'+C_SPLASH+'-label"><div class="'+C_SPLASH+'-label-income">My Income:</div> $</label>',
-        T_TITLE         = '<div class="'+C_SPLASH+'-title">Move My Taxes</div>';
+        T_INCOME_LABEL  = '<label for="'+C_SPLASH+'-income" class="'+C_SPLASH+'-label"><div class="'+C_SPLASH+'-label-income">My Income:</div> $</label>';
 
     var Splash = function (node, model) {
 
@@ -26,7 +25,6 @@ Humble( function () {
         render : function () {
 
             var node = this.node,
-                title = $(T_TITLE),
                 label = $(T_INCOME_LABEL),
                 input = $(T_INCOME_INPUT),
                 button = $(T_BUTTON),
@@ -35,7 +33,6 @@ Humble( function () {
 
             controls.append(label, input, button);
 
-            node.append(title);
             node.append(copy);
             node.append(controls);
 
