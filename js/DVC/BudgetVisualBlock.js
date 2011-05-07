@@ -10,7 +10,7 @@ Humble( function () {
         T_BUDGET        = '<div class="'+C_VISUAL+'-budget"></div>',
         T_CANVAS        = '<div class="'+C_VISUAL+'-canvas"></div>',
         T_LEGEND        = '<div class="'+C_VISUAL+'-legend"></div>',
-        T_LEGEND_BLOCK  = '<div class="'+C_VISUAL+'-legend-block"></div>',
+        T_LEGEND_BLOCK  = '<div class="'+C_VISUAL+'-legend-block">&nbsp;</div>',
         T_LEGEND_VALUE  = '<div class="'+C_VISUAL+'-legend-value"></div>';
 
     var BudgetVisualBlock = function (node, model) {
