@@ -216,8 +216,8 @@ Humble( function () {
                 width       = config.width,
                 height      = config.height,
                 padding     = config.padding,
-                totalWidth  = paper.width,
-                totalHeight = paper.height;
+                totalWidth  = paper.canvas.clientWidth,
+                totalHeight = paper.canvas.clientHeight;
 
             if ((parity === 1 && (x + width + padding + width) > totalWidth) || 
                 (parity === -1 && (x - width - padding) < 0)) {
@@ -246,8 +246,8 @@ Humble( function () {
                 width       = config.width,
                 height      = config.height,
                 padding     = config.padding,
-                totalWidth  = paper.width,
-                totalHeight = paper.height;
+                totalWidth  = paper.canvas.clientWidth,
+                totalHeight = paper.canvas.clientHeight;
 
             for (var i = 0; i < delta; i++) {
 
@@ -279,8 +279,8 @@ Humble( function () {
             var width = config.width,
                 height = config.height,
                 padding = config.padding,
-                totalWidth = paper.width,
-                totalHeight = paper.height,
+                totalWidth  = paper.canvas.clientWidth,
+                totalHeight = paper.canvas.clientHeight,
                 x0 = config.x,
                 parity;
 
@@ -383,8 +383,8 @@ Humble( function () {
                 width = config.width,
                 height = config.height,
                 padding = config.padding,
-                totalWidth = paper.width,
-                totalHeight = paper.height;
+                totalWidth  = paper.canvas.clientWidth,
+                totalHeight = paper.canvas.clientHeight;
 
             _.each(sets, function (set, key) {
                 if (start) {
