@@ -79,9 +79,13 @@ Humble( function () {
 
             value = value.toString();
             value = this.reverse(value);
-            value = value.split(/(\d{3})/);
-            value = _.reject(value, function (item) { return (item === ""); });
-            value = value.join(',');
+            value = value.split('');
+            for (var i = 0; i < value.length; i++) {
+                if (i > 0 && i % 3 === 0) {
+                    value[i] = ','+value[i];
+                }
+            }
+            value = value.join('');
             value = this.reverse(value);
 
             return value;
