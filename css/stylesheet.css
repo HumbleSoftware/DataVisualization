@@ -324,9 +324,6 @@ body {
     font-size : 10px;
     position : relative;
 }
-.humble-dvc-dimension .humble-dvc-spending-legend {
-
-}
 .humble-dvc-dimension .humble-dvc-spending-legend-block {
     position : absolute;
     margin-top : 2px;
@@ -386,7 +383,7 @@ body {
 }
 .humble-dvc-subfunction-accounts .humble-dvc-subfunction-account-budget {
     float : left;
-    width: 100px;
+    width: 160px;
     padding-left: 2px;
 }
 .humble-dvc-subfunction-accounts .humble-dvc-subfunction-tax {
@@ -413,7 +410,6 @@ body {
     left : 460px;
     width : 280px;
     margin-right: 10px;
-    height : 140px;
 }
 .humble-dvc-subfunction .humble-dvc-spending-title,
 .humble-dvc-subfunction .humble-dvc-budgetpie-title {
@@ -431,7 +427,7 @@ body {
 .humble-dvc-subfunction .humble-dvc-budgetpie-legend {
     position : absolute;
     top : 28px;
-    right : 10px;
+    left : 92px;
 }
 .humble-dvc-subfunction .humble-dvc-spending-legend-block,
 .humble-dvc-subfunction .humble-dvc-budgetpie-legend-block {
