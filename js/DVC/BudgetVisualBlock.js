@@ -216,8 +216,8 @@ Humble( function () {
                 width       = config.width,
                 height      = config.height,
                 padding     = config.padding,
-                totalWidth  = paper.canvas.clientWidth,
-                totalHeight = paper.canvas.clientHeight;
+                totalWidth  = paper.canvas.clientWidth || paper.width,
+                totalHeight = paper.canvas.clientHeight || paper.height;
 
             if ((parity === 1 && (x + width + padding + width) > totalWidth) || 
                 (parity === -1 && (x - width - padding) < 0)) {
