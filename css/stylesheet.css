@@ -226,6 +226,9 @@ body {
     height : 20px;
     cursor : pointer;
 }
+.humble-dvc-sliders .humble-dvc-slider-title:hover {
+    text-decoration : underline;
+}
 .humble-dvc-sliders .humble-dvc-slider-legend {
     position : absolute;
     top : 1px;
