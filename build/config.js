@@ -24,5 +24,14 @@ exports.groups.dvc = [
     PREFIX_JS + 'Formatter.js',
     PREFIX_JS + 'Model.js',
     PREFIX_JS + 'Sliders.js',
-    PREFIX_JS + 'Visual.js'
+    PREFIX_JS + 'Visual.js',
+    PREFIX_JS + 'DVC/BudgetAggregateModel.js',
+    PREFIX_JS + 'DVC/BudgetPie.js',
+    PREFIX_JS + 'DVC/BudgetModel.js',
+    PREFIX_JS + 'DVC/BudgetVisualBlock.js',
+    PREFIX_JS + 'DVC/BudgetVisualPie.js',
+    PREFIX_JS + 'DVC/BudgetAccount.js',
+    PREFIX_JS + 'DVC/BudgetAccountModel.js',
+    PREFIX_JS + 'DVC/Splash.js',
+    PREFIX_JS + 'DVC/SpendingPie.js'
 ];
