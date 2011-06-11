@@ -29,6 +29,7 @@ task('clean', function (params) {
 task({'build' : [
     'pre-build',
     'target/js/dvc.js',
+    'target/js/script.js',
     'target/css/stylesheet.css'
 ]}, function () {
     console.log('Build complete.');
@@ -40,6 +41,21 @@ task('pre-build', function () {
     fs.mkdirSync(target+'/js', '755');
     fs.mkdirSync(target+'/css', '755');
 });
+
+file({'target/js/script.js' : [
+    '../lib/jquery/jquery.min.js',
+    '../lib/jquery-ui/js/jquery-ui-1.8.10.custom.min.js',
+    '../lib/raphael/raphael-min.js',
+    '../lib/raphael/g.raphael-min.js',
+    '../lib/raphael/g.pie.js',
+    '../lib/underscore/underscore-min.js'
+]}, function () {
+    var files   = this.prereqs,
+        outFile = this.name;
+    console.log(outFile);
+    concatSync(files, outFile);
+    complete();
+}, true);
 
 // dvc.js
 file({'target/js/dvc.js' : config.groups.dvc}, function () {
