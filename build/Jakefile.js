@@ -28,7 +28,8 @@ task('clean', function (params) {
 // Build
 task({'build' : [
     'pre-build',
-    'target/js/dvc.js'
+    'target/js/dvc.js',
+    'target/css/stylesheet.css'
 ]}, function () {
     console.log('Build complete.');
 });
@@ -41,7 +42,7 @@ task('pre-build', function () {
 });
 
 // dvc.js
-file({'target/js/dvc.js': config.groups.dvc}, function () {
+file({'target/js/dvc.js' : config.groups.dvc}, function () {
     var files   = this.prereqs,
         outFile = this.name;
     console.log(outFile);
@@ -49,6 +50,14 @@ file({'target/js/dvc.js': config.groups.dvc}, function () {
     minify(outFile);
 }, true);
 
+// stylesheet.css
+file({'target/css/stylesheet.css' : config.groups.stylesheet}, function () {
+    var files   = this.prereqs,
+        outFile = this.name;
+    console.log(outFile);
+    concatSync(files, outFile);
+    minify(outFile);
+});
 
 /**
  * Helper Methods
@@ -64,8 +73,10 @@ function concatSync(files, outFile) {
 }
 
 function minify (inFile, outFile) {
-    var cmd = 'java -jar ./tools/yuicompressor-2.4.5.jar -o '+(outFile || inFile)+' '+inFile;
-    exec(cmd, function (error, stdout, stderr) {
+    var cmd  = 'java -jar ./tools/yuicompressor-2.4.5.jar',
+        type = ' --type '+(inFile.substring(inFile.search(/\./)+1)),
+        out  = ' -o '+(outFile || inFile)+' '+inFile;
+    exec(cmd+type+out, function (error, stdout, stderr) {
         complete();
     });
 }
