@@ -30,7 +30,8 @@ task({'build' : [
     'pre-build',
     'target/js/dvc.js',
     'target/js/script.js',
-    'target/css/stylesheet.css'
+    'target/css/stylesheet.css',
+    'post-build'
 ]}, function () {
     console.log('Build complete.');
 });
@@ -38,6 +39,7 @@ task({'build' : [
 // Pre-build
 task('pre-build', function () {
     fs.mkdirSync(target, '755');
+    fs.mkdirSync(target+'/images', '755');
     fs.mkdirSync(target+'/js', '755');
     fs.mkdirSync(target+'/css', '755');
 });
@@ -45,7 +47,7 @@ task('pre-build', function () {
 file({'target/js/script.js' : [
     '../lib/jquery/jquery.min.js',
     '../lib/jquery-ui/js/jquery-ui-1.8.10.custom.min.js',
-    '../lib/raphael/raphael-min.js',
+    '../lib/raphael/raphael.js',
     '../lib/raphael/g.raphael-min.js',
     '../lib/raphael/g.pie.js',
     '../lib/underscore/underscore-min.js'
@@ -73,6 +75,19 @@ file({'target/css/stylesheet.css' : config.groups.stylesheet}, function () {
     console.log(outFile);
     concatSync(files, outFile);
     minify(outFile);
+});
+
+task('post-build', function () {
+    var count = 0,
+        total = 2;
+    exec('cp -R ../images/* target/images/', function (error, stdout, stderr) {
+        count++;
+        if (count === total) complete();
+    });
+    exec('cp ../index_build.html target/index.html', function (error, stdout, stderr) {
+        count++;
+        if (count === total) complete();
+    });
 });
 
 /**
