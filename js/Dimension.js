@@ -75,21 +75,22 @@ Humble( function () {
                 }
             });
 
-            this.parentNode.mousemove(function (e) {
+            if (!navigator.userAgent.toLowerCase().match(/(iphone|ipod|ipad)/)) {
+                this.parentNode.mousemove(function (e) {
 
-                var x = e.pageX,
-                    y = e.pageY,
-                    offset = that.parentNode.offset();
+                    var x = e.pageX,
+                        y = e.pageY,
+                        offset = that.parentNode.offset();
 
-                x = (x + 28 - offset.left);
-                y = (y - that.node.height()/2 - offset.top);
+                    x = (x + 28 - offset.left);
+                    y = (y - that.node.height()/2 - offset.top);
 
-                that.node.css({
-                    'top' : y,
-                    'left' : x
+                    that.node.css({
+                        'top' : y,
+                        'left' : x
+                    });
                 });
-            });
-
+            }
         },
 
         doHover : function (key) {
