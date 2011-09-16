@@ -46,20 +46,6 @@ var Color = [
     '#e35dfb'
 ];
 
-/*
-var Color  = new Array(
-    '#ff0049', //strawberry
-    '#fd7100', //red-orange
-    '#f9aa00', //orange
-    '#f9e502', //yellow
-    '#70fb00', //green
-    '#00c2ff', //light blue
-    '#0f91ff', //blue
-    '#b537b6', //purple
-    '#e92192'  //fuschia
-);
-*/
-
 Humble.Config.DVC.spendingColors = {
     deficit : '#333333',
     other   : '#777777',
